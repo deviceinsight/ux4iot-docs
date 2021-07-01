@@ -18,3 +18,37 @@ If the user credentials are valid, but the requested operation is not allowed, t
 You have to implement the client to your security backend in your user interface code. This gives you full flexibility when it comes to your authentication scheme. It also means that you can use other ways to indicate success or failure. Using HTTP response codes as described above is merely our recommendation.
 {% endhint %}
 
+The JSON objects that are passed to your `localAccessFunction` and that you should pass to your security backend, have the following structure:
+
+### Direct method request
+
+```text
+{
+  "type": "directMethod",
+  "deviceId": "d123",
+  "details":  {
+    "directMethodName": "reset"
+  }
+}
+```
+
+If you forward this request to Subioto, it means that the client can call the direct method `reset` on the device with the id `d123` . This is not an actual invocation of the method, but merely the permission to call the method at a later point in time.
+
+### Telemetry request
+
+```text
+{
+  "type": "telemetry",
+  "deviceId": "d123",
+  "details":  {
+    "telemetryKey": "temperature"
+  }
+}
+```
+
+If you forward this request to Subioto, it means that the client subscribes to updates to the telemetry key `temperature` of the device `d123`.
+
+{% hint style="info" %}
+In contrast to other request like `diretMethod`, this not only approves the permission but also actively subscribes to updates.
+{% endhint %}
+
