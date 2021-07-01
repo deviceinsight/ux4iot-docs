@@ -25,6 +25,7 @@ The JSON objects that are passed to your `localAccessFunction` and that you shou
 ```text
 {
   "type": "directMethod",
+  "sessionId": "ht9JvTLalcy3GQDttyqu",
   "deviceId": "d123",
   "details":  {
     "directMethodName": "reset"
@@ -39,6 +40,7 @@ If you forward this request to Subioto, it means that the client can call the di
 ```text
 {
   "type": "telemetry",
+  "sessionId": "ht9JvTLalcy3GQDttyqu",
   "deviceId": "d123",
   "details":  {
     "telemetryKey": "temperature"
