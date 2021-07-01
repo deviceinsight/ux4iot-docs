@@ -9,4 +9,5 @@
 ---
 
 * [Implementing the security backend](implementing-the-security-backend.md)
+* [Azure Function Example for security backend](azure-function-example-for-security-backend.md)
 
