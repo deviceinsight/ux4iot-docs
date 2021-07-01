@@ -9,7 +9,7 @@ You can use any programming language or runtime environment for your backend, fo
 * A virtual machine
 * A pod in an Kubernetes cluster
 
-As you most likely already have a backend API for your IoT application, it's probably the best idea to integrate the security endpoint with your existing ones.
+As you most likely already have a backend API for your IoT application, it's probably a good idea to add the security endpoint to your existing ones.
 
 The currently is an admin SDK for the following languages:
 
