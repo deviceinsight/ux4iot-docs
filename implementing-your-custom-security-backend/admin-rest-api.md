@@ -1,6 +1,6 @@
 # Admin REST API
 
-If you are using a language for the security backend for which no SDK exists, you can use the REST API
+If you are using a language for the security backend for which no SDK exists, you can use the REST API. Don't worry, it's really simple.
 
 {% api-method method="put" host="https://subioto-xyz.westeurope.azurecontainer.io/" path="api/v1/grants" %}
 {% api-method-summary %}
