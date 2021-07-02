@@ -1,6 +1,6 @@
 # Implementing the security backend
 
-Your security backend must provide a single HTTP resource that receives grant requests from the UI, more specifically by your frontend `grantRequestForwarder` function. The security backend has the following responsibilities:
+Your security backend must provide a _single_ HTTP resource that receives grant requests from the UI, more specifically by your frontend `grantRequestForwarder` function. The security backend has the following responsibilities:
 
 * Authenticating the user or application that performed the request. You should use the authentication mechanism of your application, e.g. Bearer Tokens, Basic Authentication, etc.
 * Checking if the grant request is allowed for this user or application.

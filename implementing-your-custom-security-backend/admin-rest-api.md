@@ -78,7 +78,7 @@ There was something wrong with the grant, it has not been applied
 
 **Example request**
 
-```text
+```javascript
 {
   "grantRequestType": "telemetry",
   "sessionId": "ht9JvTLalcy3GQDttyqu",

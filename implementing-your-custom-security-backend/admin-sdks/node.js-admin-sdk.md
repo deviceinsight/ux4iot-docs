@@ -1,0 +1,35 @@
+# Node.js
+
+First, add the dependency:
+
+{% tabs %}
+{% tab title="NPM" %}
+```bash
+npm install subioto-admin-sdk
+```
+{% endtab %}
+
+{% tab title="Yarn" %}
+```bash
+yarn add subioto-admin-sdk
+```
+{% endtab %}
+{% endtabs %}
+
+Initialize the SDK using the connection string. You can retrieve the connection string from the Azure portal.
+
+```javascript
+const subiotoAdmin = require('subioto-admin');
+subiotoAdmin.init({
+    connectionString: "HostName=...;Key=secret";
+});
+```
+
+Now you can whitelist grant requests:
+
+```javascript
+subiotoAdmin.grant(grantRequest);
+```
+
+Usually, the `grantRequest` will be exactly identical to the body received by the custom security backend. In the security backend, you merely decide which grant requests to forward and which not to forward.
+
