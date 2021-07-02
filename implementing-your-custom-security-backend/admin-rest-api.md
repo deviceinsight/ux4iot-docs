@@ -8,7 +8,7 @@ If you are using a language for the security backend for which no SDK exists, yo
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Send a grant request to Subioto to apply it for the `sessionId` contained in the grant request.
+Send a grant request to Subioto to apply it for the `sessionId` contained in the grant 
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -18,6 +18,24 @@ Send a grant request to Subioto to apply it for the `sessionId` contained in the
 The basic authentication credentials
 {% endapi-method-parameter %}
 {% endapi-method-headers %}
+
+{% api-method-body-parameters %}
+{% api-method-parameter name="details" type="string" required=false %}
+Further details of the grant, depends on the grantRequestType
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="deviceId" type="string" required=true %}
+The IoT Hub device ID
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="sessionId" type="string" required=true %}
+The sessionId for which the grant is requested
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="grantRequestType" type="string" required=true %}
+Can be one of 'telemetry', 'directMethod', ...
+{% endapi-method-parameter %}
+{% endapi-method-body-parameters %}
 {% endapi-method-request %}
 
 {% api-method-response %}
@@ -57,4 +75,17 @@ There was something wrong with the grant, it has not been applied
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
+
+**Example request**
+
+```text
+{
+  "grantRequestType": "telemetry",
+  "sessionId": "ht9JvTLalcy3GQDttyqu",
+  "deviceId": "d123",
+  "details":  {
+    "telemetryKey": "temperature"
+  }
+}
+```
 
