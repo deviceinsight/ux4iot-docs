@@ -89,3 +89,5 @@ There was something wrong with the grant, it has not been applied
 }
 ```
 
+TODO: Add request for revoking
+
