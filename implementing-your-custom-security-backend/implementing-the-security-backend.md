@@ -24,7 +24,7 @@ The grant requests are JSON objects that are passed to your local`grantRequestFo
 
 ```text
 {
-  "grantRequestType": "directMethod",
+  "grantType": "directMethod",
   "sessionId": "ht9JvTLalcy3GQDttyqu",
   "deviceId": "d123",
   "details":  {
@@ -39,7 +39,7 @@ If you forward this grant request to Subioto, it means that the client can call 
 
 ```text
 {
-  "grantRequestType": "telemetry",
+  "grantType": "telemetry",
   "sessionId": "ht9JvTLalcy3GQDttyqu",
   "deviceId": "d123",
   "details":  {
