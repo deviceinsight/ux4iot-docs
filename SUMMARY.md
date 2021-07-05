@@ -2,6 +2,11 @@
 
 * [Subioto Docs](README.md)
 
+## Developing web apps with React <a id="using-react"></a>
+
+* [Introduction](using-react/introduction.md)
+* [Hooks](using-react/hooks.md)
+
 ## Implementing your custom security backend
 
 * [Introduction](implementing-your-custom-security-backend/introduction.md)
