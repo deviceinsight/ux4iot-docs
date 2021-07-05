@@ -2,9 +2,9 @@
 
 If you are using a language for the security backend for which no SDK exists, you can use the REST API. Don't worry, it's really simple.
 
-{% api-method method="put" host="https://subioto-xyz.westeurope.azurecontainer.io/" path="api/v1/grants" %}
+{% api-method method="post" host="https://subioto-xyz.westeurope.azurecontainer.io/" path="api/v1/grants" %}
 {% api-method-summary %}
-/grants
+Forward grants
 {% endapi-method-summary %}
 
 {% api-method-description %}
@@ -14,6 +14,10 @@ Send a grant request to Subioto to apply it for the `sessionId` contained in the
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-headers %}
+{% api-method-parameter name="X-User-Id" type="string" required=false %}
+Your custom identifier for users to pass along as meta-information. If you pass along this identifier, you can remove all sessions with the same user id, e.g. if a user logs out.
+{% endapi-method-parameter %}
+
 {% api-method-parameter name="Authorization" type="string" required=true %}
 The basic authentication credentials
 {% endapi-method-parameter %}
@@ -90,4 +94,96 @@ There was something wrong with the grant, it has not been applied
 ```
 
 TODO: Add request for revoking
+
+{% api-method method="delete" host="https://subioto-xyz.westeurope.azurecontainer.io/" path="api/v1/sessions/:sessionId" %}
+{% api-method-summary %}
+Delete sessions
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Remove a session, including all grants
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-path-parameters %}
+{% api-method-parameter name="sessionId" type="string" required=false %}
+
+{% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=204 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+NO CONTENT
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=404 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+{
+  "errorMessage": "The session was not found"
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% api-method method="delete" host="https://subioto-xyz.westeurope.azurecontainer.io/" path="api/v1/users/:userId/sessions" %}
+{% api-method-summary %}
+Delete user sessions
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Remove all sessions of a particular user identified by his or her user ID. Useful when a particular user logs out of your system.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-path-parameters %}
+{% api-method-parameter name="" type="string" required=true %}
+The userId of the user that 
+{% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=204 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+NO CONTENT
+```
+{% endapi-method-response-example %}
+
+{% api-method-response-example httpCode=404 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+{
+  "errorMessage": "The userId is unknown"
+}
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% hint style="info" %}
+In order for this to work, you have to pass along the `userId` when forwarding grants.
+{% endhint %}
 
