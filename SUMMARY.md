@@ -4,7 +4,7 @@
 
 ## Setup
 
-* [Create Subioto Instance](setup/create-subioto-instance.md)
+* [Create your Subioto Instance](setup/create-subioto-instance.md)
 * [Configure your IoT Hub](setup/configure-your-iot-hub.md)
 
 ## Developing web apps with React <a id="using-react"></a>
