@@ -1,7 +1,11 @@
 # Table of contents
 
 * [Subioto Docs](README.md)
-* [Create Subioto Instance](create-subioto-instance.md)
+
+## Setup
+
+* [Create Subioto Instance](setup/create-subioto-instance.md)
+* [Configure your IoT Hub](setup/configure-your-iot-hub.md)
 
 ## Developing web apps with React <a id="using-react"></a>
 
@@ -18,6 +22,4 @@
 * [Admin SDKs](implementing-your-custom-security-backend/admin-sdks/README.md)
   * [Node.js](implementing-your-custom-security-backend/admin-sdks/node.js-admin-sdk.md)
 * [Admin REST API](implementing-your-custom-security-backend/admin-rest-api.md)
-
-## Setup
 
