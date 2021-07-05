@@ -87,3 +87,19 @@ const connectionState = useConnectionState("simulated-device");
 The connection state information can be quite delayed \(up to 1 minute\). This is not a Subioto issue, but an issue with IoT Hub itself.
 {% endhint %}
 
+### usePatchDesiredProperties
+
+```javascript
+const patchDesiredProperties = usePatchDesiredProperties("simulated-device");
+```
+
+You can now update the desired properties by calling this function:
+
+```javascript
+patchDesiredProperties({
+  sendInterval: 2
+});
+```
+
+
+
