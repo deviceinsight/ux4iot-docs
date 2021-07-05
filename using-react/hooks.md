@@ -2,7 +2,7 @@
 
 ### useTelemetry
 
-The `useTelemetry` hook returns a variable that is updated as soon as new values of the given telemetry key are received. This hook relies on the assumption that your Device-to-Cloud messages are JSON documents where the key is the telemetry key and the value is the current telemetry value. We plan to support more complex payloads in the future \(selecting using JSON Path, Avro, etc\).
+The `useTelemetry` hook returns a variable that is updated as soon as new values of the given telemetry key are received. This hook relies on the assumption that your Device-to-Cloud messages are JSON documents where the key is the telemetry key and the value is the current telemetry value. We plan to support more complex payloads in the future \(selecting using JSON Path, Avro, etc\). If you have other message payloads, you can use the useD2CMessages hook, see below.
 
 ```javascript
 const temperature = useTelemetry("simulated-device", "temperature");
@@ -101,5 +101,15 @@ patchDesiredProperties({
 });
 ```
 
+### useD2CMessages
 
+Use the `useD2CMessages` hook to receive Device-to-Cloud messages of a device.
+
+```javascript
+const unsubscribe = useD2CMessages("simulated-device", msg => {
+  console.log("Received the D2C message:", msg);
+});
+```
+
+You can use the returned function to cancel the subscription.
 
