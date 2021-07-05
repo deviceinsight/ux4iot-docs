@@ -145,7 +145,7 @@ NO CONTENT
 
 {% api-method method="delete" host="https://subioto-xyz.westeurope.azurecontainer.io/" path="api/v1/users/:userId/sessions" %}
 {% api-method-summary %}
-Delete user sessions
+Delete all user sessions
 {% endapi-method-summary %}
 
 {% api-method-description %}
