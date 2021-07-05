@@ -21,5 +21,5 @@ const subioto = initSubioto(SUBIOTO_URL, grantRequestFunction);
 
 TODO: Handle response status, define return type of function
 
-As you can see, you initiate a HTTP request to your backend using your HTTP library of choice. You use your usual authentication mechanism \(in this case an OAuth2 access token\).
+As you can see, you initiate a HTTP request to your backend using your HTTP library of choice \(in the example [axios](https://github.com/axios/axios) is used\). You use your usual authentication mechanism \(in this case an OAuth2 access token\).
 

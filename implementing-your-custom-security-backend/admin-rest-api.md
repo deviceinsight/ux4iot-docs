@@ -93,8 +93,6 @@ There was something wrong with the grant, it has not been applied
 }
 ```
 
-TODO: Add request for revoking
-
 {% api-method method="delete" host="https://subioto-xyz.westeurope.azurecontainer.io/" path="api/v1/sessions/:sessionId" %}
 {% api-method-summary %}
 Delete sessions
