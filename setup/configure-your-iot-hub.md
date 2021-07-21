@@ -7,7 +7,7 @@ In order to use the following hooks, you need to perform additional setup steps:
 
 In both cases, the IoT Hub routing must be configured. 
 
-For 'Device Twin Changed Events', which are required for the `useDeviceTwin` hook, a routing rule must be added as follows:
+For 'Device Twin Changed Events', which are required for the [useDeviceTwin](../using-react/hooks.md#usedevicetwin) hook, a routing rule must be added as follows:
 
 ![](../.gitbook/assets/image%20%282%29.png)
 
@@ -27,7 +27,7 @@ az iot hub route create \
 {% endtab %}
 {% endtabs %}
 
-For 'Connection State Events', which are required for the `useConnectionState` hook, a routing rule must be added as follows:
+For 'Connection State Events', which are required for the [useConnectionState](../using-react/hooks.md#useconnectionstate) hook, a routing rule must be added as follows:
 
 ![](../.gitbook/assets/image%20%284%29.png)
 
