@@ -7,15 +7,15 @@ You can also not use an IoT Hub at all, but send messages to the Event Hub by so
 * Data is received not from devices directly but via some other cloud.
 * The devices communicate with a legacy protocol not supported by IoT Hub. There is a custom protocol endpoint that the devices connect to.
 
-If you do not use an IoT Hub but only an Event Hub, the following hooks can be used:
+In such scenarios the following hooks can be used:
 
 * [useTelemetry](../using-react/hooks.md#usetelemetry)
 * [useD2CMessages](../using-react/hooks.md#used-2-cmessages)
 
 When you send messages to the Event Hub, they must adhere to the following requirements:
 
-* They must have a system property or property with key `iothub-connection-device-id`
-* They must have a system property or property with key `iothub-message-schema`. The value of this property must be `Telemetry`.
+* They must have a property `iothub-connection-device-id`
+* They must have a property `iothub-message-schema`. The value of this property must be `Telemetry`.
 
 {% hint style="info" %}
 If you send the messages from IoT Hub through message routing, these properties are automatically set.
@@ -26,7 +26,7 @@ Here is an example of sending a message to an Event Hub using Node.js:
 ```javascript
 const { EventHubProducerClient } = require("@azure/event-hubs");
 
-const dstEventHubName = "subioto-input";
+const eventHubName = "subioto-input";
 
 const {
     EVENT_HUB_CONNECTION_STRING
@@ -39,7 +39,7 @@ function getRandomInt(max) {
 async function main() {
 
     // Create a producer client to send messages to the event hub.
-    const producer = new EventHubProducerClient(EVENT_HUB_CONNECTION_STRING, dstEventHubName);
+    const producer = new EventHubProducerClient(EVENT_HUB_CONNECTION_STRING, eventHubName);
 
     const now = new Date();
 
@@ -57,15 +57,12 @@ async function main() {
     const batch = await producer.createBatch();
     batch.tryAdd({ body, properties });
 
-    console.log(`Sending: ${JSON.stringify(body, null, 2)}`);
-
-    // Send the batch to the event hub.
     await producer.sendBatch(batch);
     await producer.close();
 }
 
 main().catch((err) => {
-    console.log("Error occurred: ", err);
+    console.log("An error occurred: ", err);
 })
 ```
 
