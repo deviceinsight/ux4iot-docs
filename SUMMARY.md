@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Subioto Docs](README.md)
+* [Subioto](README.md)
 
 ## Setup
 
@@ -10,7 +10,7 @@
 
 ## Developing web apps with React <a id="using-react"></a>
 
-* [Setup](using-react/introduction.md)
+* [Installing the dependency](using-react/introduction.md)
 * [Hooks](using-react/hooks.md)
 
 ## Implementing your custom security backend

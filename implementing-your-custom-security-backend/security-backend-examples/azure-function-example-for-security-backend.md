@@ -1,6 +1,6 @@
 # Azure Function using Javascript
 
-Here is an example implementation of a custom security backend using Azure Functions and Node.js
+The following is an example implementation of a custom security backend using Azure Functions and Node.js
 
 ```javascript
 const subiotoAdmin = require('subioto-admin');

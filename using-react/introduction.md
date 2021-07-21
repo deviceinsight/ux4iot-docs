@@ -1,4 +1,4 @@
-# Setup
+# Installing the dependency
 
 We provide React hooks and context providers out of the box.
 

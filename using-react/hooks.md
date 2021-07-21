@@ -2,13 +2,13 @@
 
 ### useTelemetry
 
-The `useTelemetry` hook returns a variable that is updated as soon as new values of the given telemetry key are received. This hook relies on the assumption that your Device-to-Cloud messages are JSON documents where the key is the telemetry key and the value is the current telemetry value. We plan to support more complex payloads in the future \(selecting using JSON Path, Avro, etc\). If you have other message payloads, you can use the useD2CMessages hook, see below.
+The `useTelemetry` hook returns a variable that is updated as soon as new values of the given telemetry key are received. This hook relies on the assumption that your Device-to-Cloud messages are JSON documents where the key is the telemetry key and the value is the current telemetry value. We plan to support more complex payloads in the future \(selecting using JSON Path, Avro, etc\). If you have other message payloads, you can use the [useD2CMessages hook](hooks.md#used-2-cmessages).
 
 ```javascript
 const temperature = useTelemetry("simulated-device", "temperature");
 ```
 
-When the following D2C message is received, the variable temperature is updated \(and a render is triggered\):
+When the following D2C message is received, the variable temperature is updated \(and a re-render is triggered\):
 
 ```javascript
 {
@@ -19,16 +19,16 @@ When the following D2C message is received, the variable temperature is updated 
 
 ### useDirectMethod
 
-The `useDirectMethod` hook returns a Javascript function that, when invoked, calls a direct method on the target device. It returns a Promise that resolves to the direct method result that the device returns \(or an error when the direct method could not be executed if the device is e.g. offline\).
+The `useDirectMethod` hook returns a Javascript function that, when invoked, calls a direct method on the target device. It returns a Promise that resolves to the direct method result that the device returns \(or an error when the direct method could not be executed, e.g. if the device is offline\).
 
 ```javascript
 const enableFastLogging = useDirectMethod("simulated-device", {
-        methodName: 'SetTelemetryInterval',
-        payload: 1
-    });
+    methodName: 'SetTelemetryInterval',
+    payload: 1
+});
 ```
 
-You can now call the function and await the result
+You can now call the function and await the result:
 
 ```javascript
 const result = await enableFastLogging();
