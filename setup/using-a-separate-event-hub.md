@@ -21,3 +21,51 @@ When you send messages to the Event Hub, they must adhere to the following requi
 If you send the messages from IoT Hub through message routing, these properties are automatically set.
 {% endhint %}
 
+Here is an example of sending a message to an Event Hub using Node.js:
+
+```javascript
+const { EventHubProducerClient } = require("@azure/event-hubs");
+
+const dstEventHubName = "subioto-input";
+
+const {
+    EVENT_HUB_CONNECTION_STRING
+} = process.env;
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+async function main() {
+
+    // Create a producer client to send messages to the event hub.
+    const producer = new EventHubProducerClient(EVENT_HUB_CONNECTION_STRING, dstEventHubName);
+
+    const now = new Date();
+
+    const body = {
+        temperature: 42.1,
+        pressure: 10.9,
+        timestamp: now.toISOString()
+    };
+    
+    const properties = {
+        "iothub-connection-device-id": "some-device",
+        "iothub-message-schema": "Telemetry" 
+    };
+
+    const batch = await producer.createBatch();
+    batch.tryAdd({ body, properties });
+
+    console.log(`Sending: ${JSON.stringify(body, null, 2)}`);
+
+    // Send the batch to the event hub.
+    await producer.sendBatch(batch);
+    await producer.close();
+}
+
+main().catch((err) => {
+    console.log("Error occurred: ", err);
+})
+```
+
