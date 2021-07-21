@@ -9,8 +9,8 @@ You can also not use an IoT Hub at all, but send messages to the Event Hub by so
 
 If you do not use an IoT Hub but only an Event Hub, the following hooks can be used:
 
-* \`\`[`useTelemetry`](../using-react/hooks.md#usetelemetry)\`\`
-* \`\`[`useD2CMessages`](../using-react/hooks.md#used-2-cmessages)\`\`
+* [useTelemetry](../using-react/hooks.md#usetelemetry)
+* [useD2CMessages](../using-react/hooks.md#used-2-cmessages)
 
 When you send messages to the Event Hub, they must adhere to the following requirements:
 

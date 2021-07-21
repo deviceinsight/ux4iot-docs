@@ -2,8 +2,8 @@
 
 In order to use the following hooks, you need to perform additional setup steps:
 
-* `useConnectionState`
-* `useDeviceTwin`
+* [useConnectionState](../using-react/hooks.md#useconnectionstate)
+* [useDeviceTwin](../using-react/hooks.md#usedevicetwin)
 
 In both cases, the IoT Hub routing must be configured. 
 
