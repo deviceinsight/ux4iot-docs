@@ -19,7 +19,7 @@ If you want to use Azure CLI, you can accomplish the same in the following way:
 {% tab title="AZ CLI" %}
 ```bash
 az iot hub route create \
-  --route-name subioto-device-twin-route  \
+  --route-name ux4iot-device-twin-route  \
   --hub-name YOUR_IOT_HUB\
   --resource-group YOUR_RESOURCE_GROUP \
   --condition true \
@@ -41,7 +41,7 @@ If you want to use Azure CLI, you can accomplish the same in the following way:
 {% tab title="AZ CLI" %}
 ```bash
 az iot hub route create \
-  --route-name subioto-device-connection-route  \
+  --route-name ux4iot-device-connection-route  \
   --hub-name YOUR_IOT_HUB\
   --resource-group YOUR_RESOURCE_GROUP \
   --condition true \

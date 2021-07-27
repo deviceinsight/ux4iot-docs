@@ -4,7 +4,7 @@
 
 ## Setup
 
-* [Create your Subioto Instance](setup/create-subioto-instance.md)
+* [Create your ux4iot Instance](setup/create-ux4iot-instance.md)
 * [Configure your IoT Hub](setup/configure-your-iot-hub.md)
 * [Using a separate Event Hub](setup/using-a-separate-event-hub.md)
 

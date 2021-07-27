@@ -1,6 +1,6 @@
 # Introduction
 
-In order to authorize requests and to enforce the access control policies and permission logic of your application, you need to provide a custom security backend. This backend must run in the cloud, as it contains the credentials for accessing the Subioto Admin API.
+In order to authorize requests and to enforce the access control policies and permission logic of your application, you need to provide a custom security backend. This backend must run in the cloud, as it contains the credentials for accessing the ux4iot Admin API.
 
 You can use any programming language or runtime environment for your backend, for example:
 

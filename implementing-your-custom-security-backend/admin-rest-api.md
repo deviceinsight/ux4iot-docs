@@ -2,13 +2,13 @@
 
 If you are using a language for the security backend for which no SDK exists, you can use the REST API. Don't worry, it's really simple.
 
-{% api-method method="post" host="https://subioto-xyz.westeurope.azurecontainer.io/" path="api/v1/grants" %}
+{% api-method method="post" host="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="api/v1/grants" %}
 {% api-method-summary %}
 Forward grants
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Send a grant request to Subioto to apply it for the `sessionId` contained in the grant 
+Send a grant request to ux4iot to apply it for the `sessionId` contained in the grant 
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -93,7 +93,7 @@ There was something wrong with the grant, it has not been applied
 }
 ```
 
-{% api-method method="delete" host="https://subioto-xyz.westeurope.azurecontainer.io/" path="api/v1/sessions/:sessionId" %}
+{% api-method method="delete" host="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="api/v1/sessions/:sessionId" %}
 {% api-method-summary %}
 Delete sessions
 {% endapi-method-summary %}
@@ -143,7 +143,7 @@ NO CONTENT
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="delete" host="https://subioto-xyz.westeurope.azurecontainer.io/" path="api/v1/users/:userId/sessions" %}
+{% api-method method="delete" host="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="api/v1/users/:userId/sessions" %}
 {% api-method-summary %}
 Delete all user sessions
 {% endapi-method-summary %}

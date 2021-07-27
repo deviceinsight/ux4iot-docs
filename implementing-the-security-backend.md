@@ -7,7 +7,7 @@ Your security backend must provide a single HTTP resource that is called by the 
 
 If the requested operation is allowed, the backend should do the following things:
 
-* Forward the requested operation to Subioto's admin API
+* Forward the requested operation to ux4iot's admin API
 * Return the HTTP response codes 200 or 204 \(this is our recommendation, but no requirement\)
 
 If invalid authentication credentials were provided, the backend should return the HTTP response code 401 \(Unauthorized\).
@@ -33,7 +33,7 @@ The JSON objects that are passed to your `localAccessFunction` and that you shou
 }
 ```
 
-If you forward this request to Subioto, it means that the client can call the direct method `reset` on the device with the id `d123` . This is not an actual invocation of the method, but merely the permission to call the method at a later point in time.
+If you forward this request to ux4iot, it means that the client can call the direct method `reset` on the device with the id `d123` . This is not an actual invocation of the method, but merely the permission to call the method at a later point in time.
 
 ### Telemetry request
 
@@ -48,7 +48,7 @@ If you forward this request to Subioto, it means that the client can call the di
 }
 ```
 
-If you forward this request to Subioto, it means that the client subscribes to updates to the telemetry key `temperature` of the device `d123`.
+If you forward this request to ux4iot, it means that the client subscribes to updates to the telemetry key `temperature` of the device `d123`.
 
 {% hint style="info" %}
 In contrast to other request like `diretMethod`, this not only approves the permission but also actively subscribes to updates.

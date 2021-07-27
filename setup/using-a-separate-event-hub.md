@@ -26,7 +26,7 @@ Here is an example of sending a message to an Event Hub using Node.js:
 ```javascript
 const { EventHubProducerClient } = require("@azure/event-hubs");
 
-const eventHubName = "subioto-input";
+const eventHubName = "ux4iot-input";
 
 const {
     EVENT_HUB_CONNECTION_STRING

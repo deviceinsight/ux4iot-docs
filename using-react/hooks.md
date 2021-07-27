@@ -84,7 +84,7 @@ const connectionState = useConnectionState("simulated-device");
 ```
 
 {% hint style="warning" %}
-The connection state information can be quite delayed \(up to 1 minute\). This is not a Subioto issue, but an issue with IoT Hub itself \(see [here](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-event-grid#limitations-for-device-connected-and-device-disconnected-events) and [here](https://docs.microsoft.com/en-us/answers/questions/434493/device-connection-state-events-delayed.html)\).
+The connection state information can be quite delayed \(up to 1 minute\). This is not a ux4iot issue, but an issue with IoT Hub itself \(see [here](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-event-grid#limitations-for-device-connected-and-device-disconnected-events) and [here](https://docs.microsoft.com/en-us/answers/questions/434493/device-connection-state-events-delayed.html)\).
 {% endhint %}
 
 ### usePatchDesiredProperties

@@ -7,13 +7,13 @@ First, install react support.
 {% tabs %}
 {% tab title="NPM" %}
 ```bash
-npm install subioto-react
+npm install ux4iot-react
 ```
 {% endtab %}
 
 {% tab title="Yarn" %}
 ```bash
-yarn add subioto-react
+yarn add ux4iot-react
 ```
 {% endtab %}
 {% endtabs %}

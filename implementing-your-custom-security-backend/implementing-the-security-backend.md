@@ -7,7 +7,7 @@ Your security backend must provide a _single_ HTTP resource that receives grant 
 
 If the grant request should be accepted, the backend should do the following things:
 
-* Forward the grant request to Subioto's Admin API, using an [SDK](admin-sdks/) or the [REST API](admin-rest-api.md)
+* Forward the grant request to ux4iot's Admin API, using an [SDK](admin-sdks/) or the [REST API](admin-rest-api.md)
 * Return the HTTP response codes 200 or 204 \(this is our recommendation, but no requirement\)
 
 If invalid authentication credentials were provided, the backend should return the HTTP response code 401 \(Unauthorized\).
@@ -33,7 +33,7 @@ The grant requests are JSON objects that are passed to your local`grantRequestFo
 }
 ```
 
-If you forward this grant request to Subioto, it means that the client can call the direct method `reset` on the device with the id `d123` . This is not an actual invocation of the method, but merely the permission to call the method at a later point in time.
+If you forward this grant request to ux4iot, it means that the client can call the direct method `reset` on the device with the id `d123` . This is not an actual invocation of the method, but merely the permission to call the method at a later point in time.
 
 ### Telemetry request
 
@@ -48,7 +48,7 @@ If you forward this grant request to Subioto, it means that the client can call 
 }
 ```
 
-If you forward this grant request to Subioto, it means that the client subscribes to updates to the telemetry key `temperature` of the device `d123`.
+If you forward this grant request to ux4iot, it means that the client subscribes to updates to the telemetry key `temperature` of the device `d123`.
 
 {% hint style="info" %}
 In contrast to other request like `diretMethod`, this not only approves the permission but also actively subscribes to updates.

@@ -1,6 +1,6 @@
-# Create your Subioto Instance
+# Create your ux4iot Instance
 
-Subioto is installed in your Azure subscription as a Managed Application. Billing will be handled via your Microsoft subscription.
+ux4iot is installed in your Azure subscription as a Managed Application. Billing will be handled via your Microsoft subscription.
 
 ### Creating via the Portal UI
 
@@ -15,17 +15,17 @@ TODO: Describe
 {% tabs %}
 {% tab title="AZ CLI" %}
 ```text
-RESOURCE_GROUP=subioto
+RESOURCE_GROUP=ux4iot
 SUBSCRIPTION=yourazuresubscription
 
 az managedapp create \
-  --name subioto \
+  --name ux4iot \
   --location westeurope \
   --kind marketplace \
   --resource-group $RESOURCE_GROUP \
-  --managed-rg-id /subscriptions/${SUBSCRIPTION}/resourceGroups/subioto-resources \
-  --plan-product subioto \
-  --plan-name subioto \
+  --managed-rg-id /subscriptions/${SUBSCRIPTION}/resourceGroups/ux4iot-resources \
+  --plan-product ux4iot \
+  --plan-name ux4iot \
   --plan-version 1.0 \
   --plan-publisher DeviceInsight
   --parameters "{\"iotHubEventHubConnectionString\": {\"value\": \"${IOT_HUB_EVENT_HUB_CONNECTION_STRING}\"}, \"iotHubServiceConnectionString\": {\"value\": \"${IOT_HUB_CONNECTION_STRING}\"}}"

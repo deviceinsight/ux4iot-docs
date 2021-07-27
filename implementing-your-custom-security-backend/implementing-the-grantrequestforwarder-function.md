@@ -5,8 +5,8 @@ In your frontend code, you need to implement a function for forwarding grant req
 There usually is little to no logic in the function. Here is an example:
 
 ```javascript
-const SUBIOTO_URL = 'https://subioto-xyz.westeurope.azurecontainer.io'
-const CUSTOM_BACKEND = 'https://your-iot-app.com/api/subioto-grant-requests'
+const UX4IOT_URL = 'https://ux4iot-xyz.westeurope.azurecontainer.io'
+const CUSTOM_BACKEND = 'https://your-iot-app.com/api/ux4iot-grant-requests'
 
 const grantRequestFunction = grantRequest => {
   return axios.put(CUSTOM_BACKEND, grantRequest, {
@@ -16,7 +16,7 @@ const grantRequestFunction = grantRequest => {
   });
 };
 
-const subioto = initSubioto(SUBIOTO_URL, grantRequestFunction);
+const ux4iot = initUx4iot(UX4IOT_URL, grantRequestFunction);
 ```
 
 TODO: Handle response status, define return type of function

@@ -3,8 +3,8 @@
 Here is an example implementation of a custom security backend using Azure Functions and Node.js
 
 ```javascript
-const subiotoAdmin = require('subioto-admin');
-subiotoAdmin.init({
+const ux4iotAdmin = require('ux4iot-admin');
+ux4iotAdmin.init({
     connectionString: "HostName=...;Key=secret";
 });
 
@@ -27,7 +27,7 @@ module.exports = async function (context, req) {
         // using *your* custom access control scheme, which defines which users 
         // have access to which IoT devices.
         if (req.body.type === 'telemetry' && isDeviceVisibleForUser(req.body.device, userId)) {
-            subiotoAdmin.grant(req.body);
+            ux4iotAdmin.grant(req.body);
             context.res = {
                 status: 204
             };
