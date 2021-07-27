@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Subioto](README.md)
+* [ux4iot](README.md)
 
 ## Setup
 

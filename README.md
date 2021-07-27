@@ -1,6 +1,6 @@
 ---
-description: Subioto is a tool for directly communicating with your IoT devices
+description: ux4iot is a tool for directly communicating with your IoT devices
 ---
 
-# Subioto
+# ux4iot
 
