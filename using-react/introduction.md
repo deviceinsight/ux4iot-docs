@@ -18,5 +18,3 @@ yarn add ux4iot-react
 {% endtab %}
 {% endtabs %}
 
-
-

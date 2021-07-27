@@ -8,7 +8,7 @@ Forward grants
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Send a grant request to ux4iot to apply it for the `sessionId` contained in the grant 
+Send a grant request to ux4iot to apply it for the `sessionId` contained in the grant
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -48,7 +48,7 @@ Can be one of 'telemetry', 'directMethod', ...
 The grant was accepted and applied
 {% endapi-method-response-example-description %}
 
-```
+```text
 NO CONTENT
 ```
 {% endapi-method-response-example %}
@@ -58,7 +58,7 @@ NO CONTENT
 There was something wrong with the grant, it has not been applied
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
   "errorMessage": "Required field 'sessionId' is missing"
 }
@@ -70,7 +70,7 @@ There was something wrong with the grant, it has not been applied
 
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
   "errorMessage": "The provided credentials are invalid"
 }
@@ -123,7 +123,7 @@ The basic authentication credentials
 
 {% endapi-method-response-example-description %}
 
-```
+```text
 NO CONTENT
 ```
 {% endapi-method-response-example %}
@@ -133,7 +133,7 @@ NO CONTENT
 
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
   "errorMessage": "The session was not found"
 }
@@ -173,7 +173,7 @@ The basic authentication credentials
 
 {% endapi-method-response-example-description %}
 
-```
+```text
 NO CONTENT
 ```
 {% endapi-method-response-example %}
@@ -183,7 +183,7 @@ NO CONTENT
 
 {% endapi-method-response-example-description %}
 
-```
+```text
 {
   "errorMessage": "The userId is unknown"
 }

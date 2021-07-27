@@ -20,7 +20,7 @@ You have to implement the client to your security backend in your user interface
 
 The grant requests are JSON objects that are passed to your local`grantRequestForwader` function and that you should forward to your security backend. They have the following structure:
 
-### Direct method request
+## Direct method request
 
 ```text
 {
@@ -35,7 +35,7 @@ The grant requests are JSON objects that are passed to your local`grantRequestFo
 
 If you forward this grant request to ux4iot, it means that the client can call the direct method `reset` on the device with the id `d123` . This is not an actual invocation of the method, but merely the permission to call the method at a later point in time.
 
-### Telemetry request
+## Telemetry request
 
 ```text
 {

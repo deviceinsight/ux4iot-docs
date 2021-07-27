@@ -17,5 +17,3 @@ The currently is an Admin SDK for the following languages:
 
 If you want to use other languages you can use the [REST API](admin-rest-api.md).
 
-
-

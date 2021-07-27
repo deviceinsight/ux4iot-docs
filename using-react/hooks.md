@@ -1,6 +1,6 @@
 # Hooks
 
-### useTelemetry
+## useTelemetry
 
 The `useTelemetry` hook returns a variable that is updated as soon as new values of the given telemetry key are received. This hook relies on the assumption that your Device-to-Cloud messages are JSON documents where the key is the telemetry key and the value is the current telemetry value. We plan to support more complex payloads in the future \(selecting using JSON Path, Avro, etc\). If you have other message payloads, you can use the [useD2CMessages hook](hooks.md#used-2-cmessages).
 
@@ -17,7 +17,7 @@ When the following D2C message is received, the variable temperature is updated 
 }
 ```
 
-### useDirectMethod
+## useDirectMethod
 
 The `useDirectMethod` hook returns a Javascript function that, when invoked, calls a direct method on the target device. It returns a Promise that resolves to the direct method result that the device returns \(or an error when the direct method could not be executed, e.g. if the device is offline\).
 
@@ -36,7 +36,7 @@ const result = await enableFastLogging();
 
 TODO: Do something with the result
 
-### useDeviceTwin
+## useDeviceTwin
 
 The `useDeviceTwin` returns a variable that is updated as soon as the device twin of the device changes.
 
@@ -75,9 +75,9 @@ Here is an example of the returned device twin:
 }
 ```
 
-### useConnectionState
+## useConnectionState
 
-The `useConnectionState` hook returns a variable that is updated as soon as the connection state changes, i.e. as soon as a device connects or disconnects. 
+The `useConnectionState` hook returns a variable that is updated as soon as the connection state changes, i.e. as soon as a device connects or disconnects.
 
 ```javascript
 const connectionState = useConnectionState("simulated-device");
@@ -87,7 +87,7 @@ const connectionState = useConnectionState("simulated-device");
 The connection state information can be quite delayed \(up to 1 minute\). This is not a ux4iot issue, but an issue with IoT Hub itself \(see [here](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-event-grid#limitations-for-device-connected-and-device-disconnected-events) and [here](https://docs.microsoft.com/en-us/answers/questions/434493/device-connection-state-events-delayed.html)\).
 {% endhint %}
 
-### usePatchDesiredProperties
+## usePatchDesiredProperties
 
 ```javascript
 const patchDesiredProperties = usePatchDesiredProperties("simulated-device");
@@ -101,7 +101,7 @@ patchDesiredProperties({
 });
 ```
 
-### useD2CMessages
+## useD2CMessages
 
 Use the `useD2CMessages` hook to receive Device-to-Cloud messages of a device.
 

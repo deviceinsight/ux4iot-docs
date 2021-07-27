@@ -48,7 +48,7 @@ async function main() {
         pressure: 10.9,
         timestamp: now.toISOString()
     };
-    
+
     const properties = {
         "iothub-connection-device-id": "some-device",
         "iothub-message-schema": "Telemetry" 

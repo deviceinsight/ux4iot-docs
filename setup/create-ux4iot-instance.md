@@ -2,13 +2,13 @@
 
 ux4iot is installed in your Azure subscription as a Managed Application. Billing will be handled via your Microsoft subscription.
 
-### Creating via the Portal UI
+## Creating via the Portal UI
 
 Visit the [offer on Azure Marketplace](https://azuremarketplace.microsoft.com/) and click "Create". Alternatively, you can click on the button below, which will bring you directly to the creation screen:
 
 ![](../.gitbook/assets/deploy-to-azure.png)
 
-### Creating via the command line
+## Creating via the command line
 
 TODO: Describe
 
@@ -33,7 +33,7 @@ az managedapp create \
 {% endtab %}
 {% endtabs %}
 
-### Parameters
+## Parameters
 
 Specifying the Event Hub compatible connection is required. Configuring the service connection string is optional. It is necessary for the following hooks:
 

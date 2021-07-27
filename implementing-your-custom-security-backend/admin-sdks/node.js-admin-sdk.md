@@ -63,5 +63,3 @@ You can even revoke all sessions:
 ux4iotAdmin.revokeAll();
 ```
 
-
-

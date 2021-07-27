@@ -9,20 +9,20 @@ ux4iotAdmin.init({
 });
 
 module.exports = async function (context, req) {
-    
+
     // This is *your* custom authentication approach
     const bearerToken = req.headers('Authentication');    
     const {userId} = await evaluateBearerToken(bearerToken);
-    
+
     if (!userId) {
-    
+
         context.res = {
             body: "Unauthorized",
             status: 401
         };
-        
+
     } else {
-        
+
         // All users can subscribe to telemetry events that are visible for them
         // using *your* custom access control scheme, which defines which users 
         // have access to which IoT devices.
@@ -38,7 +38,7 @@ module.exports = async function (context, req) {
             };
         }
     }
-    
+
     context.done();    
 }
 ```
