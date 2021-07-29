@@ -1,6 +1,7 @@
 # Table of contents
 
 * [ux4iot](README.md)
+* [Quickstart](quickstart.md)
 
 ## Setup
 
