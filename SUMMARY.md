@@ -13,6 +13,7 @@
 
 * [Installing the dependency](using-react/introduction.md)
 * [Hooks](using-react/hooks.md)
+* [Tutorial using create-react-app](using-react/tutorial-using-create-react-app.md)
 
 ## Implementing your custom security backend
 
