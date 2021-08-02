@@ -82,5 +82,11 @@ export default App;
 
 ```
 
+As usual with `create-react-app` you can start the application with:
+
+```bash
+npm start
+```
+
 As soon as you send in data as `simulated-device` using the IoT Hub SDK, the displayed number will update.
 
