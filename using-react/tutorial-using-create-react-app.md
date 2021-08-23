@@ -19,7 +19,7 @@ Edit the file `src/App.js` and add the imports:
 import {Ux4iotContext, ux4iot, useTelemetry} from "ux4iot-react";
 ```
 
-Add the top, add the initialization of the ux4iot instance:
+At the top, add the initialization of the ux4iot instance:
 
 ```javascript
 const UX4IOT_ADMIN_CONNECTION_STRING = 'HostName=;';
