@@ -20,11 +20,11 @@ You have to implement the client to your security backend in your user interface
 
 The grant requests are JSON objects that are passed to your local`grantRequestForwader` function and that you should forward to your security backend. They have the following structure:
 
-## Direct method request
+## Invoke direct methods
 
 ```text
 {
-  "grantType": "directMethod",
+  "grantType": "invokeDirectMethod",
   "sessionId": "ht9JvTLalcy3GQDttyqu",
   "deviceId": "d123",
   "details":  {
@@ -35,11 +35,11 @@ The grant requests are JSON objects that are passed to your local`grantRequestFo
 
 If you forward this grant request to ux4iot, it means that the client can call the direct method `reset` on the device with the id `d123` . This is not an actual invocation of the method, but merely the permission to call the method at a later point in time.
 
-## Telemetry request
+## Subscribe to telemetry
 
 ```text
 {
-  "grantType": "telemetry",
+  "grantType": "subscribeToTelemetry",
   "sessionId": "ht9JvTLalcy3GQDttyqu",
   "deviceId": "d123",
   "details":  {
@@ -53,4 +53,34 @@ If you forward this grant request to ux4iot, it means that the client subscribes
 {% hint style="info" %}
 In contrast to other request like `diretMethod`, this not only approves the permission but also actively subscribes to updates.
 {% endhint %}
+
+## Subscribe to device twin changes
+
+```text
+{
+  "grantType": "subscribeToDeviceTwinChanges",
+  "sessionId": "ht9JvTLalcy3GQDttyqu",
+  "deviceId": "d123" 
+}
+```
+
+If you forward this grant request to ux4iot, it means that the client subscribes to updates to changes in the device twin of the device `d123`. It includes updates to the reported properties, desired properties and tags.
+
+It is currently not possible to restrict this to a sub section of the device twin.
+
+{% hint style="info" %}
+In contrast to other request like `diretMethod`, this not only approves the permission but also actively subscribes to updates.
+{% endhint %}
+
+## Modify desired properties
+
+```text
+{
+  "grantType": "modifyDesiredProperties",
+  "sessionId": "ht9JvTLalcy3GQDttyqu",
+  "deviceId": "d123" 
+}
+```
+
+If you forward this grant request to ux4iot, it means that the client can modify the desired properties of the device twin of the device `d123`. 
 

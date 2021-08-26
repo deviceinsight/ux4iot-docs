@@ -1,6 +1,6 @@
 # Create your ux4iot Instance
 
-ux4iot is installed in your Azure subscription as a Managed Application. Billing will be handled via Microsoft.
+ux4iot is installed in your Azure subscription as a Managed Application. Billing will be handled by Microsoft.
 
 ## Creating via the Portal UI
 
