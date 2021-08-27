@@ -58,7 +58,7 @@ In contrast to other request like `diretMethod`, this not only approves the perm
 
 ```text
 {
-  "grantType": "subscribeToDeviceTwinChanges",
+  "grantType": "subscribeToDeviceTwin",
   "sessionId": "ht9JvTLalcy3GQDttyqu",
   "deviceId": "d123" 
 }
