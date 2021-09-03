@@ -1,6 +1,6 @@
 # Introduction
 
-### What is ux4tiot?
+### What is ux4iot?
 
 ux4iot is a tool for directly communicating with your IoT devices
 
