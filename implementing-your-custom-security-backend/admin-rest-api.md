@@ -18,8 +18,8 @@ Send a grant request to ux4iot to apply it for the `sessionId` contained in the 
 Your custom identifier for users to pass along as meta-information. If you pass along this identifier, you can remove all sessions with the same user id, e.g. if a user logs out.
 {% endapi-method-parameter %}
 
-{% api-method-parameter name="Authorization" type="string" required=true %}
-The basic authentication credentials
+{% api-method-parameter name="Shared-Access-Key" type="string" required=true %}
+The Shared Access Key used for authentication
 {% endapi-method-parameter %}
 {% endapi-method-headers %}
 
@@ -161,8 +161,8 @@ The userId of the user
 {% endapi-method-path-parameters %}
 
 {% api-method-headers %}
-{% api-method-parameter name="Authentication" type="string" required=true %}
-The basic authentication credentials
+{% api-method-parameter name="Shared-Access-Key" type="string" required=true %}
+The Shared Access Key used for authentication
 {% endapi-method-parameter %}
 {% endapi-method-headers %}
 {% endapi-method-request %}
