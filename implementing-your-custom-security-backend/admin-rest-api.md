@@ -111,8 +111,8 @@ Remove a session, including all grants
 {% endapi-method-path-parameters %}
 
 {% api-method-headers %}
-{% api-method-parameter name="Authorization" type="string" required=true %}
-The basic authentication credentials
+{% api-method-parameter name="Shared-Access-Key" type="string" required=true %}
+The Shared Access Key used for authentication
 {% endapi-method-parameter %}
 {% endapi-method-headers %}
 {% endapi-method-request %}
