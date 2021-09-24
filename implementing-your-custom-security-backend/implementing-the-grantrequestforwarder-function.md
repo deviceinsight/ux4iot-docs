@@ -1,25 +1,164 @@
-# Implementing the grantRequestForwarder Function
+# Implementing the grantRequestFunction for the Frontend
 
-In your frontend code, you need to implement a function for forwarding grant requests to your custom security backend. This function exists to give you full control over the request so that you can use your existing authentication mechanism.
+The `grantRequestFunction` is a function to be given to the `Ux4iotContext`.
 
-There usually is little to no logic in the function. Here is an example:
+### Ux4iotContextProvider
+
+`import {Ux4iotContextProvider} from 'ux4iot-react'`
+
+The `Ux4iotContextProvider` is a provider implementation of `Ux4iotContext`. It can take two different argument types. One for development, one for production mode, both typed by `InitializeDevOptions` and `InitializeProdOptions` respectively:
+
+#### Development Mode
+
+```jsx
+const devOptions: InitializeDevOptions = {
+   adminConnectionString: UX4IOT_ADMIN_CONNECTION_STRING 
+};
+
+return <Ux4iotContext.Provider options={devOptions}>...</Ux4iotContextProvider>
+```
+
+You have already seen how this works in the [tutorial using create-react-app](../using-react/tutorial-using-create-react-app.md).
+
+#### Production Mode
+
+```jsx
+const prod: InitializeProdOptions = {
+   ux4iotURL: UX4IOT_WEBSOCKET_URL // http://ux4iot-example.westeurope.azurecontainer.io
+   grantRequestFunction: customGrantRequestFunction
+};
+
+return <Ux4iotContext.Provider options={prodOptions}>...</Ux4iotContextProvider>
+```
+
+The `UX4IOT_WEBSOCKET_URL` is available on your ux4iot instance in the azure portal in the sidebar, right below "Admin Connection String".
+
+The type of `InitializeProdOptions` is defined as follows:
+
+```typescript
+export type InitializeProdOptions = {
+	ux4iotURL: string;
+	grantRequestFunction: GrantRequestFunctionType;
+}
+```
+
+Meaning, if you want to run ux4iot-react in production mode you must implement a function of type `GrantRequestFunctionType`.
+
+The type of `GrantRequestFunctionType` is defined as follows:
+
+```typescript
+enum GRANT_RESPONSES {
+	FORBIDDEN = 'FORBIDDEN',
+	UNAUTHORIZED = 'UNAUTHORIZED',
+	GRANTED = 'GRANTED',
+	ERROR = 'ERROR',
+}
+
+type GrantRequestFunctionType = (grant: GrantRequest) => Promise<GRANT_RESPONSES>
+```
+
+For now we do not care about `GrantRequest`. Internally, ux4iot-react uses this function to perform grant requests to either ux4iot directly \(development mode\) or your security backend \(production mode\).
+
+Your custom `grantRequestFunction` could look like this:
 
 ```javascript
+import axios from 'axios'
+import {GrantRequestFunctionType, GRANT_RESPONSES} from 'ux4iot-react';
+
 const UX4IOT_URL = 'https://ux4iot-xyz.westeurope.azurecontainer.io'
 const CUSTOM_BACKEND = 'https://your-iot-app.com/api/ux4iot-grant-requests'
 
-const grantRequestFunction = grantRequest => {
-  return axios.put(CUSTOM_BACKEND, grantRequest, {
+const customGrantRequestFunction: GrantRequestFunctionType = async grantRequest => {
+  const config = {
     headers: {
       Authorization: "Bearer " + getCurrentAccessToken()
     }
-  });
+  };
+  try {
+		await axios.put(CUSTOM_BACKEND, grantRequest, config);
+	} catch (error) {
+		if (axios.isAxiosError(error)) {
+			if (error.response) {
+				if (error.response.status === 401) {
+					return GRANT_RESPONSES.UNAUTHORIZED;
+				} else if (error.response.status === 403) {
+					return GRANT_RESPONSES.FORBIDDEN;
+				}
+			}
+		}
+		return GRANT_RESPONSES.ERROR;
+	}
+	return GRANT_RESPONSES.GRANTED;
 };
 
-const ux4iot = initUx4iot(UX4IOT_URL, grantRequestFunction);
 ```
 
-TODO: Handle response status, define return type of function
+Your full app can then look like this, combining the `Ux4iotContextProvider` with your custom `grantRequestFunction`:
 
-As you can see, you initiate a HTTP request to your backend using your HTTP library of choice \(in the example [axios](https://github.com/axios/axios) is used\). You use your usual authentication mechanism \(in this case an OAuth2 access token\).
+```jsx
+import axios from 'axios'
+import {
+  GrantRequestFunctionType, 
+  GRANT_RESPONSES,
+  Ux4iotContextProvider
+} from 'ux4iot-react';
+
+const UX4IOT_URL = 'https://ux4iot-xyz.westeurope.azurecontainer.io'
+const CUSTOM_BACKEND = 'https://your-iot-app.com/api/ux4iot-grant-requests'
+
+const customGrantRequestFunction: GrantRequestFunctionType = async grantRequest => {
+  const config = {
+    headers: {
+      Authorization: "Bearer " + getCurrentAccessToken()
+    }
+  };
+  try {
+		await axios.put(CUSTOM_BACKEND, grantRequest, config);
+	} catch (error) {
+		if (axios.isAxiosError(error)) {
+			if (error.response) {
+				if (error.response.status === 401) {
+					return GRANT_RESPONSES.UNAUTHORIZED;
+				} else if (error.response.status === 403) {
+					return GRANT_RESPONSES.FORBIDDEN;
+				}
+			}
+		}
+		return GRANT_RESPONSES.ERROR;
+	}
+	return GRANT_RESPONSES.GRANTED;
+};
+
+export function App() {
+  const prod: InitializeProdOptions = {
+    ux4iotURL: UX4IOT_WEBSOCKET_URL // http://ux4iot-example.westeurope.azurecontainer.io
+    grantRequestFunction: customGrantRequestFunction
+  };
+  
+  return <Ux4iotContextProvider options={prodOptions}>...</Ux4iotContextProvider>
+}
+```
+
+As you can see, you initiate a HTTP request to your backend using your HTTP library of choice \(in this case [axios](https://github.com/axios/axios) is used\). You use your usual authentication mechanism \(in this case an OAuth2 access token\).
+
+Behind the scenes, ux4iot-react notices which initialization mode is used and adjusts the logging of the subscription service.
+
+{% hint style="info" %}
+The `GRANT_RESPONSES` are forwarded to the `onGrantError` callback of the exported ux4iot-react hooks. Obviously, you could always return `GRANT_RESPONSES.GRANTED` in  your custom `grantRequestFunction`. The return type was chosen to be this simplistic, so that you receive a state in your components that use the hooks to notify the user in the frontend with a suitable error message when the grant was denied.
+
+Example:
+
+```typescript
+const temperature = useSingleTelemetry(
+  'my-device',
+  'temperature',
+  undefined,
+  error => {
+    if(error === GRANT_RESPONSES.UNAUTHORIZED) {
+      displayUnauthorizedError(error);
+    }
+  }
+);
+```
+{% endhint %}
 

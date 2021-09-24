@@ -18,7 +18,7 @@
 ## Implementing your custom security backend
 
 * [Introduction](implementing-your-custom-security-backend/introduction.md)
-* [Implementing the grantRequestForwarder Function](implementing-your-custom-security-backend/implementing-the-grantrequestforwarder-function.md)
+* [Implementing the grantRequestFunction for the Frontend](implementing-your-custom-security-backend/implementing-the-grantrequestforwarder-function.md)
 * [Implementing the Security Backend](implementing-your-custom-security-backend/implementing-the-security-backend.md)
 * [Security Backend Examples](implementing-your-custom-security-backend/security-backend-examples/README.md)
   * [Azure Function using Javascript](implementing-your-custom-security-backend/security-backend-examples/azure-function-example-for-security-backend.md)
