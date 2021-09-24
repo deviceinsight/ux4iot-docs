@@ -84,3 +84,5 @@ In contrast to other request like `diretMethod`, this not only approves the perm
 
 If you forward this grant request to ux4iot, it means that the client can modify the desired properties of the device twin of the device `d123`. 
 
+TODO: Add additional grants
+
