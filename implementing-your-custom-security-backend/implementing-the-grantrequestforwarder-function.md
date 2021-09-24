@@ -44,6 +44,8 @@ export type InitializeProdOptions = {
 
 Meaning, if you want to run ux4iot-react in production mode you must implement a function of type `GrantRequestFunctionType`.
 
+### GrantRequestFunction
+
 The type of `GrantRequestFunctionType` is defined as follows:
 
 ```typescript
