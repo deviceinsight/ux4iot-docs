@@ -1,4 +1,4 @@
-# Implementing the grantRequestFunction for the Frontend
+# The grantRequestFunction
 
 The `grantRequestFunction` is a function to be given to the `Ux4iotContext`.
 
