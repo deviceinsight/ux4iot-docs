@@ -1,50 +1,158 @@
+---
+description: The reason you use ux4iot =)
+---
+
 # Hooks
+
+## useSingleTelemetry
+
+The `useSingleTelemetry` hook makes it very easy to just listen to telemetry on a single device.
+
+```typescript
+const value = useSingleTelemetry(deviceId, telemetryKey, onData, onGrantError);
+```
+
+#### Input \(Arguments\)
+
+| Argument | Description | Type |  |
+| :--- | :--- | :--- | :--- |
+| deviceId | The device id of the device to execute the direct method on | `string` | Required |
+| telemetryKey | The name of the method to execute on the device | `string` | Required |
+| onData | Callback, executed when new telemetry of `telemetryKey` is received on the device | `(data: unknown) => void` | Optional |
+| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the direct method request | `GrantErrorCallback` | Optional |
+
+#### Output \(Returns\)
+
+This hook returns a single value: `unknown`
+
+Every time the device sends new telemetry with key `telemetryKey` this hook will update the return value. 
+
+#### Example
+
+A component subscribing to the `temperature` telemetry.
+
+```jsx
+const temperature = useSingleTelemetry('simulated-device', 'temperature');
+
+return (
+    <div>
+        <h3>Current Temperature of simulated-device</h3>
+        <div>{temperature}</div>
+    </div>
+);
+```
 
 ## useTelemetry
 
-The `useTelemetry` hook returns a variable that is updated as soon as new values of the given telemetry key are received. This hook relies on the assumption that your Device-to-Cloud messages are JSON documents where the key is the telemetry key and the value is the current telemetry value. We plan to support more complex payloads in the future \(selecting using JSON Path, Avro, etc\). If you have other message payloads, you can use the [useD2CMessages hook](hooks.md#used-2-cmessages).
+The `useTelemetry` hook is a more sophisticated hook, designed to cover use cases when a lot of telemetry of multiple devices needs to be subscribed to. It returns a variable that is updated as soon as new values of the given telemetry keys are received. This hook relies on the assumption that your Device-to-Cloud messages are JSON documents where the key is the telemetry key and the value is the current telemetry value. We plan to support more complex payloads in the future \(selecting using JSON Path, Avro, etc\). If you have other message payloads, you can use the [useD2CMessage hook](hooks.md#used-2-cmessages).
 
-```javascript
-const temperature = useTelemetry("simulated-device", "temperature");
+```typescript
+	const {
+		telemetry,
+		toggleTelemetry,
+		isSubscribed,
+		currentSubscribers,
+		addTelemetry,
+		removeTelemetry,
+	} = useTelemetry(
+		{ [deviceId]: ['temperature', 'pressure'] },
+		(deviceId, key, value) => console.log(deviceId, key, value),
+		error => console.log(error)
+	);
 ```
 
-When the following D2C message is received, the variable temperature is updated \(and a re-render is triggered\):
+#### Input \(Arguments\)
 
-```javascript
-{
-  "temperature": 42.1,
-  "pressure": 0.5
-}
-```
+| Argument | Description | Type |  |
+| :--- | :--- | :--- | :--- |
+| initialSubscribers | Object of key-value pairs, with keys: the device ids of your IoTHub devices, and value: a list of strings, defining the telemetryKeys to subscribe to  | `Record<string, string[]>` | Optional |
+| onData | Callback, executed when a new `value` for a `telemetryKey` is send by a device with id `deviceId` | `(deviceId: string, telemetryKey: string, value: unknown) => void` | Optional |
+| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback` | Optional |
+
+{% hint style="info" %}
+Do not try to perform subscription updates over the `initialSubscribers` object. This object is meant solely as an option for use cases where you always have an initial set of subscribers. Updates to `initialSubscribers` will not trigger updates in the hook.
+{% endhint %}
+
+#### Output \(Returns\): 
+
+This hook returns an object containing other objects and functions to interact with telemetry subscriptions.
+
+| Key | Value | Type |
+| :--- | :--- | :--- |
+| telemetry | Object holding the current values of all your telemetry subscriptions | `Record<string, Record<string, unknown>` |
+| toggleTelemetry | Toggles a telemetry subscription for a `deviceId` and `telemetryKey` | `(deviceId: string, telemetryKey: string) => void` |
+| addTelemetry | Adds a telemetry subscription for a `deviceId` and multiple `telemetryKeys` | `(deviceId: string, telemetryKeys: string[]) => void` |
+| removeTelemetry | Removes a telemetry subscription for a `deviceId` and multiple `telemetryKeys` | `(deviceId: string, telemetryKeys: string[]) => void` |
+| isSubscribed | Checks whether a telemetry subscription for a `deviceId` and `telemetryKey` exists | `(deviceId: string, telemetryKey: string) => boolean` |
+| currentSubscribers | Object containing all current subscribers with key being the `deviceId` and value being the telemetryKey names. | `Record<string, string[]>` |
 
 ## useDirectMethod
 
-The `useDirectMethod` hook returns a Javascript function that, when invoked, calls a direct method on the target device. It returns a Promise that resolves to the direct method result that the device returns \(or an error when the direct method could not be executed, e.g. if the device is offline\).
+The `useDirectMethod` hook returns a function that, when invoked, calls a direct method on the target device. It returns a Promise that resolves to the direct method result that the device returns \(or an error when the direct method could not be executed, e.g. if the device is offline\).
 
-```javascript
-const enableFastLogging = useDirectMethod("simulated-device", {
-    methodName: 'SetTelemetryInterval',
-    payload: 1
-});
+```typescript
+const reboot = useDirectMethod(deviceId, methodName, onGrantError);
 ```
 
-You can now call the function and await the result:
+#### Input \(Arguments\)
 
-```javascript
-const result = await enableFastLogging();
+| Argument | Description | Type |  |
+| :--- | :--- | :--- | :--- |
+| deviceId | The device id of the device to execute the direct method on | `string` | Required |
+| methodName | The name of the method to execute on the device | `string` | Required |
+| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the direct method request | `GrantErrorCallback` | Optional |
+
+#### Output \(Returns\)
+
+This hook returns a function: `(params: Record<string, unknown>) => Promise<unknown>`
+
+The hook takes in the direct method payload and returns a result that is specified by the device that executes the method. The return type of the hook is `Promise<unknown>` since we cannot know what the device will give us. 
+
+{% hint style="info" %}
+Do not confuse the `onGrantError` handler of `useDirectMethod` with the catch block of the direct method itself. `onGrantError` will only be executed when this hook is rendered by react and the security backend fails to grant the direct method. The error that `reboot` may throw is an HTTP error that could occur when the function is executed.
+{% endhint %}
+
+#### Example
+
+```jsx
+const reboot = useDirectMethod(deviceId, 'reboot', error => console.log(error));
+const result = useState<unknown>();
+const error = useState<string>();
+
+const handleClick = () => {
+    const payload = { delay: 2000 };
+    
+    reboot(payload)
+        .then(result => setState(result))
+        .catch(error => setError(error));
+}
+
+return <button onClick={() => handleClick()}>Reboot Device</button>
 ```
-
-TODO: Do something with the result
 
 ## useDeviceTwin
 
-The `useDeviceTwin` returns a variable that is updated as soon as the device twin of the device changes.
+The `useDeviceTwin` subscribes to device twin updates.
 
 ```javascript
-const deviceTwin = useDeviceTwin("simulated-device");
+const deviceTwin = useDeviceTwin(deviceId, onData, onGrantError);
 ```
 
-Here is an example of the returned device twin:
+#### Input \(Arguments\)
+
+| Argument | Description | Type |  |
+| :--- | :--- | :--- | :--- |
+| deviceId | The device id of the device you want to subscribe to. | `string` | Required |
+| onData | Callback, executed when a new twin updated is received. | `(twin: Twin) => void` | Optional |
+| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback` | Optional |
+
+#### Output \(Returns\)
+
+This hook returns a value: `Twin`
+
+This hook returns the device twin whenever twin updates are made on the IoTHub device. This hook uses the `Twin` typescript type provided from the [azure-iothub library](https://www.npmjs.com/package/azure-iothub).
+
+Here is an example of a returned device twin:
 
 ```javascript
 {
@@ -77,11 +185,25 @@ Here is an example of the returned device twin:
 
 ## useConnectionState
 
-The `useConnectionState` hook returns a variable that is updated as soon as the connection state changes, i.e. as soon as a device connects or disconnects.
+The `useConnectionState` hook subscribes to the connection state of a device. This state can change, i.e as soon as a device connects or disconnects.
 
 ```javascript
-const connectionState = useConnectionState("simulated-device");
+const connectionState = useConnectionState(deviceId, onData, onGrantError);
 ```
+
+#### Input \(Arguments\)
+
+| Argument | Description | Type |  |
+| :--- | :--- | :--- | :--- |
+| deviceId | The device id of the device you want to subscribe to. | `string` | Required |
+| onData | Callback, executed when a new connection state updated is received. | `(connectionState: boolean) => void` | Optional |
+| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback` | Optional |
+
+#### Output \(Returns\)
+
+This hook returns a value: `boolean`
+
+This value can change, i.e as soon as a device connects or disconnects.
 
 {% hint style="warning" %}
 The connection state information can be quite delayed \(up to 1 minute\). This is not a ux4iot issue, but an issue with IoT Hub itself \(see [here](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-event-grid#limitations-for-device-connected-and-device-disconnected-events) and [here](https://docs.microsoft.com/en-us/answers/questions/434493/device-connection-state-events-delayed.html)\).
@@ -89,27 +211,84 @@ The connection state information can be quite delayed \(up to 1 minute\). This i
 
 ## usePatchDesiredProperties
 
-```javascript
-const patchDesiredProperties = usePatchDesiredProperties("simulated-device");
-```
-
-You can now update the desired properties by calling this function:
+The `usePatchDesiredProperties` hook is used to perform desired property updates on devices.
 
 ```javascript
-patchDesiredProperties({
-  sendInterval: 2
-});
+const patchDesiredProperties = usePatchDesiredProperties(deviceId, onGrantError);
 ```
 
-## useD2CMessages
+#### Input \(Arguments\)
 
-Use the `useD2CMessages` hook to receive Device-to-Cloud messages of a device.
+| Argument | Description | Type |  |
+| :--- | :--- | :--- | :--- |
+| deviceId | The device id of the device onto which to patch the desired properties | `string` | Required |
+| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the patch desired properties request | `GrantErrorCallback` | Optional |
 
-```javascript
-const unsubscribe = useD2CMessages("simulated-device", msg => {
-  console.log("Received the D2C message:", msg);
-});
+#### Output \(Returns\)
+
+This hook returns a function: `(desiredProperties: Record<string, unknown>) => Promise<IoTHubResponse | void>`
+
+The hook takes in an object of desired properties to send to the device with the specified deviceId. 
+
+{% hint style="info" %}
+When you call the function returned by this hook you will inevitably perform a device twin update. This means you will receive an update of the output of `useDeviceTwin`
+{% endhint %}
+
+#### Example
+
+```jsx
+const patchDesiredProperties = usePatchDesiredProperties('simulated-device');
+
+const handleClick = () => {
+    patchDesiredProperties({
+        temperature: 21
+    });
+}
+
+return <button onClick={() => handleClick()}>Update desired properties</button>
 ```
 
-You can use the returned function to cancel the subscription.
+## useD2CMessage
+
+```typescript
+const lastMessage = useD2CMessage(deviceId, onData, onGrantError);
+```
+
+#### Input \(Arguments\)
+
+| Argument | Description | Type |  |
+| :--- | :--- | :--- | :--- |
+| deviceId | The device id of the device you want to subscribe to. | `string` | Required |
+| onData | Callback, executed when the device sends a new message. | `(data: Record<string, unknown>) => void` | Optional |
+| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback` | Optional |
+
+#### Output \(Returns\)
+
+This hook returns an object: `Record<string, unknown>`
+
+We assume that every message a device sends will be an object. The return value of this hook will always be the last message sent by the device.
+
+## Final Note
+
+The hooks provided by ux4iot-react are using a specific authorization mechanism. They are designed to provide the easiest API to cover your use-case and hide the most complexity possible. There are two callbacks that are available on \(almost\) every hook. 
+
+#### `onData`
+
+ A convenient callback to have a custom callback whenever data is received. You will receive updates of subscription hooks mostly over the return value. However, if you want to use custom logic whenever an update is received you would need to use custom hooks to listen for these changes like this: 
+
+```jsx
+const value = useX(deviceId, ...);
+
+useEffect(() => {
+   console.log('Update to value detected')
+}, [value]);
+```
+
+Therefore `onData` as function in subscription hooks, removes the burden of you needing to decide when to notice value changes.
+
+#### `onGrantError`
+
+This callback exists on every hoo.k. The purpose of this callback is to inform you about errors that the custom `grantRequestFunction` returns. The `grantRequestFunction` is something that you need to implement yourself when you want to use ux4iot in production. The purpose of this function is to determine whether you as a user of the react application have the permission to subscribe to telemetry / device twin / connection state or perform a direct method / desired property patch. 
+
+Read more about this [here](../implementing-your-custom-security-backend/implementing-the-security-backend.md).
 
