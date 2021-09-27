@@ -8,7 +8,7 @@ Forward a grant
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Send a grant request to ux4iot to apply it for the `sessionId` contained in the grant
+Send a grant request to ux4iot to apply it for the `sessionId` contained in the grant.
 {% endapi-method-description %}
 
 {% api-method-spec %}
@@ -33,7 +33,7 @@ The sessionId for which the grant is requested
 {% endapi-method-parameter %}
 
 {% api-method-parameter name="grantRequestType" type="string" required=true %}
-Can be one of 'telemetry', 'directMethod', ...
+Can be one of 'subscribeToTelemetry', 'invokeDirectMethod', etc.
 {% endapi-method-parameter %}
 {% endapi-method-body-parameters %}
 {% endapi-method-request %}
@@ -80,7 +80,7 @@ There was something wrong with the grant, it has not been applied
 
 ```javascript
 {
-  "grantRequestType": "telemetry",
+  "grantRequestType": "subscribeToTelemetry",
   "sessionId": "ht9JvTLalcy3GQDttyqu",
   "deviceId": "d123",
   "details":  {
@@ -88,6 +88,8 @@ There was something wrong with the grant, it has not been applied
   }
 }
 ```
+
+For a complete list of values for`grantRequestType` see [here](implementing-the-security-backend.md).
 
 {% api-method method="delete" host="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="grants" %}
 {% api-method-summary %}
@@ -137,39 +139,7 @@ The session ID that the grant belongs to
 
 {% api-method method="delete" host="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="sessions/:sessionId" %}
 {% api-method-summary %}
-
-{% endapi-method-summary %}
-
-{% api-method-description %}
-
-{% endapi-method-description %}
-
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-headers %}
-{% api-method-parameter name="Shared-Access-Key" type="string" required=true %}
-The Shared Access Key used for authentication
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
-{% endapi-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
-```
-
-```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
-
-{% api-method method="delete" host="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="sessions/:sessionId" %}
-{% api-method-summary %}
-Delete sessions
+Delete a sessions
 {% endapi-method-summary %}
 
 {% api-method-description %}
