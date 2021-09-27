@@ -31,7 +31,7 @@ const prod: InitializeProdOptions = {
 return <Ux4iotContext.Provider options={prodOptions}>...</Ux4iotContextProvider>
 ```
 
-The `UX4IOT_WEBSOCKET_URL` is available on your ux4iot instance in the azure portal in the sidebar, right below "Admin Connection String".
+The `UX4IOT_WEBSOCKET_URL` is available on your ux4iot instance in the Azure portal in the sidebar, right below "Admin Connection String".
 
 The type of `InitializeProdOptions` is defined as follows:
 
@@ -46,7 +46,7 @@ Meaning, if you want to run ux4iot-react in production mode you must implement a
 
 ### GrantRequestFunction
 
-The type of `GrantRequestFunctionType` is defined as follows:
+`GrantRequestFunctionType` is defined as follows:
 
 ```typescript
 enum GRANT_RESPONSES {
@@ -61,7 +61,7 @@ type GrantRequestFunctionType = (grant: GrantRequest) => Promise<GRANT_RESPONSES
 
 For now we do not care about `GrantRequest`. Internally, ux4iot-react uses this function to perform grant requests to either ux4iot directly \(development mode\) or your security backend \(production mode\).
 
-Your custom `grantRequestFunction` could look like this:
+A custom `grantRequestFunction` could look like this:
 
 ```javascript
 import axios from 'axios'
@@ -142,8 +142,6 @@ export function App() {
 ```
 
 As you can see, you initiate a HTTP request to your backend using your HTTP library of choice \(in this case [axios](https://github.com/axios/axios) is used\). You use your usual authentication mechanism \(in this case an OAuth2 access token\).
-
-Behind the scenes, ux4iot-react notices which initialization mode is used and adjusts the logging of the subscription service.
 
 {% hint style="info" %}
 The `GRANT_RESPONSES` are forwarded to the `onGrantError` callback of the exported ux4iot-react hooks. Obviously, you could always return `GRANT_RESPONSES.GRANTED` in  your custom `grantRequestFunction`. The return type was chosen to be this simplistic, so that you receive a state in your components that use the hooks to notify the user in the frontend with a suitable error message when the grant was denied.
