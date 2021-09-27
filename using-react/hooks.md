@@ -1,7 +1,3 @@
----
-description: The reason you use ux4iot =)
----
-
 # Hooks
 
 ## useSingleTelemetry
