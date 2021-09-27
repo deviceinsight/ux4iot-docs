@@ -26,7 +26,9 @@ module.exports = async function (context, req) {
         // All users can subscribe to telemetry events that are visible for them
         // using *your* custom access control scheme, which defines which users 
         // have access to which IoT devices.
-        if (req.body.type === 'telemetry' && isDeviceVisibleForUser(req.body.device, userId)) {
+        if (req.body.type === 'telemetry' 
+            && isDeviceVisibleForUser(req.body.device, userId)) {
+            
             ux4iotAdmin.grant(req.body);
             context.res = {
                 status: 204
