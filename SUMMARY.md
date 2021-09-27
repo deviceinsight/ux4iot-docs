@@ -18,8 +18,8 @@
 ## Implementing your custom security backend
 
 * [Introduction](implementing-your-custom-security-backend/introduction.md)
-* [The grantRequestFunction](implementing-your-custom-security-backend/implementing-the-grantrequestforwarder-function.md)
-* [The Security Backend](implementing-your-custom-security-backend/implementing-the-security-backend.md)
+* [Grant Request Function](implementing-your-custom-security-backend/implementing-the-grantrequestforwarder-function.md)
+* [Security Backend](implementing-your-custom-security-backend/implementing-the-security-backend.md)
 * [Security Backend Examples](implementing-your-custom-security-backend/security-backend-examples/README.md)
   * [Azure Function using Javascript](implementing-your-custom-security-backend/security-backend-examples/azure-function-example-for-security-backend.md)
 * [Admin SDKs](implementing-your-custom-security-backend/admin-sdks/README.md)
@@ -28,5 +28,5 @@
 
 ---
 
-* [Create by Device Insight](https://device-insight.com)
+* [Created by Device Insight](https://device-insight.com)
 

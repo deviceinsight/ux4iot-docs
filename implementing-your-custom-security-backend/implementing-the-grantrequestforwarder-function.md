@@ -1,4 +1,4 @@
-# The grantRequestFunction
+# Grant Request Function
 
 The `grantRequestFunction` is a function to be given to the `Ux4iotContext`.
 
