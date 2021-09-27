@@ -1,6 +1,6 @@
 # Grant Request Function
 
-The `grantRequestFunction` is a function to be given to the `Ux4iotContext`.
+The `grantRequestFunction` is a function in your frontend that acts as an adapter between the ux4iot library \(that e.g. provides the React hooks\) and your custom security backend. It must be passed to the `Ux4iotContext` upon initialization.
 
 ### Ux4iotContextProvider
 
