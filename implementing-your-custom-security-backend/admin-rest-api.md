@@ -2,9 +2,9 @@
 
 If you are using a language for the security backend for which no SDK exists, you can use the REST API. Don't worry, it's really simple.
 
-{% api-method method="post" host="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="api/v1/grants" %}
+{% api-method method="post" host="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="grants" %}
 {% api-method-summary %}
-Forward grants
+Forward a grant
 {% endapi-method-summary %}
 
 {% api-method-description %}
@@ -14,10 +14,6 @@ Send a grant request to ux4iot to apply it for the `sessionId` contained in the 
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-headers %}
-{% api-method-parameter name="X-User-Id" type="string" required=false %}
-Your custom identifier for users to pass along as meta-information. If you pass along this identifier, you can remove all sessions with the same user id, e.g. if a user logs out.
-{% endapi-method-parameter %}
-
 {% api-method-parameter name="Shared-Access-Key" type="string" required=true %}
 The Shared Access Key used for authentication
 {% endapi-method-parameter %}
@@ -93,7 +89,85 @@ There was something wrong with the grant, it has not been applied
 }
 ```
 
-{% api-method method="delete" host="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="api/v1/sessions/:sessionId" %}
+{% api-method method="delete" host="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="grants" %}
+{% api-method-summary %}
+Revoke a grant
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Revoke the grant given 
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-headers %}
+{% api-method-parameter name="Shared-Access-Key" type="string" required=true %}
+The Shared Access Key used for authentication
+{% endapi-method-parameter %}
+{% endapi-method-headers %}
+
+{% api-method-body-parameters %}
+{% api-method-parameter name="deviceId" type="string" required=true %}
+The device for which to revoke the grant
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="grantType" type="string" required=true %}
+The grant type to revoke
+{% endapi-method-parameter %}
+
+{% api-method-parameter name="sessiondId" type="string" required=true %}
+The session ID that the grant belongs to
+{% endapi-method-parameter %}
+{% endapi-method-body-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% api-method method="delete" host="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="sessions/:sessionId" %}
+{% api-method-summary %}
+
+{% endapi-method-summary %}
+
+{% api-method-description %}
+
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-headers %}
+{% api-method-parameter name="Shared-Access-Key" type="string" required=true %}
+The Shared Access Key used for authentication
+{% endapi-method-parameter %}
+{% endapi-method-headers %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
+```
+
+```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% api-method method="delete" host="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="sessions/:sessionId" %}
 {% api-method-summary %}
 Delete sessions
 {% endapi-method-summary %}
@@ -105,8 +179,8 @@ Remove a session, including all grants
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-path-parameters %}
-{% api-method-parameter name="sessionId" type="string" required=false %}
-
+{% api-method-parameter name="sessionId" type="string" required=true %}
+The session to remove
 {% endapi-method-parameter %}
 {% endapi-method-path-parameters %}
 
@@ -143,23 +217,17 @@ NO CONTENT
 {% endapi-method-spec %}
 {% endapi-method %}
 
-{% api-method method="delete" host="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="api/v1/users/:userId/sessions" %}
+{% api-method method="delete" host="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="sessions" %}
 {% api-method-summary %}
-Delete all user sessions
+Delete all sessions
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Remove all sessions of a particular user identified by his or her user ID. Useful when a particular user logs out of your system.
+Remove all sessions
 {% endapi-method-description %}
 
 {% api-method-spec %}
 {% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="userId" type="string" required=true %}
-The userId of the user
-{% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
-
 {% api-method-headers %}
 {% api-method-parameter name="Shared-Access-Key" type="string" required=true %}
 The Shared Access Key used for authentication
@@ -168,32 +236,16 @@ The Shared Access Key used for authentication
 {% endapi-method-request %}
 
 {% api-method-response %}
-{% api-method-response-example httpCode=204 %}
+{% api-method-response-example httpCode=200 %}
 {% api-method-response-example-description %}
 
 {% endapi-method-response-example-description %}
 
-```text
-NO CONTENT
 ```
-{% endapi-method-response-example %}
 
-{% api-method-response-example httpCode=404 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
-```text
-{
-  "errorMessage": "The userId is unknown"
-}
 ```
 {% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
-
-{% hint style="info" %}
-In order for this to work, you have to pass along the `userId` when forwarding grants.
-{% endhint %}
 
