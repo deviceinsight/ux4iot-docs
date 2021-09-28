@@ -1,5 +1,7 @@
 # Node.js
 
+The Node Admin SDK can be found on [GitHub](https://github.com/deviceinsight/ux4iot-admin-node).
+
 First, add the dependency:
 
 {% tabs %}
