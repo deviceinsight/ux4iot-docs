@@ -20,6 +20,12 @@ return <Ux4iotContext.Provider options={devOptions}>...</Ux4iotContextProvider>
 
 You have already seen how this works in the [tutorial using create-react-app](../using-react/tutorial-using-create-react-app.md).
 
+#### Usage of Development Mode
+
+{% hint style="danger" %}
+Under no circumstances should you publish your web application in development mode. It allows anyone with access to the web applications to perform any requests towards your IoT devices and it also exposes the admin connection string that must be kept secret.
+{% endhint %}
+
 #### Production Mode
 
 ```jsx
