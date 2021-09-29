@@ -11,7 +11,7 @@
 
 ## Developing web apps with React <a id="using-react"></a>
 
-* [Installing the dependency](using-react/introduction.md)
+* [Installing](using-react/introduction.md)
 * [Initialization](using-react/initialization.md)
 * [Hooks](using-react/hooks.md)
 * [Grant Request Function](using-react/implementing-the-grantrequestforwarder-function.md)

@@ -1,4 +1,4 @@
-# Installing the dependency
+# Installing
 
 We provide React hooks and context providers out of the box. The library can be found on [GitHub](https://github.com/deviceinsight/ux4iot-react).
 
