@@ -4,6 +4,8 @@ description: Build a simple app using ux4iot in development
 
 # Tutorial using create-react-app
 
+### Setup application
+
 Use [create-react-app](https://github.com/facebook/create-react-app) to bootstrap your React application:
 
 ```bash
@@ -98,9 +100,37 @@ As usual with `create-react-app` you can start the application with:
 npm start
 ```
 
-As soon as you send in data as `simulated-device` using the IoT Hub SDK, the displayed number will update.
-
 {% hint style="info" %}
 If you use your admin connection string in the frontend, there will be a notification in your browsers console that you're using ux4iot-react in development mode. In order to use ux4iot-react in production mode, you will need to provide your own security backend as explained in the next section.
 {% endhint %}
+
+### Send simulated data
+
+If you do not already have an IoT devices sending data, you can easily simulate one. First, create a device with device ID `simulated-device` in the IoT Hub:
+
+![](../.gitbook/assets/image%20%2813%29.png)
+
+![](../.gitbook/assets/image%20%2811%29.png)
+
+Now copy the connection string for the device.
+
+![](../.gitbook/assets/image%20%2812%29.png)
+
+With the connection string you can start a simulator using Docker by invoking the following command. \(The GitHub repo of the simulator can be found [here](https://github.com/stefan-hudelmaier/simulated-temperature-sensor).\)
+
+```bash
+docker run --rm -ti \
+  -e DEVICE_CONNECTION_STRING="HostName=xxx.azure-devices.net;DeviceId=simulated-device;SharedAccessKey=xxx" \
+  ghcr.io/stefan-hudelmaier/simulated-temperature-sensor:main
+```
+
+This will publish a random value of the `temperature` telemetry. The messages look like this:
+
+```bash
+{
+  "temperature": 42.1
+}
+```
+
+You should now see the value reflected in your React application.
 

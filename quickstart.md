@@ -8,7 +8,7 @@ These quickstarts do not include a custom security backend, so you only have to 
 
 If you have an existing IoT hub and devices, perform the following steps
 
-* [Create your ux4iot instance](setup/create-ux4iot-instance.md) \(5 Minutes\)
+* [Create your ux4iot instance](setup/create-ux4iot-instance.md) \(10 Minutes\)
 * [Configure your IoT Hub](setup/configure-your-iot-hub.md) \(5 Minutes\)
 * [Bootstrap your React application, add your first ux4iot hook](using-react/tutorial-using-create-react-app.md) \(10 Minutes\)
 
@@ -26,10 +26,9 @@ If you want to deploy a new IoT Hub for trying out ux4iot, you do this:
   * Canada Central
   * Canada East
 
-Check out this [GitHub repo](https://github.com/deviceinsight/ux4iot-quickstart) for the ARM template the button is based on.  
-TODO: Describe creation of device, add device simulator
+Check out this [GitHub repo](https://github.com/deviceinsight/ux4iot-quickstart) for the ARM template the button is based on.
 
-* [Bootstrap your React application, add your first ux4iot hook](using-react/tutorial-using-create-react-app.md) \(10 Minutes\)
+* [Bootstrap your React application, add your first ux4iot hook, send simulated data](using-react/tutorial-using-create-react-app.md) \(15 Minutes\)
 
 
 
