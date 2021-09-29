@@ -27,6 +27,10 @@
   * [Node.js](implementing-your-custom-security-backend/admin-sdks/node.js-admin-sdk.md)
 * [Admin REST API](implementing-your-custom-security-backend/admin-rest-api.md)
 
+## Pricing
+
+* [Cost](pricing/cost.md)
+
 ---
 
 * [Created by Device Insight](https://device-insight.com)
