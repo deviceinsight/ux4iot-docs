@@ -18,7 +18,7 @@ function App() {
 }
 ```
 
-There are two modes of operations for using the library: Development mode and production mode. The initialization differs between the two modes.
+There are two modes of operations for the library: Development mode and production mode. The initialization differs between the two modes.
 
 ### Development Mode
 
@@ -54,7 +54,7 @@ Under no circumstances should you publish your web application in development mo
 
 ### Production Mode
 
-For using production mode you need to provide a security backend for managing access permissions. You also need a [Grant Request Function](implementing-the-grantrequestforwarder-function.md) that acts as an adapter between the ux4iot library and this backend.
+For production mode you need to provide a security backend for managing access permissions. You also need a [Grant Request Function](implementing-the-grantrequestforwarder-function.md) that acts as an adapter between the ux4iot library and this backend.
 
 ```jsx
 const UX4IOT_WEBSOCKET_URL 'https://ux4iot-xxx.westeurope.azurecontainer.io';
