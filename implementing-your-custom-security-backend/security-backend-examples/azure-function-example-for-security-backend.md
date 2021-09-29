@@ -51,5 +51,3 @@ In this example `isDeviceVisibleForUser` is a custom method that implements the 
 
 As you can see, you have full flexibility when it comes to determine which users may perform which actions.
 
-You can find a working example on GitHub \(TODO\)
-
