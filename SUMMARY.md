@@ -29,7 +29,7 @@
 
 ## Pricing
 
-* [Cost](pricing/cost.md)
+* [Monthly costs](pricing/cost.md)
 
 ---
 
