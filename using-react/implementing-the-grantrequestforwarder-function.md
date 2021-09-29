@@ -1,20 +1,10 @@
 # Grant Request Function
 
-The `grantRequestFunction` in your frontend acts as an adapter between the ux4iot library \(that e.g. provides the React hooks\) and your [custom security backend](../implementing-your-custom-security-backend/introduction.md).
+The Grant Request Function in your frontend acts as an adapter between the ux4iot library \(that e.g. provides the React hooks\) and your [custom security backend](../implementing-your-custom-security-backend/introduction.md). You provide it during [initialization](initialization.md).
 
-There are two modes of operations for using the ux4iot frontend library: Development mode and production mode. As the name implies, the development mode should only be used during the development phase. In this mode, you do not need a security backend and consequently you also do not need a `grantRequestFunction`. 
+The Grant Request Function is called by the ux4iot library with Grant Requests that are derived from the hooks and functions used in your components. It must forward these Grant Requests to the security backend and return the responses of these request.
 
-### Ux4iotContextProvider
-
-`import {Ux4iotContextProvider} from 'ux4iot-react'`
-
-The `Ux4iotContextProvider` is a provider implementation of `Ux4iotContext`. It can take two different argument types. One for development, one for production mode, both typed by `InitializeDevOptions` and `InitializeProdOptions` respectively:
-
-#### 
-
-### GrantRequestFunction
-
-`GrantRequestFunctionType` is defined as follows:
+This is the type definition of the function:
 
 ```typescript
 enum GRANT_RESPONSES {
@@ -27,9 +17,9 @@ enum GRANT_RESPONSES {
 type GrantRequestFunctionType = (grant: GrantRequest) => Promise<GRANT_RESPONSES>
 ```
 
-For now we do not care about `GrantRequest`. Internally, ux4iot-react uses this function to perform grant requests to either ux4iot directly \(development mode\) or your security backend \(production mode\).
+You can largely ignore `GrantRequest`for now as it is usually simply passed through the function to your security backend. 
 
-A custom `grantRequestFunction` could look like this:
+A custom Grant Request Function could look like this:
 
 ```javascript
 import axios from 'axios'
@@ -63,7 +53,15 @@ const customGrantRequestFunction: GrantRequestFunctionType = async grantRequest 
 
 ```
 
-Your full app can then look like this, combining the `Ux4iotContextProvider` with your custom `grantRequestFunction`:
+As you can see that you have full control over:
+
+* the library to use for the requests \(in the example [axios](https://github.com/axios/axios) is used\) 
+* the mechanism used for authenticating against your backend \(in the example and OAuth2 access token is used\)
+* how the response to the REST requests are mapped to the response of the function
+
+Due to this flexibility, you can integrate the security backend into your existing API and use established conventions and mechanisms.
+
+Your full app can then look like this:
 
 ```jsx
 import axios from 'axios'
@@ -101,7 +99,7 @@ const customGrantRequestFunction: GrantRequestFunctionType = async grantRequest 
 
 export function App() {
   const prod: InitializeProdOptions = {
-    ux4iotURL: UX4IOT_WEBSOCKET_URL // http://ux4iot-example.westeurope.azurecontainer.io
+    ux4iotURL: UX4IOT_WEBSOCKET_URL
     grantRequestFunction: customGrantRequestFunction
   };
   
@@ -109,24 +107,18 @@ export function App() {
 }
 ```
 
-As you can see, you initiate a HTTP request to your backend using your HTTP library of choice \(in this case [axios](https://github.com/axios/axios) is used\). You use your usual authentication mechanism \(in this case an OAuth2 access token\).
-
-{% hint style="info" %}
-The `GRANT_RESPONSES` are forwarded to the `onGrantError` callback of the exported ux4iot-react hooks. Obviously, you could always return `GRANT_RESPONSES.GRANTED` in  your custom `grantRequestFunction`. The return type was chosen to be this simplistic, so that you receive a state in your components that use the hooks to notify the user in the frontend with a suitable error message when the grant was denied.
-
-Example:
+The `GRANT_RESPONSES` are forwarded to the `onGrantError` callback of the hooks. Here is an example:
 
 ```typescript
 const temperature = useSingleTelemetry(
-  'my-device',
-  'temperature',
-  undefined,
-  error => {
-    if(error === GRANT_RESPONSES.UNAUTHORIZED) {
-      displayUnauthorizedError(error);
+  'my-device', 
+  'temperature', 
+  undefined, 
+  error => { 
+    if(error === GRANT_RESPONSES.UNAUTHORIZED) { 
+      displayUnauthorizedError(error); 
     }
   }
 );
 ```
-{% endhint %}
 
