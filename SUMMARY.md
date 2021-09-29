@@ -31,6 +31,7 @@
 
 * [Pricing](resources/cost.md)
 * [Performance](resources/performance.md)
+* [Limitations](resources/limitations.md)
 
 ---
 
