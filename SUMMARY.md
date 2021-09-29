@@ -12,13 +12,14 @@
 ## Developing web apps with React <a id="using-react"></a>
 
 * [Installing the dependency](using-react/introduction.md)
+* [Initialization](using-react/initialization.md)
 * [Hooks](using-react/hooks.md)
+* [Grant Request Function](using-react/implementing-the-grantrequestforwarder-function.md)
 * [Tutorial using create-react-app](using-react/tutorial-using-create-react-app.md)
 
 ## Implementing your custom security backend
 
 * [Introduction](implementing-your-custom-security-backend/introduction.md)
-* [Grant Request Function](implementing-your-custom-security-backend/implementing-the-grantrequestforwarder-function.md)
 * [Security Backend](implementing-your-custom-security-backend/implementing-the-security-backend.md)
 * [Security Backend Examples](implementing-your-custom-security-backend/security-backend-examples/README.md)
   * [Azure Function using Javascript](implementing-your-custom-security-backend/security-backend-examples/azure-function-example-for-security-backend.md)
