@@ -2,7 +2,7 @@
 
 ### What is ux4iot?
 
-ux4iot is a tool for directly communicating with your IoT devices
+ux4iot is a tool for directly communicating with your IoT devices.
 
 {% hint style="danger" %}
 ux4iot is not released yet and currently in a closed beta. If you are interested in participating, send a mail to [hello@ux4iot.com](mailto:hello@ux4iot.com).
