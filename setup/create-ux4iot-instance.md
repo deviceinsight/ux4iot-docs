@@ -8,8 +8,6 @@ Visit the [offer on Azure Marketplace](https://azuremarketplace.microsoft.com/) 
 
 ## Creating via the command line
 
-TODO: Describe
-
 {% tabs %}
 {% tab title="AZ CLI" %}
 ```text

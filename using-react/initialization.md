@@ -18,7 +18,7 @@ function App() {
 }
 ```
 
-There are two modes of operations for using the ux4iot frontend library: Development mode and production mode. The initialization of the frontend libraries differs between the two modes.
+There are two modes of operations for using the library: Development mode and production mode. The initialization of the frontend libraries differs between the two modes.
 
 ### Development Mode
 
