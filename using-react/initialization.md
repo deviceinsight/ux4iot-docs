@@ -18,7 +18,7 @@ function App() {
 }
 ```
 
-There are two modes of operations for using the library: Development mode and production mode. The initialization of the frontend libraries differs between the two modes.
+There are two modes of operations for using the library: Development mode and production mode. The initialization differs between the two modes.
 
 ### Development Mode
 
@@ -38,18 +38,18 @@ const devOptions: InitializeDevOptions = {
 
 You can see a complete example in the [tutorial using create-react-app](tutorial-using-create-react-app.md).
 
-The value of the `adminConnectionString` can be retrieved via the Azure portal:
+The value of the `adminConnectionString` option can be retrieved via the Azure portal:
 
 ![](../.gitbook/assets/image%20%287%29.png)
 
 You can select either the Primary or the Secondary connection string.
 
-Usually, the admin connection string is used by the [Security Backend](../implementing-your-custom-security-backend/introduction.md), but as there is no Security Backend in development mode, the frontend accesses the [Admin API](../implementing-your-custom-security-backend/admin-rest-api.md) on its own. For this reason the frontend requires the admin connection string.
+In production mode the admin connection string is used by the [Security Backend](../implementing-your-custom-security-backend/introduction.md), but as there is no Security Backend in development mode, the frontend accesses the [Admin API](../implementing-your-custom-security-backend/admin-rest-api.md) on its own. For this reason the frontend requires the admin connection string.
 
 #### Usage of Development Mode
 
 {% hint style="danger" %}
-Under no circumstances should you publish your web application in development mode. It allows anyone with access to the web applications to perform any requests towards your IoT devices and it also exposes the admin connection string that must be kept secret.
+Under no circumstances should you publish your web application in development mode. It allows anyone with access to the web application to perform any requests towards your IoT devices and it also exposes the admin connection string that must be kept secret.
 {% endhint %}
 
 ### Production Mode
