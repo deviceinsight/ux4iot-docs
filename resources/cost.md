@@ -1,4 +1,4 @@
-# Monthly costs
+# Pricing
 
 ux4iot is installed in your Azure subscription using the Azure Marketplace. The costs can be divided into two parts:
 

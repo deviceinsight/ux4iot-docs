@@ -27,9 +27,10 @@
   * [Node.js](implementing-your-custom-security-backend/admin-sdks/node.js-admin-sdk.md)
 * [Admin REST API](implementing-your-custom-security-backend/admin-rest-api.md)
 
-## Pricing
+## Resources
 
-* [Monthly costs](pricing/cost.md)
+* [Pricing](resources/cost.md)
+* [Performance](resources/performance.md)
 
 ---
 
