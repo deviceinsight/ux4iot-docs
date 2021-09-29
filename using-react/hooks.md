@@ -8,7 +8,7 @@ The `useSingleTelemetry` hook makes it very easy to just listen to telemetry on 
 const value = useSingleTelemetry(deviceId, telemetryKey, onData, onGrantError);
 ```
 
-#### Input \(Arguments\)
+#### Arguments
 
 | Argument | Description | Type |  |
 | :--- | :--- | :--- | :--- |
@@ -17,11 +17,9 @@ const value = useSingleTelemetry(deviceId, telemetryKey, onData, onGrantError);
 | onData | Callback, executed when new telemetry of `telemetryKey` is received on the device | `(data: unknown) => void` | Optional |
 | onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the direct method request | `GrantErrorCallback` | Optional |
 
-#### Output \(Returns\)
+#### Return Value
 
-This hook returns a single value: `unknown`
-
-Every time the device sends new telemetry with key `telemetryKey` this hook will update the return value. 
+This hook returns a single value. Every time the device sends new telemetry with key `telemetryKey` this hook will update this value. This hook relies on the assumption that your Device-to-Cloud messages are JSON documents where the key is the telemetry key and the value is the current telemetry value. We plan to support more complex payloads in the future \(selecting using JSON Path, Avro, etc\). If you have other message payloads, you can use the [useD2CMessage hook](hooks.md#used-2-cmessages).
 
 #### Example
 
@@ -38,9 +36,18 @@ return (
 );
 ```
 
+The D2C messages are expected to look like this:
+
+```jsx
+{
+  "temperature": 42.1,
+  ...
+}
+```
+
 ## useTelemetry
 
-The `useTelemetry` hook is a more sophisticated hook, designed to cover use cases when a lot of telemetry of multiple devices needs to be subscribed to. It returns a variable that is updated as soon as new values of the given telemetry keys are received. This hook relies on the assumption that your Device-to-Cloud messages are JSON documents where the key is the telemetry key and the value is the current telemetry value. We plan to support more complex payloads in the future \(selecting using JSON Path, Avro, etc\). If you have other message payloads, you can use the [useD2CMessage hook](hooks.md#used-2-cmessages).
+The `useTelemetry` hook is a more sophisticated hook, designed to cover use cases when a lot of telemetry of multiple devices needs to be subscribed to. 
 
 ```typescript
 	const {
@@ -57,19 +64,19 @@ The `useTelemetry` hook is a more sophisticated hook, designed to cover use case
 	);
 ```
 
-#### Input \(Arguments\)
+#### Arguments
 
 | Argument | Description | Type |  |
 | :--- | :--- | :--- | :--- |
-| initialSubscribers | Object of key-value pairs, with keys: the device ids of your IoTHub devices, and value: a list of strings, defining the telemetryKeys to subscribe to  | `Record<string, string[]>` | Optional |
-| onData | Callback, executed when a new `value` for a `telemetryKey` is send by a device with id `deviceId` | `(deviceId: string, telemetryKey: string, value: unknown) => void` | Optional |
+| initialSubscribers | Object of key-value pairs, with keys: the device IDs of your IoTHub devices, and value: a list of strings, defining the telemetryKeys to subscribe to  | `Record<string, string[]>` | Optional |
+| onData | Callback, executed when a new `value` for a `telemetryKey` is sent by a device with ID `deviceId` | `(deviceId: string, telemetryKey: string, value: unknown) => void` | Optional |
 | onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback` | Optional |
 
 {% hint style="info" %}
 Do not try to perform subscription updates over the `initialSubscribers` object. This object is meant solely as an option for use cases where you always have an initial set of subscribers. Updates to `initialSubscribers` will not trigger updates in the hook.
 {% endhint %}
 
-#### Output \(Returns\): 
+#### Return Value
 
 This hook returns an object containing other objects and functions to interact with telemetry subscriptions.
 
@@ -90,19 +97,19 @@ The `useDirectMethod` hook returns a function that, when invoked, calls a direct
 const reboot = useDirectMethod(deviceId, methodName, onGrantError);
 ```
 
-#### Input \(Arguments\)
+#### Arguments
 
 | Argument | Description | Type |  |
 | :--- | :--- | :--- | :--- |
-| deviceId | The device id of the device to execute the direct method on | `string` | Required |
+| deviceId | The device ID of the device to execute the direct method on | `string` | Required |
 | methodName | The name of the method to execute on the device | `string` | Required |
 | onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the direct method request | `GrantErrorCallback` | Optional |
 
-#### Output \(Returns\)
+#### Return Value
 
 This hook returns a function: `(params: Record<string, unknown>) => Promise<unknown>`
 
-The hook takes in the direct method payload and returns a result that is specified by the device that executes the method. The return type of the hook is `Promise<unknown>` since we cannot know what the device will give us. 
+You pass the method payload to this function and it outputs the[ result of the direct method invocation on the device](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-direct-methods#response-1).
 
 {% hint style="info" %}
 Do not confuse the `onGrantError` handler of `useDirectMethod` with the catch block of the direct method itself. `onGrantError` will only be executed when this hook is rendered by react and the security backend fails to grant the direct method. The error that `reboot` may throw is an HTTP error that could occur when the function is executed.
