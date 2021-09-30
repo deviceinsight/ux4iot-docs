@@ -9,6 +9,8 @@ In both cases, the IoT Hub routing must be configured.
 
 ## Device Twin Changed Events
 
+TODO: New screenshots with ux4iot instead of subioto
+
 For 'Device Twin Changed Events', which are required for the [useDeviceTwin](../using-react/hooks.md#usedevicetwin) hook, a routing rule must be added as follows:
 
 ![](../.gitbook/assets/image%20%282%29%20%281%29.png)
