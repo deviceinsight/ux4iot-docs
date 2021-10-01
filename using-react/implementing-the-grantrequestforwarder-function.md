@@ -56,8 +56,8 @@ const customGrantRequestFunction: GrantRequestFunctionType = async grantRequest 
 As you can see that you have full control over:
 
 * the library to use for the requests \(in the example [axios](https://github.com/axios/axios) is used\) 
-* the mechanism used for authenticating against your backend \(in the example and OAuth2 access token is used\)
-* how the response to the REST requests are mapped to the response of the function
+* the mechanism used for authenticating against your backend \(in the example an OAuth2 access token is used\)
+* how the response to the REST requests is mapped to the response of the function
 
 Due to this flexibility, you can integrate the security backend into your existing API and use established conventions and mechanisms.
 
@@ -121,4 +121,6 @@ const temperature = useSingleTelemetry(
   }
 );
 ```
+
+This allows you to e.g. show a popup to the user indicating that the subscription was unsuccessful due to insufficient permissions, etc.
 
