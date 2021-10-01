@@ -1,18 +1,33 @@
 # Using a separate Event Hub
 
-In addition to the built-in Event Hub of your IoT Hub you can use a separate Event Hub as well. In most cases, this Event Hub will receive messages from IoT Hub through [message routing](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-messages-d2c).
+In addition to the built-in Event Hub of your IoT Hub you can use a separate Event Hub as well. 
 
-You can also not use an IoT Hub at all, but send messages to the Event Hub by other means. This can be useful in the following scenarios:
+#### Scenario 1
 
-* Data is received not from devices directly but via some other cloud.
-* The devices communicate with a legacy protocol not supported by IoT Hub. There is a custom protocol endpoint that the devices connect to.
+Event Hub receives messages from IoT Hub through [message routing](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-messages-d2c) or via an Azure Function transformation.
 
-In such scenarios the following hooks can be used:
+![Messages transformed by Azure Functions and written to Event Hub](../.gitbook/assets/ux4iot-event-hub-scenarios.png)
+
+#### Scenario 2
+
+It's also possible that you do not use an IoT Hub at all, but send messages to the Event Hub by other means. For example when devices communicate via a legacy protocol not supported by IoT Hub. There is a custom protocol endpoint, e.g. realized using an Azure Function, that the devices connect to.
+
+![Custom Protocol Adapter](../.gitbook/assets/ux4iot-event-hub-scenarios-4-.png)
+
+#### Scenario 3
+
+Data is received not from devices directly but via some other cloud.
+
+![Data forwarded from other cloud](../.gitbook/assets/ux4iot-event-hub-scenarios-5-.png)
+
+#### Using ux4iot with Event Hubs
+
+In Scenario 1 all hooks can be used. You only need to configure ux4iot with the connection string of the Event Hub instead of the connection string of the Event Hub compatible endpoint of IoT Hub. In scenario 2 and 3 where no IoT Hub is used, the following hooks can be used:
 
 * [useTelemetry](../using-react/hooks.md#usetelemetry)
 * [useD2CMessages](../using-react/hooks.md#used-2-cmessages)
 
-When you send messages to the Event Hub, they must adhere to the following requirements:
+When you send messages to Event Hub, they must adhere to the following requirements:
 
 * They must have a property `iothub-connection-device-id`
 * They must have a property `iothub-message-schema`. The value of this property must be `Telemetry`.
