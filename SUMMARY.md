@@ -6,7 +6,8 @@
 ## Setup
 
 * [Create your ux4iot Instance](setup/create-ux4iot-instance.md)
-* [Configure your IoT Hub](setup/configure-your-iot-hub.md)
+* [Configure your existing IoT Hub](setup/configure-your-iot-hub.md)
+* [Create IoT Hub and linked ux4iot](setup/create-iot-hub-and-linked-ux4iot.md)
 * [Using a separate Event Hub](setup/using-a-separate-event-hub.md)
 
 ## Developing web apps with React <a id="using-react"></a>

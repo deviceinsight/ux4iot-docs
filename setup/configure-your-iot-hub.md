@@ -1,4 +1,4 @@
-# Configure your IoT Hub
+# Configure your existing IoT Hub
 
 In order to use the following hooks, you need to perform additional setup steps:
 
