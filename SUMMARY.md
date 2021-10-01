@@ -35,5 +35,5 @@
 
 ---
 
-* [Created by Device Insight](https://device-insight.com)
+* [Made with ❤️ at Device Insight](https://www.device-insight.com/en/)
 

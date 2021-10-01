@@ -27,9 +27,7 @@ The grant requests are JSON objects that are passed to your local`grantRequestFo
   "grantType": "invokeDirectMethod",
   "sessionId": "ht9JvTLalcy3GQDttyqu",
   "deviceId": "d123",
-  "details":  {
-    "directMethodName": "reset"
-  }
+  "directMethodName": "reset"
 }
 ```
 
@@ -42,16 +40,14 @@ If you forward this grant request to ux4iot, it means that the client can call t
   "grantType": "subscribeToTelemetry",
   "sessionId": "ht9JvTLalcy3GQDttyqu",
   "deviceId": "d123",
-  "details":  {
-    "telemetryKey": "temperature"
-  }
+  "telemetryKey": "temperature"
 }
 ```
 
 If you forward this grant request to ux4iot, it means that the client subscribes to updates to the telemetry key `temperature` of the device `d123`.
 
 {% hint style="info" %}
-In contrast to other request like `diretMethod`, this not only approves the permission but also actively subscribes to updates.
+In contrast to other request like `invokeDirectMethod,`this not only approves the permission but also actively subscribes to updates.
 {% endhint %}
 
 ## Subscribe to device twin changes
@@ -69,7 +65,23 @@ If you forward this grant request to ux4iot, it means that the client subscribes
 It is currently not possible to restrict this to a sub section of the device twin.
 
 {% hint style="info" %}
-In contrast to other request like `diretMethod`, this not only approves the permission but also actively subscribes to updates.
+In contrast to other request like `invokeDirectMethod`, this not only approves the permission but also actively subscribes to updates.
+{% endhint %}
+
+## Subscribe to Connection State
+
+```text
+{
+  "grantType": "subscribeToConnectionState",
+  "sessionId": "ht9JvTLalcy3GQDttyqu",
+  "deviceId": "d123" 
+}
+```
+
+If you forward this grant request to ux4iot, it means that the client subscribes to updates to changes to the connection state of the device `d123`.
+
+{% hint style="info" %}
+In contrast to other request like `invokeDirectMethod`, this not only approves the permission but also actively subscribes to updates.
 {% endhint %}
 
 ## Modify desired properties
@@ -82,5 +94,7 @@ In contrast to other request like `diretMethod`, this not only approves the perm
 }
 ```
 
-If you forward this grant request to ux4iot, it means that the client can modify the desired properties of the device twin of the device `d123`. 
+If you forward this grant request to ux4iot, it means that the client can patch the desired properties in the device twin of the device with id `d123` .
+
+It is currently not possible to restrict this to a sub section of the desired properties.
 
