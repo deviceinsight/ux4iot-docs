@@ -41,7 +41,7 @@ If you want to revoke the grant at a later point in time, you can do this using:
 ux4iotAdmin.revoke({
   sessionId: "ijfoewio22490320",
   deviceId: "d123",
-  grantType: "telemetry"
+  grantType: "subscribeToTelemetry"
 });
 ```
 
