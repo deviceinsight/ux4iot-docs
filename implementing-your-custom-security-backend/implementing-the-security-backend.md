@@ -22,7 +22,7 @@ The grant requests are JSON objects that are passed to your local`grantRequestFo
 
 ## Invoke direct methods
 
-```text
+```javascript
 {
   "grantType": "invokeDirectMethod",
   "sessionId": "ht9JvTLalcy3GQDttyqu",
@@ -35,7 +35,7 @@ If you forward this grant request to ux4iot, it means that the client can call t
 
 ## Subscribe to telemetry
 
-```text
+```javascript
 {
   "grantType": "subscribeToTelemetry",
   "sessionId": "ht9JvTLalcy3GQDttyqu",
@@ -44,7 +44,7 @@ If you forward this grant request to ux4iot, it means that the client can call t
 }
 ```
 
-If you forward this grant request to ux4iot, it means that the client subscribes to updates to the telemetry key `temperature` of the device `d123`.
+If you forward this grant request to ux4iot, it means that the client subscribes to updates to the telemetry key `temperature` of the device `d123`. If the `telemetryKey` is omitted the grant is valid for all telemetry keys of the device.
 
 {% hint style="info" %}
 In contrast to other request like `invokeDirectMethod,`this not only approves the permission but also actively subscribes to updates.
@@ -52,7 +52,7 @@ In contrast to other request like `invokeDirectMethod,`this not only approves th
 
 ## Subscribe to device twin changes
 
-```text
+```javascript
 {
   "grantType": "subscribeToDeviceTwin",
   "sessionId": "ht9JvTLalcy3GQDttyqu",
@@ -70,7 +70,7 @@ In contrast to other request like `invokeDirectMethod`, this not only approves t
 
 ## Subscribe to connection State
 
-```text
+```javascript
 {
   "grantType": "subscribeToConnectionState",
   "sessionId": "ht9JvTLalcy3GQDttyqu",
@@ -86,7 +86,7 @@ In contrast to other request like `invokeDirectMethod`, this not only approves t
 
 ## Modify desired properties
 
-```text
+```javascript
 {
   "grantType": "modifyDesiredProperties",
   "sessionId": "ht9JvTLalcy3GQDttyqu",
@@ -97,4 +97,20 @@ In contrast to other request like `invokeDirectMethod`, this not only approves t
 If you forward this grant request to ux4iot, it means that the client can patch the desired properties in the device twin of the device with id `d123` .
 
 It is currently not possible to restrict this to a sub section of the desired properties.
+
+### Subscribe to D2C messages
+
+```javascript
+{
+  "grantType": "subscribeToD2CMessages",
+  "sessionId": "ht9JvTLalcy3GQDttyqu",
+  "deviceId": "d123" 
+}
+```
+
+If you forward this grant request to ux4iot, it means that the client subscribes to all D2C messages sent by device `d123`.
+
+{% hint style="info" %}
+In contrast to other request like `invokeDirectMethod`, this not only approves the permission but also actively subscribes to updates.
+{% endhint %}
 
