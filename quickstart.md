@@ -16,7 +16,14 @@ If you have an existing IoT hub and devices, perform the following steps
 
 If you want to deploy a new IoT Hub for trying out ux4iot, you do this:
 
-* Create an IoT Hub, ux4iot instance and simulated device \(10 Minutes\) You can deploy an IoT Hub and linked ux4iot instance by pushing this button:  [![](.gitbook/assets/deploy-to-azure.png) ](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdeviceinsight%2Fux4iot-quickstart%2Fmaster%2Fquickstart.json)  **Please select one of the following Azure Regions as otherwise the deployment will fail:**
+* Create a new IoT Hub and ux4iot instance \(10 Minutes\)  
+  The easiest way to do this is to push this button:  
+   [![](.gitbook/assets/deploy-to-azure.png) ](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fdeviceinsight%2Fux4iot-quickstart%2Fmaster%2Fquickstart.json)  
+  \([GitHub repo](https://github.com/deviceinsight/ux4iot-quickstart) for the deployed ARM template\)
+
+  
+  **Please select one of the following Azure Regions as otherwise the deployment will fail:**
+
   * Australia East
   * Australia Southeast
   * East US
@@ -25,8 +32,6 @@ If you want to deploy a new IoT Hub for trying out ux4iot, you do this:
   * North Europe
   * Canada Central
   * Canada East
-
-Check out this [GitHub repo](https://github.com/deviceinsight/ux4iot-quickstart) for the ARM template the button is based on.
 
 * [Bootstrap your React application, add your first ux4iot hook, send simulated data](using-react/tutorial-using-create-react-app.md) \(15 Minutes\)
 
