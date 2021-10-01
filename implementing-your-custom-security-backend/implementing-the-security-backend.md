@@ -68,7 +68,7 @@ It is currently not possible to restrict this to a sub section of the device twi
 In contrast to other request like `invokeDirectMethod`, this not only approves the permission but also actively subscribes to updates.
 {% endhint %}
 
-## Subscribe to Connection State
+## Subscribe to connection State
 
 ```text
 {
