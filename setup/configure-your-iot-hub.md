@@ -9,11 +9,9 @@ In both cases, the IoT Hub routing must be configured.
 
 ## Device Twin Changed Events
 
-TODO: New screenshots with ux4iot instead of subioto
-
 For 'Device Twin Changed Events', which are required for the [useDeviceTwin](../using-react/hooks.md#usedevicetwin) hook, a routing rule must be added as follows:
 
-![](../.gitbook/assets/image%20%282%29%20%281%29.png)
+![](../.gitbook/assets/image%20%2814%29.png)
 
 If you want to use Azure CLI, you can accomplish the same in the following way:
 
@@ -21,7 +19,7 @@ If you want to use Azure CLI, you can accomplish the same in the following way:
 {% tab title="AZ CLI" %}
 ```bash
 az iot hub route create \
-  --route-name ux4iot-device-twin-route  \
+  --route-name ux4iot-twinchanges  \
   --hub-name YOUR_IOT_HUB\
   --resource-group YOUR_RESOURCE_GROUP \
   --condition true \
@@ -35,7 +33,7 @@ az iot hub route create \
 
 For 'Connection State Events', which are required for the [useConnectionState](../using-react/hooks.md#useconnectionstate) hook, a routing rule must be added as follows:
 
-![](../.gitbook/assets/image%20%284%29.png)
+![](../.gitbook/assets/image%20%2815%29.png)
 
 If you want to use Azure CLI, you can accomplish the same in the following way:
 
@@ -43,7 +41,7 @@ If you want to use Azure CLI, you can accomplish the same in the following way:
 {% tab title="AZ CLI" %}
 ```bash
 az iot hub route create \
-  --route-name ux4iot-device-connection-route  \
+  --route-name ux4iot-connectionevents  \
   --hub-name YOUR_IOT_HUB\
   --resource-group YOUR_RESOURCE_GROUP \
   --condition true \
