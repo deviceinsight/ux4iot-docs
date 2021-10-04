@@ -19,7 +19,11 @@ const value = useSingleTelemetry(deviceId, telemetryKey, onData, onGrantError);
 
 #### Return Value
 
-This hook returns a single value. Every time the device sends new telemetry with key `telemetryKey` this hook will update this value. This hook relies on the assumption that your Device-to-Cloud messages are JSON documents where the key is the telemetry key and the value is the current telemetry value. We plan to support more complex payloads in the future \(selecting using JSON Path, Avro, etc\). If you have other message payloads, you can use the [useD2CMessage hook](hooks.md#used-2-cmessages).
+This hook returns a single value. Every time the device sends new telemetry with key `telemetryKey` this hook will update this value. 
+
+{% hint style="info" %}
+This hook relies on the assumption that your Device-to-Cloud messages are JSON documents where the key is the telemetry key and the value is the current telemetry value. We plan to support more complex payloads in the future \(selecting using JSON Path, Avro, etc\). If you have other message payloads, you can use the [useD2CMessage hook](hooks.md#used-2-cmessages).
+{% endhint %}
 
 #### Example
 
