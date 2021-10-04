@@ -29,14 +29,37 @@ az managedapp create \
 {% endtab %}
 {% endtabs %}
 
-TODO: Add az command line for retrieving connection strings for existing IoT Hub
-
-## Parameters
-
 Specifying the Event Hub compatible connection is required. Configuring the service connection string is optional. It is necessary for the following hooks:
 
 * [useDirectMethod](../using-react/hooks.md#usedirectmethod)
 * [usePatchDesiredProperties](../using-react/hooks.md#usepatchdesiredproperties)
 
 In effect, everything that not only consumes information but accesses the devices in some way.
+
+You can retrieve the service connection string for the IoT Hub with:
+
+```text
+IOT_HUB_CONNECTION_STRING=$(az iot hub connection-string show \
+  --resource-group RESOURCE_GROUP_OF_IOT_HUB \
+  --hub-name NAME_OF_IOT_HUB \
+  --policy-name service
+  --query connectionString \
+  -o tsv)
+```
+
+You can retrieve the Event Hub compatible endpoint connection string with:
+
+```text
+IOT_HUB_EVENT_HUB_CONNECTION_STRING=$(az iot hub connection-string show \
+  --resource-group RESOURCE_GROUP_OF_IOT_HUB \
+  --hub-name NAME_OF_IOT_HUB \
+  --query connectionString \
+  --default-eventhub \
+  --policy-name service \
+  -o tsv)
+```
+
+Replace `RESOURCE_GROUP_OF_IOT_HUB` with the resource group that your IoT Hub resides in. Replace`NAME_OF_IOT_HUB` with the name of the IoT Hub.
+
+
 
