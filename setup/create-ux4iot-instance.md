@@ -6,7 +6,11 @@ ux4iot is installed in your Azure subscription as a Managed Application. Billing
 
 Visit the [offer on Azure Marketplace](https://azuremarketplace.microsoft.com/) and click "Create". 
 
+TODO: Use actual link for marketplace
+
 ### Creating via the command line
+
+If you prefer the command line, the following snippet shows how to do it. See further below for how to retrieve the values for the two parameters.
 
 {% tabs %}
 {% tab title="AZ CLI" %}
@@ -29,7 +33,7 @@ az managedapp create \
 {% endtab %}
 {% endtabs %}
 
-Specifying the Event Hub compatible connection is required. Configuring the service connection string is optional. It is necessary for the following hooks:
+Concerning the parameters: Specifying the Event Hub compatible connection is required. Configuring the service connection string is optional. It is necessary for the following hooks:
 
 * [useDirectMethod](../using-react/hooks.md#usedirectmethod)
 * [usePatchDesiredProperties](../using-react/hooks.md#usepatchdesiredproperties)
@@ -41,7 +45,7 @@ You can retrieve the service connection string for the IoT Hub with:
 ```text
 IOT_HUB_CONNECTION_STRING=$(az iot hub connection-string show \
   --resource-group RESOURCE_GROUP_OF_IOT_HUB \
-  --subscription SUBSCRIPION \
+  --subscription SUBSCRIPTION \
   --hub-name NAME_OF_IOT_HUB \
   --policy-name service
   --query connectionString \
@@ -53,7 +57,7 @@ You can retrieve the Event Hub compatible endpoint connection string with:
 ```text
 IOT_HUB_EVENT_HUB_CONNECTION_STRING=$(az iot hub connection-string show \
   --resource-group RESOURCE_GROUP_OF_IOT_HUB \
-  --subscription SUBSCRIPION \
+  --subscription SUBSCRIPTION \
   --hub-name NAME_OF_IOT_HUB \
   --query connectionString \
   --default-eventhub \
