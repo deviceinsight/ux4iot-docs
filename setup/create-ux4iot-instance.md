@@ -41,6 +41,7 @@ You can retrieve the service connection string for the IoT Hub with:
 ```text
 IOT_HUB_CONNECTION_STRING=$(az iot hub connection-string show \
   --resource-group RESOURCE_GROUP_OF_IOT_HUB \
+  --subscription SUBSCRIPION \
   --hub-name NAME_OF_IOT_HUB \
   --policy-name service
   --query connectionString \
@@ -52,6 +53,7 @@ You can retrieve the Event Hub compatible endpoint connection string with:
 ```text
 IOT_HUB_EVENT_HUB_CONNECTION_STRING=$(az iot hub connection-string show \
   --resource-group RESOURCE_GROUP_OF_IOT_HUB \
+  --subscription SUBSCRIPION \
   --hub-name NAME_OF_IOT_HUB \
   --query connectionString \
   --default-eventhub \
@@ -59,7 +61,7 @@ IOT_HUB_EVENT_HUB_CONNECTION_STRING=$(az iot hub connection-string show \
   -o tsv)
 ```
 
-Replace `RESOURCE_GROUP_OF_IOT_HUB` with the resource group that your IoT Hub resides in. Replace`NAME_OF_IOT_HUB` with the name of the IoT Hub.
+Replace `RESOURCE_GROUP_OF_IOT_HUB` with the resource group that your IoT Hub resides in. Replace`NAME_OF_IOT_HUB` with the name of the IoT Hub. Replace `SUBSCRIPTION` with your Azure Subscription.
 
 
 
