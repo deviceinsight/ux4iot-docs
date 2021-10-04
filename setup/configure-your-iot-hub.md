@@ -20,8 +20,8 @@ If you want to use Azure CLI, you can accomplish the same in the following way:
 ```bash
 az iot hub route create \
   --route-name ux4iot-twinchanges  \
-  --hub-name YOUR_IOT_HUB\
-  --resource-group YOUR_RESOURCE_GROUP \
+  --hub-name IOT_HUB_NAME \
+  --resource-group RESOURCE_GROUP_OF_IOT_HUB \
   --condition true \
   --endpoint events \
   --source twinchangeevents
@@ -42,8 +42,8 @@ If you want to use Azure CLI, you can accomplish the same in the following way:
 ```bash
 az iot hub route create \
   --route-name ux4iot-connectionevents  \
-  --hub-name YOUR_IOT_HUB\
-  --resource-group YOUR_RESOURCE_GROUP \
+  --hub-name IOT_HUB_NAME\
+  --resource-group RESOURCE_GROUP_OF_IOT_HUB \
   --condition true \
   --endpoint events \
   --source deviceconnectionstateevents
