@@ -12,8 +12,8 @@ const value = useSingleTelemetry(deviceId, telemetryKey, onData, onGrantError);
 
 | Argument | Description | Type |  |
 | :--- | :--- | :--- | :--- |
-| deviceId | The device id of the device to execute the direct method on | `string` | Required |
-| telemetryKey | The name of the method to execute on the device | `string` | Required |
+| deviceId | The device ID of the device from which to receive telemetry data | `string` | Required |
+| telemetryKey | The key of the telemetry item | `string` | Required |
 | onData | Callback, executed when new telemetry of `telemetryKey` is received on the device | `(data: unknown) => void` | Optional |
 | onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the direct method request | `GrantErrorCallback` | Optional |
 
@@ -251,17 +251,17 @@ const handleClick = () => {
 return <button onClick={() => handleClick()}>Update desired properties</button>
 ```
 
-## useD2CMessage
+## useD2CMessages
 
 ```typescript
-const lastMessage = useD2CMessage(deviceId, onData, onGrantError);
+const lastMessage = useD2CMessages(deviceId, onData, onGrantError);
 ```
 
 #### Input \(Arguments\)
 
 | Argument | Description | Type |  |
 | :--- | :--- | :--- | :--- |
-| deviceId | The device id of the device you want to subscribe to. | `string` | Required |
+| deviceId | The device ID of the device you want to subscribe to. | `string` | Required |
 | onData | Callback, executed when the device sends a new message. | `(data: Record<string, unknown>) => void` | Optional |
 | onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback` | Optional |
 
@@ -291,7 +291,7 @@ Therefore `onData` as function in subscription hooks, removes the burden of you 
 
 #### `onGrantError`
 
-This callback exists on every hoo.k. The purpose of this callback is to inform you about errors that the custom `grantRequestFunction` returns. The `grantRequestFunction` is something that you need to implement yourself when you want to use ux4iot in production. The purpose of this function is to determine whether you as a user of the react application have the permission to subscribe to telemetry / device twin / connection state or perform a direct method / desired property patch. 
+This callback exists on every hook. The purpose of this callback is to inform you about errors that the custom `grantRequestFunction` returns. The `grantRequestFunction` is something that you need to implement yourself when you want to use ux4iot in production. The purpose of this function is to determine whether you as a user of the react application have the permission to subscribe to telemetry / device twin / connection state or perform a direct method / desired property patch. 
 
 Read more about this [here](../implementing-your-custom-security-backend/implementing-the-security-backend.md).
 
