@@ -2,11 +2,11 @@
 
 ux4iot is installed in your Azure subscription as a Managed Application. Billing will be handled by Microsoft.
 
-## Creating via the Portal UI
+### Creating via the Portal UI
 
 Visit the [offer on Azure Marketplace](https://azuremarketplace.microsoft.com/) and click "Create". 
 
-## Creating via the command line
+### Creating via the command line
 
 {% tabs %}
 {% tab title="AZ CLI" %}
