@@ -35,6 +35,8 @@ You can retrieve the connection string from the Azure Portal:
 
 ![](../.gitbook/assets/image%20%281%29.png)
 
+![Copy either the &quot;Primary&quot; or &quot;Secondary&quot; connection string](../.gitbook/assets/image%20%2817%29.png)
+
 {% hint style="info" %}
 Use `.env` and `.env.local` files to store your apps environment variables. Read more about that in [create-react-app's section on environment variables](https://create-react-app.dev/docs/adding-custom-environment-variables/)
 {% endhint %}
