@@ -29,6 +29,8 @@ az managedapp create \
 {% endtab %}
 {% endtabs %}
 
+TODO: Add az command line for retrieving connection strings for existing IoT Hub
+
 ## Parameters
 
 Specifying the Event Hub compatible connection is required. Configuring the service connection string is optional. It is necessary for the following hooks:
