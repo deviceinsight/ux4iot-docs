@@ -1,7 +1,7 @@
 # Quickstart
 
 {% hint style="info" %}
-These quickstarts do not include a custom security backend, so you only have to develop in the frontend and only do configuration in the backend.
+These quickstarts do not include a custom security backend, so you only have to develop the frontend.
 {% endhint %}
 
 ### Quickstart with a new IoT Hub and simulated device
