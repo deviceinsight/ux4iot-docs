@@ -4,7 +4,7 @@ description: Build a simple app using ux4iot in development
 
 # Tutorial using create-react-app
 
-### Setup application
+## Setup application
 
 Use [create-react-app](https://github.com/facebook/create-react-app) to bootstrap your React application:
 
@@ -93,7 +93,6 @@ function App() {
 }
 
 export default App;
-
 ```
 
 As usual with `create-react-app` you can start the application with:
@@ -106,7 +105,7 @@ npm start
 If you use your admin connection string in the frontend, there will be a notification in your browsers console that you're using ux4iot-react in development mode. In order to use ux4iot-react in production mode, you will need to provide your own security backend as explained in the next section.
 {% endhint %}
 
-### Send simulated data
+## Send simulated data
 
 If you do not already have an IoT devices sending data, you can easily simulate one. First, create a device with device ID `simulated-device` in the IoT Hub:
 

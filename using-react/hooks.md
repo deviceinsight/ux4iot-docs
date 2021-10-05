@@ -19,7 +19,7 @@ const value = useTelemetry(deviceId, telemetryKey, onData, onGrantError);
 
 #### Return Value
 
-This hook returns a single value. Every time the device sends new telemetry with key `telemetryKey` this hook will update this value. 
+This hook returns a single value. Every time the device sends new telemetry with key `telemetryKey` this hook will update this value.
 
 {% hint style="info" %}
 This hook relies on the assumption that your Device-to-Cloud messages are JSON documents where the key is the telemetry key and the value is the current telemetry value. We plan to support more complex payloads in the future \(selecting using JSON Path, Avro, etc\). If you have other message payloads, you can use the [useD2CMessage hook](hooks.md#used-2-cmessages).
@@ -51,28 +51,28 @@ The D2C messages are expected to look like this:
 
 ## useMultiTelemetry
 
-The `useMultiTelemetry` hook is a more sophisticated hook, designed to cover use cases when a lot of telemetry of multiple devices needs to be subscribed to. 
+The `useMultiTelemetry` hook is a more sophisticated hook, designed to cover use cases when a lot of telemetry of multiple devices needs to be subscribed to.
 
 ```typescript
-	const {
-		telemetry,
-		toggleTelemetry,
-		isSubscribed,
-		currentSubscribers,
-		addTelemetry,
-		removeTelemetry,
-	} = useMultiTelemetry(
-		{ [deviceId]: ['temperature', 'pressure'] },
-		(deviceId, key, value) => console.log(deviceId, key, value),
-		error => console.log(error)
-	);
+    const {
+        telemetry,
+        toggleTelemetry,
+        isSubscribed,
+        currentSubscribers,
+        addTelemetry,
+        removeTelemetry,
+    } = useMultiTelemetry(
+        { [deviceId]: ['temperature', 'pressure'] },
+        (deviceId, key, value) => console.log(deviceId, key, value),
+        error => console.log(error)
+    );
 ```
 
 #### Arguments
 
 | Argument | Description | Type |  |
 | :--- | :--- | :--- | :--- |
-| initialSubscribers | Object of key-value pairs, with keys: the device IDs of your IoTHub devices, and value: a list of strings, defining the telemetryKeys to subscribe to  | `Record<string, string[]>` | Optional |
+| initialSubscribers | Object of key-value pairs, with keys: the device IDs of your IoTHub devices, and value: a list of strings, defining the telemetryKeys to subscribe to | `Record<string, string[]>` | Optional |
 | onData | Callback, executed when a new `value` for a `telemetryKey` is sent by a device with ID `deviceId` | `(deviceId: string, telemetryKey: string, value: unknown) => void` | Optional |
 | onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback` | Optional |
 
@@ -128,7 +128,7 @@ const error = useState<string>();
 
 const handleClick = () => {
     const payload = { delay: 2000 };
-    
+
     reboot(payload)
         .then(result => setState(result))
         .catch(error => setError(error));
@@ -137,7 +137,7 @@ const handleClick = () => {
 return <button onClick={() => handleClick()}>Reboot Device</button>
 ```
 
-## useDeviceTwin
+#### useDeviceTwin
 
 The `useDeviceTwin` subscribes to device twin updates.
 
@@ -235,7 +235,7 @@ const patchDesiredProperties = usePatchDesiredProperties(deviceId, onGrantError)
 
 This hook returns a function: `(desiredProperties: Record<string, unknown>) => Promise<IoTHubResponse | void>`
 
-The hook takes in an object of desired properties to send to the device with the specified deviceId. 
+The hook takes in an object of desired properties to send to the device with the specified deviceId.
 
 {% hint style="info" %}
 When you call the function returned by this hook you will inevitably perform a device twin update. This means you will receive an update of the output of `useDeviceTwin`
@@ -277,11 +277,11 @@ We assume that every message a device sends will be an object. The return value 
 
 ## Final Note
 
-The hooks provided by ux4iot-react are using a specific authorization mechanism. They are designed to provide the easiest API to cover your use-case and hide the most complexity possible. There are two callbacks that are available on \(almost\) every hook. 
+The hooks provided by ux4iot-react are using a specific authorization mechanism. They are designed to provide the easiest API to cover your use-case and hide the most complexity possible. There are two callbacks that are available on \(almost\) every hook.
 
 #### `onData`
 
- A convenient callback to have a custom callback whenever data is received. You will receive updates of subscription hooks mostly over the return value. However, if you want to use custom logic whenever an update is received you would need to use custom hooks to listen for these changes like this: 
+A convenient callback to have a custom callback whenever data is received. You will receive updates of subscription hooks mostly over the return value. However, if you want to use custom logic whenever an update is received you would need to use custom hooks to listen for these changes like this:
 
 ```jsx
 const value = useX(deviceId, ...);
@@ -295,7 +295,7 @@ Therefore `onData` as function in subscription hooks, removes the burden of you 
 
 #### `onGrantError`
 
-This callback exists on every hook. The purpose of this callback is to inform you about errors that the custom `grantRequestFunction` returns. The `grantRequestFunction` is something that you need to implement yourself when you want to use ux4iot in production. The purpose of this function is to determine whether you as a user of the react application have the permission to subscribe to telemetry / device twin / connection state or perform a direct method / desired property patch. 
+This callback exists on every hook. The purpose of this callback is to inform you about errors that the custom `grantRequestFunction` returns. The `grantRequestFunction` is something that you need to implement yourself when you want to use ux4iot in production. The purpose of this function is to determine whether you as a user of the react application have the permission to subscribe to telemetry / device twin / connection state or perform a direct method / desired property patch.
 
 Read more about this [here](../implementing-your-custom-security-backend/implementing-the-security-backend.md).
 

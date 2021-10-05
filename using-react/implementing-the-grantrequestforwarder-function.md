@@ -8,16 +8,16 @@ This is the type definition of the function:
 
 ```typescript
 enum GRANT_RESPONSES {
-	FORBIDDEN = 'FORBIDDEN',
-	UNAUTHORIZED = 'UNAUTHORIZED',
-	GRANTED = 'GRANTED',
-	ERROR = 'ERROR',
+    FORBIDDEN = 'FORBIDDEN',
+    UNAUTHORIZED = 'UNAUTHORIZED',
+    GRANTED = 'GRANTED',
+    ERROR = 'ERROR',
 }
 
 type GrantRequestFunctionType = (grant: GrantRequest) => Promise<GRANT_RESPONSES>
 ```
 
-You can largely ignore `GrantRequest`for now as it is usually simply passed through the function to your security backend. 
+You can largely ignore `GrantRequest`for now as it is usually simply passed through the function to your security backend.
 
 A custom Grant Request Function could look like this:
 
@@ -35,22 +35,21 @@ const customGrantRequestFunction: GrantRequestFunctionType = async grantRequest 
     }
   };
   try {
-		await axios.put(CUSTOM_BACKEND, grantRequest, config);
-	} catch (error) {
-		if (axios.isAxiosError(error)) {
-			if (error.response) {
-				if (error.response.status === 401) {
-					return GRANT_RESPONSES.UNAUTHORIZED;
-				} else if (error.response.status === 403) {
-					return GRANT_RESPONSES.FORBIDDEN;
-				}
-			}
-		}
-		return GRANT_RESPONSES.ERROR;
-	}
-	return GRANT_RESPONSES.GRANTED;
+        await axios.put(CUSTOM_BACKEND, grantRequest, config);
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            if (error.response) {
+                if (error.response.status === 401) {
+                    return GRANT_RESPONSES.UNAUTHORIZED;
+                } else if (error.response.status === 403) {
+                    return GRANT_RESPONSES.FORBIDDEN;
+                }
+            }
+        }
+        return GRANT_RESPONSES.ERROR;
+    }
+    return GRANT_RESPONSES.GRANTED;
 };
-
 ```
 
 As you can see that you have full control over:
@@ -81,20 +80,20 @@ const customGrantRequestFunction: GrantRequestFunctionType = async grantRequest 
     }
   };
   try {
-		await axios.put(CUSTOM_BACKEND, grantRequest, config);
-	} catch (error) {
-		if (axios.isAxiosError(error)) {
-			if (error.response) {
-				if (error.response.status === 401) {
-					return GRANT_RESPONSES.UNAUTHORIZED;
-				} else if (error.response.status === 403) {
-					return GRANT_RESPONSES.FORBIDDEN;
-				}
-			}
-		}
-		return GRANT_RESPONSES.ERROR;
-	}
-	return GRANT_RESPONSES.GRANTED;
+        await axios.put(CUSTOM_BACKEND, grantRequest, config);
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            if (error.response) {
+                if (error.response.status === 401) {
+                    return GRANT_RESPONSES.UNAUTHORIZED;
+                } else if (error.response.status === 403) {
+                    return GRANT_RESPONSES.FORBIDDEN;
+                }
+            }
+        }
+        return GRANT_RESPONSES.ERROR;
+    }
+    return GRANT_RESPONSES.GRANTED;
 };
 
 export function App() {
@@ -102,7 +101,7 @@ export function App() {
     ux4iotURL: UX4IOT_WEBSOCKET_URL
     grantRequestFunction: customGrantRequestFunction
   };
-  
+
   return <Ux4iotContextProvider options={prodOptions}>...</Ux4iotContextProvider>
 }
 ```

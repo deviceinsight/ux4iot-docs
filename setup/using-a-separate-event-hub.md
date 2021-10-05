@@ -1,26 +1,26 @@
 # Using a separate Event Hub
 
-In addition to the built-in Event Hub of your IoT Hub you can use a separate Event Hub as well. 
+In addition to the built-in Event Hub of your IoT Hub you can use a separate Event Hub as well.
 
-#### Scenario 1
+## Scenario 1
 
 An Event Hub receives messages from IoT Hub through [message routing](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-messages-d2c) or via an Azure Function transformation.
 
 ![Messages transformed by Azure Functions and written to Event Hub](../.gitbook/assets/ux4iot-event-hub-scenarios.png)
 
-#### Scenario 2
+## Scenario 2
 
 It's also possible that you do not use an IoT Hub at all, but send messages to the Event Hub by other means. For example when devices communicate via a legacy protocol not supported by IoT Hub. There is a custom protocol endpoint, e.g. realized using an Azure Function, that the devices connect to.
 
 ![Custom Protocol Adapter](../.gitbook/assets/ux4iot-event-hub-scenarios-4-.png)
 
-#### Scenario 3
+## Scenario 3
 
 Data is received not from devices directly but via some other cloud.
 
 ![Data forwarded from other cloud](../.gitbook/assets/ux4iot-event-hub-scenarios-5-.png)
 
-#### Using ux4iot with Event Hubs
+## Using ux4iot with Event Hubs
 
 In Scenario 1 all hooks can be used. You only need to configure ux4iot with the connection string of the Event Hub instead of the connection string of the Event Hub compatible endpoint of IoT Hub. In scenario 2 and 3, which do not include an IoT Hub at all, the following hooks can be used:
 
