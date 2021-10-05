@@ -22,7 +22,7 @@ npm install ux4iot-react
 Edit the file `src/App.js` and add the imports:
 
 ```javascript
-import {Ux4iotContext, useSingleTelemetry} from "ux4iot-react";
+import {Ux4iotContext, useTelemetry} from "ux4iot-react";
 ```
 
 At the top, add the initialization of the ux4iot instance:
@@ -61,7 +61,7 @@ By creating the Context here, all sub-components \(like `MyView`\) can use the u
 
 ```javascript
 const MyView = props => {
-    const temperature = useSingleTelemetry('simulated-device', 'temperature');
+    const temperature = useTelemetry('simulated-device', 'temperature');
     return <div>{temperature}</div>;
 }
 ```
@@ -70,13 +70,13 @@ Your `App.js` should now look like this:
 
 ```javascript
 import './App.css';
-import {Ux4iotContext, ux4iot, useSingleTelemetry} from "ux4iot-react";
+import {Ux4iotContext, ux4iot, useTelemetry} from "ux4iot-react";
 import ReactDOM from "react-dom";
 
 const UX4IOT_ADMIN_CONNECTION_STRING = 'YOUR_ADMIN_CONNECTION_STRING';
 
 const MyView = props => {
-    const temperature = useSingleTelemetry('simulated-device', 'temperature');
+    const temperature = useTelemetry('simulated-device', 'temperature');
     return <div>{temperature}</div>;
 }
 

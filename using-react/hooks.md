@@ -1,11 +1,11 @@
 # Hooks
 
-## useSingleTelemetry
+## useTelemetry
 
-The `useSingleTelemetry` hook makes it very easy to just listen to telemetry on a single device.
+The `useTelemetry` hook makes it very easy to just listen to telemetry on a single device.
 
 ```typescript
-const value = useSingleTelemetry(deviceId, telemetryKey, onData, onGrantError);
+const value = useTelemetry(deviceId, telemetryKey, onData, onGrantError);
 ```
 
 #### Arguments
@@ -30,7 +30,7 @@ This hook relies on the assumption that your Device-to-Cloud messages are JSON d
 A component subscribing to the `temperature` telemetry.
 
 ```jsx
-const temperature = useSingleTelemetry('simulated-device', 'temperature');
+const temperature = useTelemetry('simulated-device', 'temperature');
 
 return (
     <div>
@@ -49,9 +49,9 @@ The D2C messages are expected to look like this:
 }
 ```
 
-## useTelemetry
+## useMultiTelemetry
 
-The `useTelemetry` hook is a more sophisticated hook, designed to cover use cases when a lot of telemetry of multiple devices needs to be subscribed to. 
+The `useMultiTelemetry` hook is a more sophisticated hook, designed to cover use cases when a lot of telemetry of multiple devices needs to be subscribed to. 
 
 ```typescript
 	const {
@@ -61,7 +61,7 @@ The `useTelemetry` hook is a more sophisticated hook, designed to cover use case
 		currentSubscribers,
 		addTelemetry,
 		removeTelemetry,
-	} = useTelemetry(
+	} = useMultiTelemetry(
 		{ [deviceId]: ['temperature', 'pressure'] },
 		(deviceId, key, value) => console.log(deviceId, key, value),
 		error => console.log(error)

@@ -110,7 +110,7 @@ export function App() {
 The `GRANT_RESPONSES` are forwarded to the `onGrantError` callback of the hooks. Here is an example:
 
 ```typescript
-const temperature = useSingleTelemetry(
+const temperature = useTelemetry(
   'my-device', 
   'temperature', 
   undefined, 

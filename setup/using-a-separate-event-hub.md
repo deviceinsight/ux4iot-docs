@@ -25,6 +25,7 @@ Data is received not from devices directly but via some other cloud.
 In Scenario 1 all hooks can be used. You only need to configure ux4iot with the connection string of the Event Hub instead of the connection string of the Event Hub compatible endpoint of IoT Hub. In scenario 2 and 3, which do not include an IoT Hub at all, the following hooks can be used:
 
 * [useTelemetry](../using-react/hooks.md#usetelemetry)
+* [useMultiTelemetry](../using-react/hooks.md#usemultitelemetry)
 * [useD2CMessages](../using-react/hooks.md#used-2-cmessages)
 
 When you send messages to Event Hub, they must adhere to the following requirements:

@@ -155,7 +155,7 @@ The `GRANT_RESPONSES` are forwarded to the `onGrantError` callback of the export
 Example:
 
 ```typescript
-const temperature = useSingleTelemetry(
+const temperature = useTelemetry(
   'my-device',
   'temperature',
   undefined,
