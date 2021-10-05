@@ -145,7 +145,7 @@ The `useDeviceTwin` subscribes to device twin updates.
 const deviceTwin = useDeviceTwin(deviceId, onData, onGrantError);
 ```
 
-#### Input \(Arguments\)
+#### Arguments
 
 | Argument | Description | Type |  |
 | :--- | :--- | :--- | :--- |
@@ -153,7 +153,7 @@ const deviceTwin = useDeviceTwin(deviceId, onData, onGrantError);
 | onData | Callback, executed when a new twin updated is received. | `(twin: Twin) => void` | Optional |
 | onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback` | Optional |
 
-#### Output \(Returns\)
+#### Return Value
 
 This hook returns a value: `Twin`
 
@@ -198,7 +198,7 @@ The `useConnectionState` hook subscribes to the connection state of a device. Th
 const connectionState = useConnectionState(deviceId, onData, onGrantError);
 ```
 
-#### Input \(Arguments\)
+#### Arguments
 
 | Argument | Description | Type |  |
 | :--- | :--- | :--- | :--- |
@@ -206,11 +206,11 @@ const connectionState = useConnectionState(deviceId, onData, onGrantError);
 | onData | Callback, executed when a new connection state updated is received. | `(connectionState: boolean) => void` | Optional |
 | onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback` | Optional |
 
-#### Output \(Returns\)
+#### Return Value
 
 This hook returns a value: `boolean`
 
-This value can change, i.e as soon as a device connects or disconnects.
+This value changed as soon as a device connects or disconnects.
 
 {% hint style="warning" %}
 The connection state information can be quite delayed \(up to 1 minute\). This is not a ux4iot issue, but an issue with IoT Hub itself \(see [here](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-event-grid#limitations-for-device-connected-and-device-disconnected-events) and [here](https://docs.microsoft.com/en-us/answers/questions/434493/device-connection-state-events-delayed.html)\).
@@ -224,18 +224,18 @@ The `usePatchDesiredProperties` hook is used to perform desired property updates
 const patchDesiredProperties = usePatchDesiredProperties(deviceId, onGrantError);
 ```
 
-#### Input \(Arguments\)
+#### Arguments
 
 | Argument | Description | Type |  |
 | :--- | :--- | :--- | :--- |
 | deviceId | The device id of the device onto which to patch the desired properties | `string` | Required |
 | onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the patch desired properties request | `GrantErrorCallback` | Optional |
 
-#### Output \(Returns\)
+#### Return Value
 
 This hook returns a function: `(desiredProperties: Record<string, unknown>) => Promise<IoTHubResponse | void>`
 
-The hook takes in an object of desired properties to send to the device with the specified deviceId.
+The hook takes in an object of desired properties to send to the device with the specified device ID.
 
 {% hint style="info" %}
 When you call the function returned by this hook you will inevitably perform a device twin update. This means you will receive an update of the output of `useDeviceTwin`
@@ -261,7 +261,7 @@ return <button onClick={() => handleClick()}>Update desired properties</button>
 const lastMessage = useD2CMessages(deviceId, onData, onGrantError);
 ```
 
-#### Input \(Arguments\)
+#### Arguments
 
 | Argument | Description | Type |  |
 | :--- | :--- | :--- | :--- |
@@ -269,7 +269,7 @@ const lastMessage = useD2CMessages(deviceId, onData, onGrantError);
 | onData | Callback, executed when the device sends a new message. | `(data: Record<string, unknown>) => void` | Optional |
 | onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback` | Optional |
 
-#### Output \(Returns\)
+#### Return Value
 
 This hook returns an object: `Record<string, unknown>`
 
