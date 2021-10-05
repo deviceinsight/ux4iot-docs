@@ -93,6 +93,8 @@ This hook returns an object containing other objects and functions to interact w
 | isSubscribed | Checks whether a telemetry subscription for a `deviceId` and `telemetryKey` exists | `(deviceId: string, telemetryKey: string) => boolean` |
 | currentSubscribers | Object containing all current subscribers with key being the `deviceId` and value being the telemetryKey names. | `Record<string, string[]>` |
 
+TODO: Add example for `useMultiTelemetry`
+
 ## useDirectMethod
 
 The `useDirectMethod` hook returns a function that, when invoked, calls a direct method on the target device. It returns a Promise that resolves to the direct method result that the device returns \(or an error when the direct method could not be executed, e.g. if the device is offline\).
