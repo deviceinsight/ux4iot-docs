@@ -2,79 +2,57 @@
 
 If you are using a language for the security backend for which no SDK exists, you can use the REST API. Don't worry, it's really simple.
 
-{% api-method method="post" host="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="grants" %}
-{% api-method-summary %}
-Forward a grant
-{% endapi-method-summary %}
+{% swagger baseUrl="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="grants" method="post" summary="Forward a grant" %}
+{% swagger-description %}
+Send a grant request to ux4iot to apply it for the 
 
-{% api-method-description %}
-Send a grant request to ux4iot to apply it for the `sessionId` contained in the grant.
-{% endapi-method-description %}
+`sessionId`
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-headers %}
-{% api-method-parameter name="Shared-Access-Key" type="string" required=true %}
+ contained in the grant.
+{% endswagger-description %}
+
+{% swagger-parameter in="header" name="Shared-Access-Key" type="string" %}
 The Shared Access Key used for authentication
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
+{% endswagger-parameter %}
 
-{% api-method-body-parameters %}
-{% api-method-parameter name="details" type="string" required=false %}
+{% swagger-parameter in="body" name="details" type="string" %}
 Further details of the grant, depends on the grantRequestType
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="deviceId" type="string" required=true %}
+{% swagger-parameter in="body" name="deviceId" type="string" %}
 The IoT Hub device ID
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="sessionId" type="string" required=true %}
+{% swagger-parameter in="body" name="sessionId" type="string" %}
 The sessionId for which the grant is requested
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="grantRequestType" type="string" required=true %}
+{% swagger-parameter in="body" name="grantRequestType" type="string" %}
 Can be one of 'subscribeToTelemetry', 'invokeDirectMethod', etc.
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
+{% endswagger-parameter %}
 
-{% api-method-response %}
-{% api-method-response-example httpCode=204 %}
-{% api-method-response-example-description %}
-The grant was accepted and applied
-{% endapi-method-response-example-description %}
-
-```text
+{% swagger-response status="204" description="The grant was accepted and applied" %}
+```
 NO CONTENT
 ```
-{% endapi-method-response-example %}
+{% endswagger-response %}
 
-{% api-method-response-example httpCode=400 %}
-{% api-method-response-example-description %}
-There was something wrong with the grant, it has not been applied
-{% endapi-method-response-example-description %}
-
-```text
+{% swagger-response status="400" description="There was something wrong with the grant, it has not been applied" %}
+```
 {
   "errorMessage": "Required field 'sessionId' is missing"
 }
 ```
-{% endapi-method-response-example %}
+{% endswagger-response %}
 
-{% api-method-response-example httpCode=401 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
-```text
+{% swagger-response status="401" description="" %}
+```
 {
   "errorMessage": "The provided credentials are invalid"
 }
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endswagger-response %}
+{% endswagger %}
 
 **Example request**
 
@@ -91,131 +69,72 @@ There was something wrong with the grant, it has not been applied
 
 For a complete list of values for`grantRequestType` see [here](implementing-the-security-backend.md).
 
-{% api-method method="delete" host="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="grants" %}
-{% api-method-summary %}
-Revoke a grant
-{% endapi-method-summary %}
-
-{% api-method-description %}
+{% swagger baseUrl="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="grants" method="delete" summary="Revoke a grant" %}
+{% swagger-description %}
 Revoke the grant given 
-{% endapi-method-description %}
+{% endswagger-description %}
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-headers %}
-{% api-method-parameter name="Shared-Access-Key" type="string" required=true %}
+{% swagger-parameter in="header" name="Shared-Access-Key" type="string" %}
 The Shared Access Key used for authentication
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
+{% endswagger-parameter %}
 
-{% api-method-body-parameters %}
-{% api-method-parameter name="deviceId" type="string" required=true %}
+{% swagger-parameter in="body" name="deviceId" type="string" %}
 The device for which to revoke the grant
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="grantType" type="string" required=true %}
+{% swagger-parameter in="body" name="grantType" type="string" %}
 The grant type to revoke
-{% endapi-method-parameter %}
+{% endswagger-parameter %}
 
-{% api-method-parameter name="sessiondId" type="string" required=true %}
+{% swagger-parameter in="body" name="sessiondId" type="string" %}
 The session ID that the grant belongs to
-{% endapi-method-parameter %}
-{% endapi-method-body-parameters %}
-{% endapi-method-request %}
+{% endswagger-parameter %}
 
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="200" description="" %}
 ```
-
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endswagger-response %}
+{% endswagger %}
 
-{% api-method method="delete" host="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="sessions/:sessionId" %}
-{% api-method-summary %}
-Delete a sessions
-{% endapi-method-summary %}
-
-{% api-method-description %}
+{% swagger baseUrl="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="sessions/:sessionId" method="delete" summary="Delete a sessions" %}
+{% swagger-description %}
 Remove a session, including all grants
-{% endapi-method-description %}
+{% endswagger-description %}
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-path-parameters %}
-{% api-method-parameter name="sessionId" type="string" required=true %}
+{% swagger-parameter in="path" name="sessionId" type="string" %}
 The session to remove
-{% endapi-method-parameter %}
-{% endapi-method-path-parameters %}
+{% endswagger-parameter %}
 
-{% api-method-headers %}
-{% api-method-parameter name="Shared-Access-Key" type="string" required=true %}
+{% swagger-parameter in="header" name="Shared-Access-Key" type="string" %}
 The Shared Access Key used for authentication
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
-{% endapi-method-request %}
+{% endswagger-parameter %}
 
-{% api-method-response %}
-{% api-method-response-example httpCode=204 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
-```text
+{% swagger-response status="204" description="" %}
+```
 NO CONTENT
 ```
-{% endapi-method-response-example %}
+{% endswagger-response %}
 
-{% api-method-response-example httpCode=404 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
-```text
+{% swagger-response status="404" description="" %}
+```
 {
   "errorMessage": "The session was not found"
 }
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
+{% endswagger-response %}
+{% endswagger %}
 
-{% api-method method="delete" host="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="sessions" %}
-{% api-method-summary %}
-Delete all sessions
-{% endapi-method-summary %}
-
-{% api-method-description %}
+{% swagger baseUrl="https://ux4iot-xyz.westeurope.azurecontainer.io/" path="sessions" method="delete" summary="Delete all sessions" %}
+{% swagger-description %}
 Remove all sessions
-{% endapi-method-description %}
+{% endswagger-description %}
 
-{% api-method-spec %}
-{% api-method-request %}
-{% api-method-headers %}
-{% api-method-parameter name="Shared-Access-Key" type="string" required=true %}
+{% swagger-parameter in="header" name="Shared-Access-Key" type="string" %}
 The Shared Access Key used for authentication
-{% endapi-method-parameter %}
-{% endapi-method-headers %}
-{% endapi-method-request %}
+{% endswagger-parameter %}
 
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
+{% swagger-response status="200" description="" %}
 ```
-
 ```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
-
+{% endswagger-response %}
+{% endswagger %}
