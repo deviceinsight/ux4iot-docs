@@ -10,19 +10,19 @@ const value = useTelemetry(deviceId, telemetryKey, onData, onGrantError);
 
 #### Arguments
 
-| Argument | Description | Type |  |
-| :--- | :--- | :--- | :--- |
-| deviceId | The device ID of the device from which to receive telemetry data | `string` | Required |
-| telemetryKey | The key of the telemetry item | `string` | Required |
-| onData | Callback, executed when new telemetry of `telemetryKey` is received on the device | `(data: unknown) => void` | Optional |
-| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the direct method request | `GrantErrorCallback` | Optional |
+| Argument     | Description                                                                                 | Type                      |          |
+| ------------ | ------------------------------------------------------------------------------------------- | ------------------------- | -------- |
+| deviceId     | The device ID of the device from which to receive telemetry data                            | `string`                  | Required |
+| telemetryKey | The key of the telemetry item                                                               | `string`                  | Required |
+| onData       | Callback, executed when new telemetry of `telemetryKey` is received on the device           | `(data: unknown) => void` | Optional |
+| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the direct method request | `GrantErrorCallback`      | Optional |
 
 #### Return Value
 
 This hook returns a single value. Every time the device sends new telemetry with key `telemetryKey` this hook will update this value.
 
 {% hint style="info" %}
-This hook relies on the assumption that your Device-to-Cloud messages are JSON documents where the key is the telemetry key and the value is the current telemetry value. We plan to support more complex payloads in the future \(selecting using JSON Path, Avro, etc\). If you have other message payloads, you can use the [useD2CMessage hook](hooks.md#used-2-cmessages).
+This hook relies on the assumption that your Device-to-Cloud messages are JSON documents where the key is the telemetry key and the value is the current telemetry value. We plan to support more complex payloads in the future (selecting using JSON Path, Avro, etc). If you have other message payloads, you can use the [useD2CMessage hook](hooks.md#used-2-cmessages).
 {% endhint %}
 
 #### Example
@@ -70,11 +70,11 @@ The `useMultiTelemetry` hook is a more sophisticated variant of `useTelemetry`. 
 
 #### Arguments
 
-| Argument | Description | Type |  |
-| :--- | :--- | :--- | :--- |
-| initialSubscribers | Object of key-value pairs, with keys: the device IDs of your IoTHub devices, and value: a list of strings, defining the telemetryKeys to subscribe to | `Record<string, string[]>` | Optional |
-| onData | Callback, executed when a new `value` for a `telemetryKey` is sent by a device with ID `deviceId` | `(deviceId: string, telemetryKey: string, value: unknown) => void` | Optional |
-| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback` | Optional |
+| Argument           | Description                                                                                                                                           | Type                                                               |          |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | -------- |
+| initialSubscribers | Object of key-value pairs, with keys: the device IDs of your IoTHub devices, and value: a list of strings, defining the telemetryKeys to subscribe to | `Record<string, string[]>`                                         | Optional |
+| onData             | Callback, executed when a new `value` for a `telemetryKey` is sent by a device with ID `deviceId`                                                     | `(deviceId: string, telemetryKey: string, value: unknown) => void` | Optional |
+| onGrantError       | Callback, executed when the `grantRequestFunction` fails to grant the subscription request.                                                           | `GrantErrorCallback`                                               | Optional |
 
 {% hint style="info" %}
 Do not try to perform subscription updates over the `initialSubscribers` object. This object is meant solely as an option for use cases where you always have an initial set of subscribers. Updates to `initialSubscribers` will not trigger updates in the hook.
@@ -84,20 +84,20 @@ Do not try to perform subscription updates over the `initialSubscribers` object.
 
 This hook returns an object containing other objects and functions to interact with telemetry subscriptions.
 
-| Key | Value | Type |
-| :--- | :--- | :--- |
-| telemetry | Object holding the current values of all your telemetry subscriptions | `Record<string, Record<string, unknown>` |
-| toggleTelemetry | Toggles a telemetry subscription for a `deviceId` and `telemetryKey` | `(deviceId: string, telemetryKey: string) => void` |
-| addTelemetry | Adds a telemetry subscription for a `deviceId` and multiple `telemetryKeys` | `(deviceId: string, telemetryKeys: string[]) => void` |
-| removeTelemetry | Removes a telemetry subscription for a `deviceId` and multiple `telemetryKeys` | `(deviceId: string, telemetryKeys: string[]) => void` |
-| isSubscribed | Checks whether a telemetry subscription for a `deviceId` and `telemetryKey` exists | `(deviceId: string, telemetryKey: string) => boolean` |
-| currentSubscribers | Object containing all current subscribers with key being the `deviceId` and value being the telemetryKey names. | `Record<string, string[]>` |
+| Key                | Value                                                                                                           | Type                                                  |
+| ------------------ | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| telemetry          | Object holding the current values of all your telemetry subscriptions                                           | `Record<string, Record<string, unknown>`              |
+| toggleTelemetry    | Toggles a telemetry subscription for a `deviceId` and `telemetryKey`                                            | `(deviceId: string, telemetryKey: string) => void`    |
+| addTelemetry       | Adds a telemetry subscription for a `deviceId` and multiple `telemetryKeys`                                     | `(deviceId: string, telemetryKeys: string[]) => void` |
+| removeTelemetry    | Removes a telemetry subscription for a `deviceId` and multiple `telemetryKeys`                                  | `(deviceId: string, telemetryKeys: string[]) => void` |
+| isSubscribed       | Checks whether a telemetry subscription for a `deviceId` and `telemetryKey` exists                              | `(deviceId: string, telemetryKey: string) => boolean` |
+| currentSubscribers | Object containing all current subscribers with key being the `deviceId` and value being the telemetryKey names. | `Record<string, string[]>`                            |
 
 TODO: Add example for `useMultiTelemetry`
 
 ## useDirectMethod
 
-The `useDirectMethod` hook returns a function that, when invoked, calls a direct method on the target device. It returns a Promise that resolves to the direct method result that the device returns \(or an error when the direct method could not be executed, e.g. if the device is offline\).
+The `useDirectMethod` hook returns a function that, when invoked, calls a direct method on the target device. It returns a Promise that resolves to the direct method result that the device returns (or an error when the direct method could not be executed, e.g. if the device is offline).
 
 ```typescript
 const reboot = useDirectMethod(deviceId, methodName, onGrantError);
@@ -105,10 +105,10 @@ const reboot = useDirectMethod(deviceId, methodName, onGrantError);
 
 #### Arguments
 
-| Argument | Description | Type |  |
-| :--- | :--- | :--- | :--- |
-| deviceId | The device ID of the device to execute the direct method on | `string` | Required |
-| methodName | The name of the method to execute on the device | `string` | Required |
+| Argument     | Description                                                                                 | Type                 |          |
+| ------------ | ------------------------------------------------------------------------------------------- | -------------------- | -------- |
+| deviceId     | The device ID of the device to execute the direct method on                                 | `string`             | Required |
+| methodName   | The name of the method to execute on the device                                             | `string`             | Required |
 | onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the direct method request | `GrantErrorCallback` | Optional |
 
 #### Return Value
@@ -139,7 +139,7 @@ const handleClick = () => {
 return <button onClick={() => handleClick()}>Reboot Device</button>
 ```
 
-#### useDeviceTwin
+## useDeviceTwin
 
 The `useDeviceTwin` subscribes to device twin updates.
 
@@ -149,11 +149,11 @@ const deviceTwin = useDeviceTwin(deviceId, onData, onGrantError);
 
 #### Arguments
 
-| Argument | Description | Type |  |
-| :--- | :--- | :--- | :--- |
-| deviceId | The device id of the device you want to subscribe to. | `string` | Required |
-| onData | Callback, executed when a new twin updated is received. | `(twin: Twin) => void` | Optional |
-| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback` | Optional |
+| Argument     | Description                                                                                 | Type                   |          |
+| ------------ | ------------------------------------------------------------------------------------------- | ---------------------- | -------- |
+| deviceId     | The device id of the device you want to subscribe to.                                       | `string`               | Required |
+| onData       | Callback, executed when a new twin updated is received.                                     | `(twin: Twin) => void` | Optional |
+| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback`   | Optional |
 
 #### Return Value
 
@@ -202,11 +202,11 @@ const connectionState = useConnectionState(deviceId, onData, onGrantError);
 
 #### Arguments
 
-| Argument | Description | Type |  |
-| :--- | :--- | :--- | :--- |
-| deviceId | The device id of the device you want to subscribe to. | `string` | Required |
-| onData | Callback, executed when a new connection state updated is received. | `(connectionState: boolean) => void` | Optional |
-| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback` | Optional |
+| Argument     | Description                                                                                 | Type                                 |          |
+| ------------ | ------------------------------------------------------------------------------------------- | ------------------------------------ | -------- |
+| deviceId     | The device id of the device you want to subscribe to.                                       | `string`                             | Required |
+| onData       | Callback, executed when a new connection state updated is received.                         | `(connectionState: boolean) => void` | Optional |
+| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback`                 | Optional |
 
 #### Return Value
 
@@ -215,7 +215,7 @@ This hook returns a value: `boolean`
 This value changed as soon as a device connects or disconnects.
 
 {% hint style="warning" %}
-The connection state information can be quite delayed \(up to 1 minute\). This is not a ux4iot issue, but an issue with IoT Hub itself \(see [here](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-event-grid#limitations-for-device-connected-and-device-disconnected-events) and [here](https://docs.microsoft.com/en-us/answers/questions/434493/device-connection-state-events-delayed.html)\).
+The connection state information can be quite delayed (up to 1 minute). This is not a ux4iot issue, but an issue with IoT Hub itself (see [here](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-event-grid#limitations-for-device-connected-and-device-disconnected-events) and [here](https://docs.microsoft.com/en-us/answers/questions/434493/device-connection-state-events-delayed.html)).
 {% endhint %}
 
 ## usePatchDesiredProperties
@@ -228,9 +228,9 @@ const patchDesiredProperties = usePatchDesiredProperties(deviceId, onGrantError)
 
 #### Arguments
 
-| Argument | Description | Type |  |
-| :--- | :--- | :--- | :--- |
-| deviceId | The device id of the device onto which to patch the desired properties | `string` | Required |
+| Argument     | Description                                                                                            | Type                 |          |
+| ------------ | ------------------------------------------------------------------------------------------------------ | -------------------- | -------- |
+| deviceId     | The device id of the device onto which to patch the desired properties                                 | `string`             | Required |
 | onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the patch desired properties request | `GrantErrorCallback` | Optional |
 
 #### Return Value
@@ -265,11 +265,11 @@ const lastMessage = useD2CMessages(deviceId, onData, onGrantError);
 
 #### Arguments
 
-| Argument | Description | Type |  |
-| :--- | :--- | :--- | :--- |
-| deviceId | The device ID of the device you want to subscribe to. | `string` | Required |
-| onData | Callback, executed when the device sends a new message. | `(data: Record<string, unknown>) => void` | Optional |
-| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback` | Optional |
+| Argument     | Description                                                                                 | Type                                      |          |
+| ------------ | ------------------------------------------------------------------------------------------- | ----------------------------------------- | -------- |
+| deviceId     | The device ID of the device you want to subscribe to.                                       | `string`                                  | Required |
+| onData       | Callback, executed when the device sends a new message.                                     | `(data: Record<string, unknown>) => void` | Optional |
+| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback`                      | Optional |
 
 #### Return Value
 
@@ -279,7 +279,7 @@ We assume that every message a device sends will be an object. The return value 
 
 ## Final Note
 
-The hooks provided by ux4iot-react are using a specific authorization mechanism. They are designed to provide the easiest API to cover your use-case and hide the most complexity possible. There are two callbacks that are available on \(almost\) every hook.
+The hooks provided by ux4iot-react are using a specific authorization mechanism. They are designed to provide the easiest API to cover your use-case and hide the most complexity possible. There are two callbacks that are available on (almost) every hook.
 
 #### `onData`
 
@@ -300,4 +300,3 @@ Therefore `onData` as function in subscription hooks, removes the burden of you 
 This callback exists on every hook. The purpose of this callback is to inform you about errors that the custom `grantRequestFunction` returns. The `grantRequestFunction` is something that you need to implement yourself when you want to use ux4iot in production. The purpose of this function is to determine whether you as a user of the react application have the permission to subscribe to telemetry / device twin / connection state or perform a direct method / desired property patch.
 
 Read more about this [here](../implementing-your-custom-security-backend/implementing-the-security-backend.md).
-
