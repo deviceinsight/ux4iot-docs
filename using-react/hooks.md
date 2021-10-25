@@ -185,11 +185,7 @@ const connectionState = useConnectionState(deviceId, onData, onGrantError);
 
 #### Arguments
 
-| Argument     | Description                                                                                 | Type                                 |          |
-| ------------ | ------------------------------------------------------------------------------------------- | ------------------------------------ | -------- |
-| deviceId     | The device id of the device you want to subscribe to.                                       | `string`                             | Required |
-| onData       | Callback, executed when a new connection state updated is received.                         | `(connectionState: boolean) => void` | Optional |
-| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback`                 | Optional |
+<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>onData</td><td>Callback, executed when a new connection state updated is received.</td><td><code>(connectionState: boolean) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
@@ -211,10 +207,7 @@ const patchDesiredProperties = usePatchDesiredProperties(deviceId, onGrantError)
 
 #### Arguments
 
-| Argument     | Description                                                                                            | Type                 |          |
-| ------------ | ------------------------------------------------------------------------------------------------------ | -------------------- | -------- |
-| deviceId     | The device id of the device onto which to patch the desired properties                                 | `string`             | Required |
-| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the patch desired properties request | `GrantErrorCallback` | Optional |
+<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device onto which to patch the desired properties</td><td><code>string</code></td><td>true</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the patch desired properties request</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
@@ -248,11 +241,7 @@ const lastMessage = useD2CMessages(deviceId, onData, onGrantError);
 
 #### Arguments
 
-| Argument     | Description                                                                                 | Type                                      |          |
-| ------------ | ------------------------------------------------------------------------------------------- | ----------------------------------------- | -------- |
-| deviceId     | The device ID of the device you want to subscribe to.                                       | `string`                                  | Required |
-| onData       | Callback, executed when the device sends a new message.                                     | `(data: Record<string, unknown>) => void` | Optional |
-| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback`                      | Optional |
+<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>onData</td><td>Callback, executed when the device sends a new message.</td><td><code>(data: Record&#x3C;string, unknown>) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
