@@ -141,7 +141,7 @@ return <button onClick={() => handleClick()}>Reboot Device</button>
 
 ## useDeviceTwin
 
-The `useDeviceTwin` subscribes to device twin updates.
+The `useDeviceTwin` hook subscribes to device twin updates.
 
 ```javascript
 const deviceTwin = useDeviceTwin(deviceId, onData, onGrantError);
