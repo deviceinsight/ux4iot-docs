@@ -10,12 +10,7 @@ const value = useTelemetry(deviceId, telemetryKey, onData, onGrantError);
 
 #### Arguments
 
-| Argument     | Description                                                                                 | Type                      | Required? |
-| ------------ | ------------------------------------------------------------------------------------------- | ------------------------- | --------- |
-| deviceId     | The device ID of the device from which to receive telemetry data                            | `string`                  | Required  |
-| telemetryKey | The key of the telemetry item                                                               | `string`                  | Required  |
-| onData       | Callback, executed when new telemetry of `telemetryKey` is received on the device           | `(data: unknown) => void` | Optional  |
-| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the direct method request | `GrantErrorCallback`      | Optional  |
+<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device from which to receive telemetry data</td><td><code>string</code></td><td>true</td></tr><tr><td>telemetryKey</td><td>The key of the telemetry item</td><td><code>string</code></td><td>true</td></tr><tr><td>onData</td><td>Callback, executed when new telemetry of <code>telemetryKey</code> is received on the device</td><td><code>(data: unknown) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the direct method request</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
@@ -70,11 +65,7 @@ The `useMultiTelemetry` hook is a more sophisticated variant of `useTelemetry`. 
 
 #### Arguments
 
-| Argument           | Description                                                                                                                                           | Type                                                               |          |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ | -------- |
-| initialSubscribers | Object of key-value pairs, with keys: the device IDs of your IoTHub devices, and value: a list of strings, defining the telemetryKeys to subscribe to | `Record<string, string[]>`                                         | Optional |
-| onData             | Callback, executed when a new `value` for a `telemetryKey` is sent by a device with ID `deviceId`                                                     | `(deviceId: string, telemetryKey: string, value: unknown) => void` | Optional |
-| onGrantError       | Callback, executed when the `grantRequestFunction` fails to grant the subscription request.                                                           | `GrantErrorCallback`                                               | Optional |
+<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>initialSubscribers</td><td>Object of key-value pairs, with keys: the device IDs of your IoTHub devices, and value: a list of strings, defining the telemetryKeys to subscribe to</td><td><code>Record&#x3C;string, string[]></code></td><td>false</td></tr><tr><td>onData</td><td>Callback, executed when a new <code>value</code> for a <code>telemetryKey</code> is sent by a device with ID <code>deviceId</code></td><td><code>(deviceId: string, telemetryKey: string, value: unknown) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 {% hint style="info" %}
 Do not try to perform subscription updates over the `initialSubscribers` object. This object is meant solely as an option for use cases where you always have an initial set of subscribers. Updates to `initialSubscribers` will not trigger updates in the hook.
@@ -105,11 +96,7 @@ const reboot = useDirectMethod(deviceId, methodName, onGrantError);
 
 #### Arguments
 
-| Argument     | Description                                                                                 | Type                 |          |
-| ------------ | ------------------------------------------------------------------------------------------- | -------------------- | -------- |
-| deviceId     | The device ID of the device to execute the direct method on                                 | `string`             | Required |
-| methodName   | The name of the method to execute on the device                                             | `string`             | Required |
-| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the direct method request | `GrantErrorCallback` | Optional |
+<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device to execute the direct method on</td><td><code>string</code></td><td>true</td></tr><tr><td>methodName</td><td>The name of the method to execute on the device</td><td><code>string</code></td><td>true</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the direct method request</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
@@ -149,11 +136,7 @@ const deviceTwin = useDeviceTwin(deviceId, onData, onGrantError);
 
 #### Arguments
 
-| Argument     | Description                                                                                 | Type                   |          |
-| ------------ | ------------------------------------------------------------------------------------------- | ---------------------- | -------- |
-| deviceId     | The device id of the device you want to subscribe to.                                       | `string`               | Required |
-| onData       | Callback, executed when a new twin updated is received.                                     | `(twin: Twin) => void` | Optional |
-| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the subscription request. | `GrantErrorCallback`   | Optional |
+<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>onData</td><td>Callback, executed when a new twin updated is received.</td><td><code>(twin: Twin) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
