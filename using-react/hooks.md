@@ -10,12 +10,12 @@ const value = useTelemetry(deviceId, telemetryKey, onData, onGrantError);
 
 #### Arguments
 
-| Argument     | Description                                                                                 | Type                      |          |
-| ------------ | ------------------------------------------------------------------------------------------- | ------------------------- | -------- |
-| deviceId     | The device ID of the device from which to receive telemetry data                            | `string`                  | Required |
-| telemetryKey | The key of the telemetry item                                                               | `string`                  | Required |
-| onData       | Callback, executed when new telemetry of `telemetryKey` is received on the device           | `(data: unknown) => void` | Optional |
-| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the direct method request | `GrantErrorCallback`      | Optional |
+| Argument     | Description                                                                                 | Type                      | Required? |
+| ------------ | ------------------------------------------------------------------------------------------- | ------------------------- | --------- |
+| deviceId     | The device ID of the device from which to receive telemetry data                            | `string`                  | Required  |
+| telemetryKey | The key of the telemetry item                                                               | `string`                  | Required  |
+| onData       | Callback, executed when new telemetry of `telemetryKey` is received on the device           | `(data: unknown) => void` | Optional  |
+| onGrantError | Callback, executed when the `grantRequestFunction` fails to grant the direct method request | `GrantErrorCallback`      | Optional  |
 
 #### Return Value
 
