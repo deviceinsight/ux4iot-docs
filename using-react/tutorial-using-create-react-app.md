@@ -33,12 +33,12 @@ const UX4IOT_ADMIN_CONNECTION_STRING = 'YOUR_ADMIN_CONNECTION_STRING';
 
 You can retrieve the connection string from the Azure Portal:
 
-![](../.gitbook/assets/image%20%281%29.png)
+![](<../.gitbook/assets/image (1).png>)
 
-![Copy either the &quot;Primary&quot; or &quot;Secondary&quot; connection string](../.gitbook/assets/image%20%2817%29.png)
+![Copy either the "Primary" or "Secondary" connection string](<../.gitbook/assets/image (17).png>)
 
 {% hint style="info" %}
-Use `.env` and `.env.local` files to store your apps environment variables. Read more about that in [create-react-app's section on environment variables](https://create-react-app.dev/docs/adding-custom-environment-variables/)
+Use `.env` and `.env.local` files to store your app's environment variables. Read more about that in [create-react-app's section on environment variables](https://create-react-app.dev/docs/adding-custom-environment-variables/)
 {% endhint %}
 
 Replace the existing `App` component with this:
@@ -57,7 +57,7 @@ function App() {
 }
 ```
 
-By creating the Context here, all sub-components \(like `MyView`\) can use the ux4iot hooks. Now, add the `MyView` component:
+By creating the Context here, all sub-components (like `MyView`) can use the ux4iot hooks. Now, add the `MyView` component:
 
 ```javascript
 const MyView = props => {
@@ -109,15 +109,15 @@ If you use your admin connection string in the frontend, there will be a notific
 
 If you do not already have an IoT devices sending data, you can easily simulate one. First, create a device with device ID `simulated-device` in the IoT Hub:
 
-![](../.gitbook/assets/image%20%2813%29.png)
+![](<../.gitbook/assets/image (13).png>)
 
-![](../.gitbook/assets/image%20%2811%29.png)
+![](<../.gitbook/assets/image (11).png>)
 
 Now copy the connection string for the device.
 
-![](../.gitbook/assets/image%20%2812%29.png)
+![](<../.gitbook/assets/image (12).png>)
 
-With the connection string you can start a simulator using Docker by invoking the following command. \(The GitHub repo of the simulator can be found [here](https://github.com/stefan-hudelmaier/simulated-temperature-sensor).\)
+With the connection string you can start a simulator using Docker by invoking the following command. (The GitHub repo of the simulator can be found [here](https://github.com/stefan-hudelmaier/simulated-temperature-sensor).)
 
 ```bash
 docker run --rm -ti \
@@ -134,4 +134,3 @@ This will publish a random value of the `temperature` telemetry. The messages lo
 ```
 
 You should now see the value reflected in your React application.
-
