@@ -8,11 +8,11 @@ Your security backend must provide a _single_ HTTP resource that receives grant 
 If the grant request should be accepted, the backend should do the following things:
 
 * Forward the grant request to ux4iot's Admin API, using an [SDK](admin-sdks/) or the [REST API](admin-rest-api.md)
-* Return the HTTP response codes 200 or 204 \(this is our recommendation, but no requirement\)
+* Return the HTTP response codes 200 or 204 (this is our recommendation, but no requirement)
 
-If invalid authentication credentials were provided, the backend should return the HTTP response code 401 \(Unauthorized\).
+If invalid authentication credentials were provided, the backend should return the HTTP response code 401 (Unauthorized).
 
-If the user credentials are valid, but the grant request is not within the permissions of the user, the backend should return the HTTP response code 403 \(Forbidden\)
+If the user credentials are valid, but the grant request is not within the permissions of the user, the backend should return the HTTP response code 403 (Forbidden)
 
 {% hint style="info" %}
 You have to implement the client to your security backend in your user interface code in the Grant Request Function. This gives you full flexibility when it comes to your authentication scheme. It also means that you can use other ways to indicate success or failure. Using HTTP response codes as described above is merely our recommendation.
@@ -98,7 +98,7 @@ If you forward this grant request to ux4iot, it means that the client can patch 
 
 It is currently not possible to restrict this to a sub section of the desired properties.
 
-### Subscribe to D2C messages
+## Subscribe to D2C messages
 
 ```javascript
 {
@@ -113,4 +113,3 @@ If you forward this grant request to ux4iot, it means that the client subscribes
 {% hint style="info" %}
 In contrast to other request like `invokeDirectMethod`, this not only approves the permission but also actively subscribes to updates.
 {% endhint %}
-
