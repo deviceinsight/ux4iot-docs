@@ -4,10 +4,6 @@
 
 ux4iot is a tool for directly communicating with your IoT devices from your web frontend.
 
-{% hint style="danger" %}
-ux4iot is not released yet and currently in a closed beta. If you are interested in participating, send a mail to [hello@ux4iot.com](mailto:hello@ux4iot.com).
-{% endhint %}
-
 ### General architecture
 
 ![](<.gitbook/assets/ux4iot-architecture (1).png>)
