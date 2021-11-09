@@ -27,9 +27,9 @@ az managedapp create \
   --resource-group $RESOURCE_GROUP \
   --managed-rg-id /subscriptions/${SUBSCRIPTION}/resourceGroups/ux4iot-resources \
   --plan-product ux4iot \
-  --plan-name ux4iot \
-  --plan-version 1.0 \
-  --plan-publisher DeviceInsight
+  --plan-name standard \
+  --plan-version 1.0.1 \
+  --plan-publisher deviceinsightgmbh-4961725 \
   --parameters "{\"iotHubEventHubConnectionString\": {\"value\": \"${IOT_HUB_EVENT_HUB_CONNECTION_STRING}\"}, \"iotHubServiceConnectionString\": {\"value\": \"${IOT_HUB_CONNECTION_STRING}\"}}"
 ```
 {% endtab %}
