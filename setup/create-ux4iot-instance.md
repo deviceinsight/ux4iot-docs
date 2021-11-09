@@ -4,9 +4,7 @@ ux4iot is installed in your Azure subscription as a Managed Application. Billing
 
 ### Creating via the Portal UI
 
-Visit the [offer on Azure Marketplace](https://azuremarketplace.microsoft.com/) and click "Create". 
-
-TODO: Use actual link for marketplace
+Visit the [offer on Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/deviceinsightgmbh-4961725.ux4iot) and click "Create". 
 
 ### Creating via the command line
 
