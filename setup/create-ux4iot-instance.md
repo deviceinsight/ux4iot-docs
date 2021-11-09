@@ -2,9 +2,13 @@
 
 ux4iot is installed in your Azure subscription as a Managed Application. Billing will be handled by Microsoft.
 
-### Creating via the Portal UI
+### Creating via Azure Marketplace
 
-Visit the [offer on Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/deviceinsightgmbh-4961725.ux4iot) and click "Create". 
+Visit the [offer on Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/deviceinsightgmbh-4961725.ux4iot) and click "Get It Now".
+
+### Creating via Azure Portal
+
+Go to [https://portal.azure.com](https://portal.azure.com) and search for "ux4iot".
 
 ### Creating via the command line
 
@@ -12,7 +16,7 @@ If you prefer the command line, the following snippet shows how to do it. See fu
 
 {% tabs %}
 {% tab title="AZ CLI" %}
-```text
+```
 RESOURCE_GROUP=ux4iot
 SUBSCRIPTION=yourazuresubscription
 
@@ -40,7 +44,7 @@ In effect, everything that not only consumes information but accesses the device
 
 You can retrieve the service connection string for the IoT Hub with:
 
-```text
+```
 IOT_HUB_CONNECTION_STRING=$(az iot hub connection-string show \
   --resource-group RESOURCE_GROUP_OF_IOT_HUB \
   --subscription SUBSCRIPTION \
@@ -52,7 +56,7 @@ IOT_HUB_CONNECTION_STRING=$(az iot hub connection-string show \
 
 You can retrieve the Event Hub compatible endpoint connection string with:
 
-```text
+```
 IOT_HUB_EVENT_HUB_CONNECTION_STRING=$(az iot hub connection-string show \
   --resource-group RESOURCE_GROUP_OF_IOT_HUB \
   --subscription SUBSCRIPTION \
@@ -64,6 +68,3 @@ IOT_HUB_EVENT_HUB_CONNECTION_STRING=$(az iot hub connection-string show \
 ```
 
 Replace `RESOURCE_GROUP_OF_IOT_HUB` with the resource group that your IoT Hub resides in. Replace`NAME_OF_IOT_HUB` with the name of the IoT Hub. Replace `SUBSCRIPTION` with your Azure Subscription.
-
-
-
