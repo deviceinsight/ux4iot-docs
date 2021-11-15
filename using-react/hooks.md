@@ -5,12 +5,16 @@
 The `useTelemetry` hook makes it very easy to just listen to telemetry on a single device.
 
 ```typescript
-const value = useTelemetry(deviceId, telemetryKey, onData, onGrantError);
+const value = useTelemetry(deviceId, telemetryKey, { onData, onGrantError });
 ```
 
 #### Arguments
 
-<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device from which to receive telemetry data</td><td><code>string</code></td><td>true</td></tr><tr><td>telemetryKey</td><td>The key of the telemetry item</td><td><code>string</code></td><td>true</td></tr><tr><td>onData</td><td>Callback, executed when new telemetry of <code>telemetryKey</code> is received on the device</td><td><code>(data: unknown) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the direct method request</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device from which to receive telemetry data</td><td><code>string</code></td><td>true</td></tr><tr><td>telemetryKey</td><td>The key of the telemetry item</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+
+**HookOptions**
+
+<table><thead><tr><th>key</th><th>Description</th><th>value type</th><th data-type="checkbox">required</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when new telemetry of <code>telemetryKey</code> is received on the device</td><td><code>(data: unknown) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the direct method request</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
@@ -56,14 +60,18 @@ The `useMultiTelemetry` hook is a more sophisticated variant of `useTelemetry`. 
         currentSubscribers,
         addTelemetry,
         removeTelemetry,
-    } = useMultiTelemetry(
-        { [deviceId]: ['temperature', 'pressure'] },
-        (deviceId, key, value) => console.log(deviceId, key, value),
-        error => console.log(error)
-    );
+    } = useMultiTelemetry({
+        initialSubscribers: { [deviceId]: ['temperature', 'pressure'] },
+        onData: (deviceId, key, value) => console.log(deviceId, key, value),
+        onGrantError: error => console.log(error)
+    });
 ```
 
 #### Arguments
+
+<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+
+#### HookOptions
 
 <table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>initialSubscribers</td><td>Object of key-value pairs, with keys: the device IDs of your IoTHub devices, and value: a list of strings, defining the telemetryKeys to subscribe to</td><td><code>Record&#x3C;string, string[]></code></td><td>false</td></tr><tr><td>onData</td><td>Callback, executed when a new <code>value</code> for a <code>telemetryKey</code> is sent by a device with ID <code>deviceId</code></td><td><code>(deviceId: string, telemetryKey: string, value: unknown) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
@@ -89,16 +97,29 @@ This hook returns an object containing other objects and functions to interact w
 The `useDirectMethod` hook returns a function that, when invoked, calls a direct method on the target device. It returns a Promise that resolves to the direct method result that the device returns (or an error when the direct method could not be executed, e.g. if the device is offline).
 
 ```typescript
-const reboot = useDirectMethod(deviceId, methodName, onGrantError);
+const reboot = useDirectMethod(deviceId, methodName, { onGrantError });
 ```
 
 #### Arguments
 
-<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device to execute the direct method on</td><td><code>string</code></td><td>true</td></tr><tr><td>methodName</td><td>The name of the method to execute on the device</td><td><code>string</code></td><td>true</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the direct method request</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device to execute the direct method on</td><td><code>string</code></td><td>true</td></tr><tr><td>methodName</td><td>The name of the method to execute on the device</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+
+**Hook Options**
+
+<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the direct method request</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
-This hook returns a function: `(params: Record<string, unknown>) => Promise<unknown>`
+This hook returns a function: `(params: Record<string, unknown>) => Promise<IotHubResponse | void>`
+
+**IoTHubResponse**
+
+```
+{
+    status: number;
+    payload: unknown:
+}
+```
 
 You pass the method payload to this function and it outputs the[ result of the direct method invocation on the device](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-direct-methods#response-1).
 
@@ -109,7 +130,9 @@ Do not confuse the `onGrantError` handler of `useDirectMethod` with the catch bl
 #### Example
 
 ```jsx
-const reboot = useDirectMethod(deviceId, 'reboot', error => console.log(error));
+const reboot = useDirectMethod(deviceId, 'reboot', {
+    onGrantError: error => console.log(error)
+});
 const result = useState<unknown>();
 const error = useState<string>();
 
@@ -129,12 +152,16 @@ return <button onClick={() => handleClick()}>Reboot Device</button>
 The `useDeviceTwin` hook subscribes to device twin updates.
 
 ```javascript
-const deviceTwin = useDeviceTwin(deviceId, onData, onGrantError);
+const deviceTwin = useDeviceTwin(deviceId, { onData, onGrantError });
 ```
 
 #### Arguments
 
-<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>onData</td><td>Callback, executed when a new twin updated is received.</td><td><code>(twin: Twin) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+
+**Hook Options**
+
+<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when a new twin updated is received.</td><td><code>(twin: Twin) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
@@ -178,12 +205,16 @@ Here is an example of a returned device twin:
 The `useConnectionState` hook subscribes to the connection state of a device. This state can change, i.e as soon as a device connects or disconnects.
 
 ```javascript
-const connectionState = useConnectionState(deviceId, onData, onGrantError);
+const connectionState = useConnectionState(deviceId, { onData, onGrantError });
 ```
 
 #### Arguments
 
-<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>onData</td><td>Callback, executed when a new connection state updated is received.</td><td><code>(connectionState: boolean) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+
+**Hook Options**
+
+<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when a new connectionState update is received.</td><td><code>(connectionState: boolean) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
@@ -200,16 +231,29 @@ The connection state information can be quite delayed (up to 1 minute). This is 
 The `usePatchDesiredProperties` hook is used to perform desired property updates on devices.
 
 ```javascript
-const patchDesiredProperties = usePatchDesiredProperties(deviceId, onGrantError);
+const patchDesiredProperties = usePatchDesiredProperties(deviceId, { onGrantError });
 ```
 
 #### Arguments
 
-<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device onto which to patch the desired properties</td><td><code>string</code></td><td>true</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the patch desired properties request</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device onto which to patch the desired properties</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+
+**Hook Options**
+
+<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the patch desired properties request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
 This hook returns a function: `(desiredProperties: Record<string, unknown>) => Promise<IoTHubResponse | void>`
+
+**IoTHubResponse**
+
+```
+{
+    status: number;
+    payload: unknown:
+}
+```
 
 The hook takes in an object of desired properties to send to the device with the specified device ID.
 
@@ -231,19 +275,25 @@ const handleClick = () => {
 return <button onClick={() => handleClick()}>Update desired properties</button>
 ```
 
-## useD2CMessages
+## useD2CMessages\<T>
 
 ```typescript
-const lastMessage = useD2CMessages(deviceId, onData, onGrantError);
+const lastMessage = useD2CMessages<T>(deviceId, { onData, onGrantError });
 ```
 
 #### Arguments
 
-<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>onData</td><td>Callback, executed when the device sends a new message.</td><td><code>(data: Record&#x3C;string, unknown>) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+
+**Hook Options**
+
+<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when the device sends a new message.</td><td><code>(data: Record&#x3C;string, unknown>) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
-This hook returns an object: `Record<string, unknown>`
+This hook returns the generic type you specified: `T`
+
+Messages received over this hook have the type `unknown` first and are then casted to your type `T`. Omitting this generic type will leave the type `unknown`.
 
 We assume that every message a device sends will be an object. The return value of this hook will always be the last message sent by the device.
 
