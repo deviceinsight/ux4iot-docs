@@ -22,7 +22,7 @@ npm install ux4iot-react
 Edit the file `src/App.js` and add the imports:
 
 ```javascript
-import {Ux4iotContext, useTelemetry} from "ux4iot-react";
+import {Ux4iotContextProvider, useTelemetry} from "ux4iot-react";
 ```
 
 At the top, add the initialization of the ux4iot instance:
@@ -47,11 +47,11 @@ Replace the existing `App` component with this:
 function App() {
   return (
     <div className="App">
-      <Ux4iotContext.Provider 
+      <Ux4iotContextProvider 
           options={{ adminConnectionString: UX4IOT_ADMIN_CONNECTION_STRING }}
       >
           <MyView />
-      </Ux4iotContext.Provider>
+      </Ux4iotContextProvider>
     </div>
   );
 }
@@ -70,7 +70,7 @@ Your `App.js` should now look like this:
 
 ```javascript
 import './App.css';
-import {Ux4iotContext, ux4iot, useTelemetry} from "ux4iot-react";
+import {Ux4iotContextProvider, ux4iot, useTelemetry} from "ux4iot-react";
 import ReactDOM from "react-dom";
 
 const UX4IOT_ADMIN_CONNECTION_STRING = 'YOUR_ADMIN_CONNECTION_STRING';
@@ -83,11 +83,11 @@ const MyView = props => {
 function App() {
   return (
     <div className="App">
-      <Ux4iotContext.Provider
+      <Ux4iotContextProvider
           options={{ adminConnectionString: UX4IOT_ADMIN_CONNECTION_STRING }}
       >
           <MyView />
-      </Ux4iotContext.Provider>
+      </Ux4iotContextProvider>
     </div>
   );
 }
