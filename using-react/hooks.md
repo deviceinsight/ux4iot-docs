@@ -52,6 +52,14 @@ The D2C messages are expected to look like this:
 
 The `useMultiTelemetry` hook is a more sophisticated variant of `useTelemetry`. It is designed to cover use-cases where a several streams of telemetry of multiple devices need to be subscribed to.
 
+#### Minimal Example
+
+```
+const { telemetry, addTelemetry, removeTelemetry } = useMultiTelemetry();
+```
+
+#### Full Example
+
 ```typescript
     const {
         telemetry,
