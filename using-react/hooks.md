@@ -305,7 +305,7 @@ Messages received over this hook have the type `unknown` first and are then cast
 
 We assume that every message a device sends will be an object. The return value of this hook will always be the last message sent by the device.
 
-## Final Note
+## Common Options
 
 The hooks provided by ux4iot-react are using a specific authorization mechanism. They are designed to provide the easiest API to cover your use-case and hide the most complexity possible. There are two callbacks that are available on (almost) every hook.
 
