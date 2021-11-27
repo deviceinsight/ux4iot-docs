@@ -26,7 +26,7 @@ module.exports = async function (context, req) {
         // All users can subscribe to telemetry events that are visible for them
         // using *your* custom access control scheme, which defines which users 
         // have access to which IoT devices.
-        if (req.body.type === 'telemetry' 
+        if (req.body.type === 'subscribeToTelemetry' 
             && isDeviceVisibleForUser(req.body.device, userId)) {
             
             ux4iotAdmin.grant(req.body);
@@ -46,8 +46,7 @@ module.exports = async function (context, req) {
 ```
 
 {% hint style="info" %}
-In this example `isDeviceVisibleForUser` is a custom method that implements the access control mechanism of your app. `evaluateBearerToken` is a custom method that implements your authentication scheme \(e.g. using OAuth2\).
+In this example `isDeviceVisibleForUser` is a custom method that implements the access control mechanism of your app. `evaluateBearerToken` is a custom method that implements your authentication scheme (e.g. using OAuth2).
 {% endhint %}
 
 As you can see, you have full flexibility when it comes to determine which users may perform which actions.
-
