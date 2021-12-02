@@ -10,7 +10,7 @@
 * [Create IoT Hub and linked ux4iot](setup/create-iot-hub-and-linked-ux4iot.md)
 * [Using a separate Event Hub](setup/using-a-separate-event-hub.md)
 
-## Developing web apps with React <a id="using-react"></a>
+## Developing web apps with React <a href="#using-react" id="using-react"></a>
 
 * [Installing the library](using-react/introduction.md)
 * [Initialization](using-react/initialization.md)
@@ -33,8 +33,8 @@
 * [Pricing](resources/cost.md)
 * [Performance](resources/performance.md)
 * [Limitations](resources/limitations.md)
+* [FAQ](resources/faq.md)
 
----
+***
 
 * [Made with ❤️ at Device Insight](https://www.device-insight.com/en/)
-
