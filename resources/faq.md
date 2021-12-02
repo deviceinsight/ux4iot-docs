@@ -1,6 +1,6 @@
 # FAQ
 
-### How can the connection string and websocket URL be retrieved from az cli?
+## How can the connection string and websocket URL be retrieved from az cli?
 
 Here is an example for the websocket URL:
 
