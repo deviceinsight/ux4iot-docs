@@ -43,5 +43,5 @@ az resource show \
 {% hint style="info" %}
 You can quite easily find the `RESOURCE_ID` of the ux4iot instance in the Azure portal if you navigate to the ux4iot instance and copy the highlighted section of the URL:
 
-![](<../.gitbook/assets/image (5).png>)
+![](<../.gitbook/assets/image (19).png>)
 {% endhint %}
