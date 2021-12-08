@@ -21,8 +21,8 @@ yarn add ux4iot-admin-node
 Initialize the SDK using the connection string. You can retrieve the connection string from the Azure portal.
 
 ```javascript
-const ux4iotAdmin = require('ux4iot-admin');
-ux4iotAdmin.init({
+const Ux4iotAdmin = require('ux4iot-admin');
+const sdk = new Ux4iotAdmin({
     connectionString: "HostName=...;Key=secret";
 });
 ```
@@ -30,7 +30,7 @@ ux4iotAdmin.init({
 Now you can whitelist grant requests using:
 
 ```javascript
-ux4iotAdmin.grant(grantRequest);
+sdk.grant(grantRequest);
 ```
 
 Usually, the `grantRequest` will be exactly identical to the body received by the custom security backend. In the security backend, you merely decide which grant requests to forward and which not to forward.
@@ -38,7 +38,7 @@ Usually, the `grantRequest` will be exactly identical to the body received by th
 If you want to revoke the grant at a later point in time, you can do this using:
 
 ```javascript
-ux4iotAdmin.revoke({
+sdk.revokeGrant({
   sessionId: "ijfoewio22490320",
   deviceId: "d123",
   grantType: "subscribeToTelemetry"
@@ -48,14 +48,11 @@ ux4iotAdmin.revoke({
 You can revoke all grants for a session with this:
 
 ```javascript
-ux4iotAdmin.revoke({
-  sessionId: "ijfoewio22490320"
-});
+sdk.revokeSession("ijfoewio22490320");
 ```
 
 You can even revoke all sessions:
 
 ```javascript
-ux4iotAdmin.revokeAll();
+sdk.revokeAll();
 ```
-
