@@ -34,6 +34,7 @@
 * [Performance](resources/performance.md)
 * [Limitations](resources/limitations.md)
 * [FAQ](resources/faq.md)
+* [Changelog](resources/changelog.md)
 
 ***
 
