@@ -15,7 +15,7 @@ NAME="ux4iot"
 RESOURCE_ID="/subscriptions/$SUB/resourceGroups/$RG/providers/Microsoft.Solutions/applications/$NAME"
 
 az resource show \
-  --ids $RESOURCE_ID/customwebsocketUrls/url
+  --ids $RESOURCE_ID/customwebsocketUrls/url \
   --api-version 2018-09-01-preview \
   --query properties.value \
   --output tsv
@@ -34,9 +34,9 @@ NAME="ux4iot"
 RESOURCE_ID="/subscriptions/$SUB/resourceGroups/$RG/providers/Microsoft.Solutions/applications/$NAME"
 
 az resource show \
-  --ids $RESOURCE_ID/customsharedAccessPolicies/Primary
+  --ids $RESOURCE_ID/customsharedAccessPolicies/Primary \
   --api-version 2018-09-01-preview \
-  --query properties.value \
+  --query properties.connectionString \
   --output tsv
 ```
 
