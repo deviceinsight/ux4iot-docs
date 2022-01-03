@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 1.2.0
+
+* Add support for timestamps
+* Add parameters for ARM template:
+  * Add SKUs (small, standard) to make less cost-intensive instances possible (`sku`)
+  * Make it possible to inject the primary and secondary secrets (`primaryAdminSecret`, `secondaryAdminSecret`)
+  * Make the log level configurable (`logLevel`)
+
 ## Version 1.1.0
 
 * The consumer group to use for reading from Event Hub or IoT Hub can be configured
