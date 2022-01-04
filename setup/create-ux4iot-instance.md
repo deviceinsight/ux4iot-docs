@@ -68,3 +68,56 @@ IOT_HUB_EVENT_HUB_CONNECTION_STRING=$(az iot hub connection-string show \
 ```
 
 Replace `RESOURCE_GROUP_OF_IOT_HUB` with the resource group that your IoT Hub resides in. Replace`NAME_OF_IOT_HUB` with the name of the IoT Hub. Replace `SUBSCRIPTION` with your Azure Subscription.
+
+### Creating via Bicep (Azure Resource Manager)
+
+Here is an example Bicep template that you can use to deploy a ux4iot instance.
+
+```
+resource managedApp 'Microsoft.Solutions/applications@2019-07-01' = {
+  name: 'ux4iot'
+  kind: 'marketplace'
+  location: resourceGroup().location
+  plan: {
+    name: 'standard'
+    product: 'ux4iot'
+    publisher: 'deviceinsightgmbh-4961725'
+    version: '1.1.0'
+  }
+  properties: {
+    managedResourceGroupId: 'ux4iot-resources'
+    parameters: {
+      // Required
+      iotHubEventHubConnectionString: {
+        value: iotHubEventHubConnectionString
+      }
+      // Optional
+      iotHubServiceConnectionString: {
+        value: iotHubServiceConnectionString
+      }
+      // Optional
+      dnsLabelOverride: {
+        value: 'ux4iot-snapshot'
+      }
+      // Optional
+      sku: {
+        value: 'standard'
+      }
+      // Optional
+      eventHubConsumerGroup: {
+        value: '$Default'
+      }
+      // Optional
+      primaryAdminSecret: {
+        value: 'supersecret'
+      }
+      // Optional
+      secondaryAdminSecret: {
+        value: 'supersecretaswell'
+      }
+
+    }
+  }
+}
+```
+
