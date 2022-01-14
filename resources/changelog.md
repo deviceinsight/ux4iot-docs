@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.2.1
+
+* ARM Template improvements
+
 ## Version 1.2.0
 
 * Add support for timestamps
