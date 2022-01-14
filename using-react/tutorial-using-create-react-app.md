@@ -71,7 +71,6 @@ Your `App.js` should now look like this:
 ```javascript
 import './App.css';
 import {Ux4iotContextProvider, useTelemetry} from "ux4iot-react";
-import ReactDOM from "react-dom";
 
 const UX4IOT_ADMIN_CONNECTION_STRING = 'YOUR_ADMIN_CONNECTION_STRING';
 
