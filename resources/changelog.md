@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 1.3.0
+
+* Reduce Azure infrastructure costs: Application Insights, Storage Accounts
+
 ## Version 1.2.1
 
 * ARM Template improvements
