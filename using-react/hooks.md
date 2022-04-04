@@ -52,13 +52,13 @@ The D2C messages are expected to look like this:
 
 The `useMultiTelemetry` hook is a more sophisticated variant of `useTelemetry`. It is designed to cover use-cases where a several streams of telemetry of multiple devices need to be subscribed to.
 
-#### Minimal Example
+#### Minimal Hook Example
 
 ```
 const { telemetry, addTelemetry, removeTelemetry } = useMultiTelemetry();
 ```
 
-#### Full Example
+#### Full Hook Example
 
 ```typescript
     const {
@@ -73,6 +73,62 @@ const { telemetry, addTelemetry, removeTelemetry } = useMultiTelemetry();
         onData: (deviceId, key, value) => console.log(deviceId, key, value),
         onGrantError: error => console.log(error)
     });
+```
+
+#### Full Code Example
+
+```typescript
+// Example of a component utilising the "toggleTelemetry" mechanism to 
+// toggle subscriptions to two datapoints "temperature" and "pressure"
+
+import { FC } from 'react';
+import { TelemetryValue, useMultiTelemetry } from 'ux4iot-react';
+
+const DeviceValue: FC<TelemetryValue> = ({ value, timestamp }) => {
+  return (
+    <div>
+      {value} - received at {timestamp}
+    </div>
+  );
+};
+
+type Props = {
+  deviceId: string;
+  datapoints: string[];
+};
+
+const TestMultiSubscriber: FC<Props> = ({ deviceId, datapoints }) => {
+  const { telemetry, toggleTelemetry, isSubscribed } = useMultiTelemetry({
+    initialSubscribers: { [deviceId]: datapoints },
+  });
+
+  return (
+    <div>
+      {datapoints.map(dp => (
+        <div key={dp}>
+          <label>{dp}</label>
+          <input
+            type="checkbox"
+            checked={isSubscribed(deviceId, dp)}
+            onChange={() => toggleTelemetry(deviceId, dp)}
+          />
+          {telemetry[deviceId] && <DeviceValue {...telemetry[deviceId][dp]} />}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const App = () => {
+  return (
+    <Ux4iotContextProvider options={...}>
+      <TestMultiSubscriber
+        deviceId="simulated-device"
+        datapoints={['temperature', 'pressure']}
+      />
+    </Ux4iotContextProvider>
+  );
+};
 ```
 
 #### Arguments
