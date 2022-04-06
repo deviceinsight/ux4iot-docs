@@ -32,6 +32,7 @@ When you send messages to Event Hub, they must adhere to the following requireme
 
 * They must have a property `iothub-connection-device-id` containing the device identifier
 * They must have a property `iothub-message-schema`. The value of this property must be `Telemetry`.
+* You can optionally set the timestamp of the data with the `iothub-creation-time-utc` property. The value must be in ISO 8601 format, e.g. "2022-01-01T12:00:00.000Z". If it is not set, the current server timestamp is used instead.
 
 {% hint style="info" %}
 If you send the messages from IoT Hub through message routing, these properties are automatically set.
@@ -62,12 +63,13 @@ async function main() {
     const body = {
         temperature: 42.1,
         pressure: 10.9,
-        timestamp: now.toISOString()
+        
     };
 
     const properties = {
         "iothub-connection-device-id": "some-device",
-        "iothub-message-schema": "Telemetry" 
+        "iothub-message-schema": "Telemetry",
+        "iothub-creation-time-utc": now.toISOString()
     };
 
     const batch = await producer.createBatch();
@@ -81,4 +83,3 @@ main().catch((err) => {
     console.log("An error occurred: ", err);
 })
 ```
-
