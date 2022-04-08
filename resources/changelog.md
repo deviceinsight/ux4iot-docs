@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.5.0
+
+* Add persistence of complex telemetry values
+* Reduce Azure infrastructure costs: Application Insights
+* Fix a problem with too low max open file limit in reverse proxy
+
 ## Version 1.4.0
 
 * Reduce Azure infrastructure costs: Storage Accounts
