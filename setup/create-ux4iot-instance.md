@@ -28,7 +28,7 @@ az managedapp create \
   --managed-rg-id /subscriptions/${SUBSCRIPTION}/resourceGroups/ux4iot-resources \
   --plan-product ux4iot \
   --plan-name standard \
-  --plan-version 1.4.0 \
+  --plan-version 1.5.0 \
   --plan-publisher deviceinsightgmbh-4961725 \
   --parameters "{\"iotHubEventHubConnectionString\": {\"value\": \"${IOT_HUB_EVENT_HUB_CONNECTION_STRING}\"}, \"iotHubServiceConnectionString\": {\"value\": \"${IOT_HUB_CONNECTION_STRING}\"}}"
 ```
@@ -82,7 +82,7 @@ resource managedApp 'Microsoft.Solutions/applications@2019-07-01' = {
     name: 'standard'
     product: 'ux4iot'
     publisher: 'deviceinsightgmbh-4961725'
-    version: '1.2.1'
+    version: '1.5.0'
   }
   properties: {
     managedResourceGroupId: 'ux4iot-resources'
