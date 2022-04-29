@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 1.6.0
+
+* The connection state received via Event Hub / IoT Hub is cached. This makes it possible to use the `useConnectionState` hook, even if no IoT Hub is used, as you can simulate the connected/disconnected messages using an Event Hub
+* Add parameter `customTimestampProperty` with default value `_ts` so that the timestamp can optionally be passed as part of the body of a message. You can still continue to use the message properties
+* Add parameter `connectionStateCacheTTL`. This indicates the number of seconds that the connection state should be cached. You can set it to `0` to set the time-to-live to infinity. The default value is `60`
+* Fix inconsistencies regarding contents of device twin.
+
 ## Version 1.5.0
 
 * Add persistence of complex telemetry values
