@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.7.0
+
+* Make it possible to disable TTL for connection cache
+* Add parameter `throttlingParameter` to specify the number of milliseconds with which to throttle the telemetry updates sent via websockets. Set this to -1 to disable throttling. This is the default.
+* Add special branch `experimental` from which the app definition `ux4iot-experimental` is updated.
+
 ## Version 1.6.0
 
 * The connection state received via Event Hub / IoT Hub is cached. This makes it possible to use the `useConnectionState` hook, even if no IoT Hub is used, as you can simulate the connected/disconnected messages using an Event Hub
