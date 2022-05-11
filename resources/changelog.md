@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 2.0.0
+
+**Breaking**
+
+* Rename customTimestampProperty to customTimestampKey
+
+**Misc**
+
+* Changed info log statements that were debug level to debug&#x20;
+* Add new setting customDeviceIdKey to be able to set a custom key in messages to be used as deviceId
+
 ## Version 1.7.0
 
 * Make it possible to disable TTL for connection cache
