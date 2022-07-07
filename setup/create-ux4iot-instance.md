@@ -121,3 +121,6 @@ resource managedApp 'Microsoft.Solutions/applications@2019-07-01' = {
 }
 ```
 
+{% hint style="info" %}
+Any tags you specify for the managed app will be inherited by the created managed resource group.
+{% endhint %}
