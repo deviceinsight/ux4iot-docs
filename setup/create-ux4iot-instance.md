@@ -124,3 +124,21 @@ resource managedApp 'Microsoft.Solutions/applications@2019-07-01' = {
 {% hint style="info" %}
 Any tags you specify for the managed app will be inherited by the created managed resource group.
 {% endhint %}
+
+Before deploying **for the first time**, you will have to accept the legal terms:
+
+```
+az vm image accept-terms \
+  --publisher 'deviceinsightgmbh-4961725' \
+  --offer 'ux4iot' \
+  --plan 'standard'
+```
+
+You can now deploy the Bicep template:
+
+```
+az deployment group create \
+  --resource-group ux4iot \
+  --subscription yourazuresubscription \
+  --template-file template.bicep 
+```
