@@ -108,6 +108,14 @@ resource managedApp 'Microsoft.Solutions/applications@2019-07-01' = {
         value: '$Default'
       }
       // Optional
+      customTimestampKey: {
+        value: '_ts'
+      }
+      // Optional
+      customDeviceIdKey: {
+        value: 'deviceId'
+      }      
+      // Optional
       primaryAdminSecret: {
         value: 'supersecret'
       }
