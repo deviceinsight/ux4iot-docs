@@ -84,13 +84,13 @@ main().catch((err) => {
 })
 ```
 
-Instead of passing the device ID and the timestamp through message properties, you can also specify them inside of the message. You need to configure your ux4iot instance with the parameters: `customTimestampKey` and `customDeviceIdKey`. If you e.g set them to `_ts` and `_deviceId` respectively, you can also send the following message:
+Instead of passing the device ID and the timestamp through message properties, you can also specify them inside of the message. You need to configure your ux4iot instance with the parameters: `customTimestampKey` and `customDeviceIdKey`. If you e.g set them to `_ts` and `deviceId` respectively, you can also send the following message:
 
 ```typescript
 const body = {
         temperature: 42.1,
         pressure: 10.9,  
         _ts: now.toISOString(),
-        _deviceId: "some-device"
+        deviceId: "some-device"
     };
 ```
