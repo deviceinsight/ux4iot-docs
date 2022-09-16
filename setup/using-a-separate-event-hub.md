@@ -34,8 +34,33 @@ When you send messages to Event Hub, they must adhere to the following requireme
 * They must have a property `iothub-message-schema`. The value of this property must be `Telemetry`.
 * You can optionally set the timestamp of the data with the `iothub-creation-time-utc` property. The value must be in ISO 8601 format, e.g. "2022-01-01T12:00:00.000Z". If it is not set, the current server timestamp is used instead.
 
-{% hint style="info" %}
-If you send the messages from IoT Hub through message routing, these properties are automatically set.
+{% hint style="warning" %}
+If you send the messages from IoT Hub through message routing, these properties are automatically set. If you're using the eventhub instead, the ux4iot consumes messages and tries to determine which timestamp to use.&#x20;
+
+Timestamp Resolution:
+
+{% code overflow="wrap" %}
+```typescript
+timestamp = 
+    event.body[CUSTOM_TIMESTAMP_KEY] ||
+    event.properties['iothub-creation-time-utc'] ||
+    event.properties['iothub-app-iothub-creation-time-utc']
+```
+{% endcode %}
+
+
+
+if the timestamp is not defined afterwards it will use&#x20;
+
+{% code overflow="wrap" %}
+```typescript
+timestamp = 
+    event.systemProperties.['iothub-enqueuedtime'] ||
+    event.properties.['iothub-enqueuedtime']
+```
+{% endcode %}
+
+if the timestamp is still not defined it will use the time that the message is consumed by ux4iot.
 {% endhint %}
 
 Here is an example of sending a message to an Event Hub using Node.js:
