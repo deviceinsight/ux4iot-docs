@@ -123,7 +123,10 @@ resource managedApp 'Microsoft.Solutions/applications@2019-07-01' = {
       secondaryAdminSecret: {
         value: 'supersecretaswell'
       }
-
+      // Optional
+      connectionStateCacheTTL: {
+        value: '60'
+      }
     }
   }
 }
