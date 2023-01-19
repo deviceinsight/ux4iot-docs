@@ -125,7 +125,7 @@ resource managedApp 'Microsoft.Solutions/applications@2019-07-01' = {
       }
       // Optional
       connectionStateCacheTTL: {
-        value: '60'
+        value: 60
       }
     }
   }
