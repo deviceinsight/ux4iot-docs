@@ -1,5 +1,76 @@
 # Changelog
 
+## Version 3.1.0
+
+* Fixed bug where the ux4iot instance was in a broken state, because the custom resource's function app for the managed application was not deployed correctly
+* Update all dependencies of ux4iot-server and submodules
+* Revert cache to work with ux4iot 2.0 timestamps to ensure backwards compatibility of the redis cache
+
+## Version 3.0.0
+
+**Features**
+
+The subscription flow was updated. Previously, whenever a grant was added, ux4iot began to publish messages to a room, specific to the grant data. Now adding a grant does nothing other than telling ux4iot that a specific session **has the permission to subscribe to SD (SD = telemetry, connection state, device twin, d2c messages)** This breaking change also changes the way the client's websocket receives messages for telemetry. Previously all telemetry in a device's message was split by all keys and for each telemetry key, a single message was published. Now, only one message per device will be published for all subscribed telemetry of that device. A client will therefore just receive one message per device and per connection state, d2c message, devicetwin or telemetry.
+
+* _**breaking**_ Request to PUT /grant endpoint no longer subscribe to SD
+* _**breaking**_ Change grant request type parameter key from "grantType" to "type"
+* _**breaking**_ Change grant request type parameter values from
+  * subscribeToTelemetry -> telemetry
+  * subscribeToConnectionState -> connectionState
+  * subscribeToDeviceTwin -> deviceTwin
+  * subscribeToD2CMessages -> d2cMessages
+  * modifyDesiredProperties -> desiredProperties
+  * invokeDirectMethod -> directMethod
+* Add new endpoint PUT /subscription to subscribe to SD which depends on grants
+* Add new endpoint DELETE /subscription to unsubscribe from SD which depends on grants
+* Add unit test cases for state management in ux4iot
+* Make parameter 'telemetryKey' in GET /lastValue/:deviceId/:telemetryKey optional, omitting it will return all last values for the given device
+* Add GET /deviceTwin/:deviceId endpoint to retrieve the last received device twin
+* Add GET /connectionState/:deviceId endpoint to retrieve the last received connection state
+* ux4iot-admin-node
+  * _breaking_ Change methodname 'revokeAll' to 'revokeAllSessions'
+  * Add methods for endpoints
+    * subscribe -> PUT /subscription
+    * unsubscribe -> DELETE /subscription
+    * invokeDirectMethod -> POST /directMethod
+    * getLastTelemetryValues -> GET /lastValue/:deviceId/:telemetryKey
+    * getLastDeviceTwin -> GET /deviceTwin
+    * getLastConnectionState -> GET /connectionState
+    * patchDesiredProperties -> PATCH /deviceTwinDesiredProperties
+* ux4iot-react Complete refactoring of internal ux4iot-react subscription logic. Ux4iot 3.0 delivers telemetry messages in a new way. It will aggregate all subscribed telemetry in one message. Ux4iot-react will distribute these messages over all used hooks. Ux4iot-react 3.0 will use the new subscription mechanism for ux4iot 3.0 in that it uses separate requests for grants and subscriptions. During these changes, a lot of types were changed, which then resulted in breaking changes. These changes however are very minor so there won't be much effort to update from 2.x to 3.0.
+
+Overview of changes:
+
+*   Unify all message callbacks in hooks
+
+    ```ts
+    export type MessageCallbackBase<T> = (
+      deviceId: string,
+      data: T | undefined,
+      timestamp: string
+    ) => void;
+
+    export type TelemetryCallback = MessageCallbackBase<Record<string, unknown>>;
+    export type DeviceTwinCallback = MessageCallbackBase<TwinUpdate>;
+    export type ConnectionStateCallback = MessageCallbackBase<boolean>;
+    export type D2CMessageCallback = MessageCallbackBase<Record<string, unknown>>;
+    ```
+* _**breaking**_ useConnectionState `onData: (connectionState: boolean) => void` - changed to `onData: ConnectionStateCallback`
+* _**breaking**_ useD2CMessages `onData: (data: T, timestamp: string) => void` - changed to `onData: D2CMessageCallback`
+* _**breaking**_ useDeviceTwin `onData: (twin: Twin) => void` - changed to `onData: DeviceTwinCallback`
+* _**breaking**_ useMultiTelemetry `onData: (deviceId: string, telemetryKey: string, telemetryValue: unknown, timestamp: string | undefined) => void` - changed to `onData: TelemetryCallback`
+* _**breaking**_ useTelemetry `onData<T>: (data: T, timestamp: string | undefined) => void` - changed to `onData<T>: MessageCallbackBase<T>`
+* _**breaking**_ Rename type RawD2CMessageCallback to D2CMessageCallback
+* _**breaking**_ useConnectionState is now returning `boolean` instead of `{connected: boolean}`
+
+If you're not using onData callbacks, you shouldn't have any breaking changes.
+
+* Add useMultiConnectionState hook
+* Add `onSubscriptionError` callback, firing when there are errors on posting requests to subscribe to ux4iot data
+* Update ux4iot-shared types to updated ux4iot 3.0 types
+* Add typeguards for all message types
+* Add separate state handling in ux4iot-react
+
 ## Version 2.0.0
 
 **Breaking**
@@ -55,7 +126,7 @@
 * The consumer group to use for reading from Event Hub or IoT Hub can be configured
 * Slightly improved the wording and detail in the creation screen
 * Fix an issue with `patchDesiredProperties`
-* Add a UI for manual testing. Is deployed [here](https://ux4iotsnapshotstorage.z6.web.core.windows.net).
+* Add a UI for manual testing. Is deployed [here](https://ux4iotsnapshotstorage.z6.web.core.windows.net/).
 * Fix issues with using ux4iot without an IoT Hub, i.e. only using an Event Hub
 * Improve memory attribution between containers
 * The DNS label can not be overwritten with the parameter `dnsLabelOverride`
