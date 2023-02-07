@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 3.2.0
+
+* Add option connectionStateOnTelemetry to enable/disable a connection state update whenever a telemetry message is received (enabled by default)
+
 ## Version 3.1.0
 
 * Fixed bug where the ux4iot instance was in a broken state, because the custom resource's function app for the managed application was not deployed correctly
