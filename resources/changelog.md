@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 3.3.0
+
+* Use latest commit as default version
+* **Remove backwards compatibility for ux4iot v2. (Remove publishing of last values over websocket after grant was added)**
+
+## Version 3.2.1
+
+* Fix bug where connectionState was not published
+
 ## Version 3.2.0
 
 * Add option connectionStateOnTelemetry to enable/disable a connection state update whenever a telemetry message is received (enabled by default)
