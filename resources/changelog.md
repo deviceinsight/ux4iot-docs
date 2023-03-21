@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 3.4.0
+
+* Send warning, error logs to Application Insights
+
 ## Version 3.3.0
 
 * Use latest commit as default version
