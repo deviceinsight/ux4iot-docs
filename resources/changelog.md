@@ -1,5 +1,21 @@
 # Changelog
 
+## Version 3.5.0
+
+**Features**
+
+* Add new endpoints
+  * PUT `subscriptions` Bulk subscribe to telemetry, deviceTwin or connectionState
+  * DELETE `subscriptions` Bulk unsubscribe to telemetry, deviceTwin or connectionState
+* Enable shared-access-key to be used in lastValue endpoints
+
+**Update subrepositories accordingly**
+
+Compatible endpoints to ux4iot@3.5.0:
+
+* ux4iot-react@3.3.0
+* ux4iot-admin-node@3.1.0
+
 ## Version 3.4.0
 
 * Send warning, error logs to Application Insights
