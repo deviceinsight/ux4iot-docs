@@ -1,5 +1,17 @@
 # Changelog
 
+## Version 3.6.0
+
+**Features & Fixes**
+
+* Add support for custom connectionStateKey
+* Disable smart app insights rules
+* Fix subscriptions endpoints not accepting empty list of subscription requests
+
+**Update subrepositories**
+
+* ux4iot-react@3.4.0
+
 ## Version 3.5.0
 
 **Features**
