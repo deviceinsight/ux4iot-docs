@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 3.6.1
+
+**Fixes**
+
+* Include the telemetry key in the actual telemetry message when it is used as the customConnectionState key
+
 ## Version 3.6.0
 
 **Features & Fixes**
