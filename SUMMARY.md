@@ -3,6 +3,7 @@
 * [Introduction](README.md)
 * [Quickstart](quickstart.md)
 * [Concepts](concepts.md)
+* [How Ux4iot works](how-ux4iot-works.md)
 
 ## Setup
 
@@ -25,8 +26,7 @@
 * [Security Backend](implementing-your-custom-security-backend/implementing-the-security-backend.md)
 * [Security Backend Examples](implementing-your-custom-security-backend/security-backend-examples/README.md)
   * [Azure Function using Javascript](implementing-your-custom-security-backend/security-backend-examples/azure-function-example-for-security-backend.md)
-* [Admin SDKs](implementing-your-custom-security-backend/admin-sdks/README.md)
-  * [Node.js](implementing-your-custom-security-backend/admin-sdks/node.js-admin-sdk.md)
+* [Ux4iot Typescript Client](implementing-your-custom-security-backend/ux4iot-typescript-client.md)
 * [Admin REST API](implementing-your-custom-security-backend/admin-rest-api.md)
 
 ## Resources

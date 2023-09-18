@@ -1,4 +1,4 @@
-# Node.js
+# Ux4iot Typescript Client
 
 The Node Admin SDK can be found on [GitHub](https://github.com/deviceinsight/ux4iot-admin-node).
 

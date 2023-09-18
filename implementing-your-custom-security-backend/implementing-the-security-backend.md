@@ -7,7 +7,7 @@ Your security backend must provide a _single_ HTTP resource that receives grant 
 
 If the grant request should be accepted, the backend should do the following things:
 
-* Forward the grant request to ux4iot's Admin API, using an [SDK](admin-sdks/) or the [REST API](admin-rest-api.md)
+* Forward the grant request to ux4iot's Admin API, using an [SDK](broken-reference) or the [REST API](admin-rest-api.md)
 * Return the HTTP response codes 200 or 204 (this is our recommendation, but no requirement)
 
 If invalid authentication credentials were provided, the backend should return the HTTP response code 401 (Unauthorized).

@@ -17,7 +17,6 @@ As you most likely already have a backend API for your IoT application, it's pro
 
 The currently is an Admin SDK for the following languages:
 
-* [Javascript / Typescript](admin-sdks/node.js-admin-sdk.md)
+* [Javascript / Typescript](broken-reference)
 
 If you want to use other languages you can use the [REST API](admin-rest-api.md).
-
