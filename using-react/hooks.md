@@ -10,11 +10,11 @@ const value = useTelemetry(deviceId, telemetryKey, { onData, onGrantError });
 
 #### Arguments
 
-<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device from which to receive telemetry data</td><td><code>string</code></td><td>true</td></tr><tr><td>telemetryKey</td><td>The key of the telemetry item</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th width="169">Argument</th><th width="222">Description</th><th width="156.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device from which to receive telemetry data</td><td><code>string</code></td><td>true</td></tr><tr><td>telemetryKey</td><td>The key of the telemetry item</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
 
 **HookOptions**
 
-<table><thead><tr><th>key</th><th>Description</th><th>value type</th><th data-type="checkbox">required</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when new telemetry of <code>telemetryKey</code> is received on the device</td><td><code>(data: unknown) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the direct method request</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th width="161.10758620689654">key</th><th width="268">Description</th><th width="217.12530379049585">value type</th><th data-type="checkbox">required</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when new telemetry of <code>telemetryKey</code> is received on the device</td><td><code>(data: unknown) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the direct method request</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
@@ -133,7 +133,7 @@ const App = () => {
 
 #### Arguments
 
-<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th width="169">Argument</th><th width="222">Description</th><th width="156.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
 
 #### HookOptions
 
@@ -166,11 +166,11 @@ const reboot = useDirectMethod(deviceId, methodName, { onGrantError });
 
 #### Arguments
 
-<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device to execute the direct method on</td><td><code>string</code></td><td>true</td></tr><tr><td>methodName</td><td>The name of the method to execute on the device</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th width="169">Argument</th><th width="222">Description</th><th width="156.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device to execute the direct method on</td><td><code>string</code></td><td>true</td></tr><tr><td>methodName</td><td>The name of the method to execute on the device</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
 
 **Hook Options**
 
-<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the direct method request</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th width="161">Argument</th><th>Description</th><th width="224">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the direct method request</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
@@ -221,11 +221,11 @@ const deviceTwin = useDeviceTwin(deviceId, { onData, onGrantError });
 
 #### Arguments
 
-<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th width="169">Argument</th><th width="222">Description</th><th width="156.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
 
 **Hook Options**
 
-<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when a new twin updated is received.</td><td><code>(twin: Twin) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th width="167">Argument</th><th width="206">Description</th><th width="217">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when a new twin updated is received.</td><td><code>(twin: Twin) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
@@ -274,11 +274,11 @@ const connectionState = useConnectionState(deviceId, { onData, onGrantError });
 
 #### Arguments
 
-<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th width="169">Argument</th><th width="222">Description</th><th width="156.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
 
 **Hook Options**
 
-<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when a new connectionState update is received.</td><td><code>(connectionState: boolean) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th width="167">Argument</th><th width="206">Description</th><th width="217">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when a new connectionState update is received.</td><td><code>(connectionState: boolean) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
@@ -300,11 +300,11 @@ const patchDesiredProperties = usePatchDesiredProperties(deviceId, { onGrantErro
 
 #### Arguments
 
-<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device onto which to patch the desired properties</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th width="169">Argument</th><th width="222">Description</th><th width="156.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device onto which to patch the desired properties</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
 
 **Hook Options**
 
-<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the patch desired properties request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th width="167">Argument</th><th width="206">Description</th><th width="217">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the patch desired properties request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
@@ -347,11 +347,11 @@ const lastMessage = useD2CMessages<T>(deviceId, { onData, onGrantError });
 
 #### Arguments
 
-<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th width="169">Argument</th><th width="222">Description</th><th width="156.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
 
 **Hook Options**
 
-<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when the device sends a new message.</td><td><code>(data: Record&#x3C;string, unknown>) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th width="167">Argument</th><th width="206">Description</th><th width="217">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when the device sends a new message.</td><td><code>(data: Record&#x3C;string, unknown>) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 

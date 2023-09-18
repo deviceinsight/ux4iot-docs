@@ -2,6 +2,7 @@
 
 * [Introduction](README.md)
 * [Quickstart](quickstart.md)
+* [Concepts](concepts.md)
 
 ## Setup
 
