@@ -63,7 +63,11 @@ When you want to subscribe to this data, you will have a setup similar to:
 
 * EventHub -> Ux4iot <-> Ux4iot Security Backend <-> Frontend
 
-The Frontend wants to subscribe to data. The following steps are made before this is possible:
+The Frontend wants to subscribe to data. In the following graphic you will see the general flow of a successful telemetry subscription over a security backend:
+
+<figure><img src=".gitbook/assets/ux4iot subscription flow.drawio.png" alt=""><figcaption><p>Flow of a subscription</p></figcaption></figure>
+
+The following steps are made before this is possible:
 
 * The frontend want to subscribe to device \`my-device\` on telemetry \`temperature\`.
 * The frontend opens a new session with ux4iot and receives a sessionId. This will also open a new websocket from ux4iot-server to the frontend. This sessionId will be included in all further requests to the security backend or ux4iot-server directly.
