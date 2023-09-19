@@ -65,23 +65,23 @@ When you want to subscribe to this data, you will have a setup similar to:
 
 The Frontend wants to subscribe to data. In the following graphic you will see the general flow of a successful telemetry subscription over a security backend:
 
-<figure><img src=".gitbook/assets/ux4iot subscription flow.drawio.png" alt=""><figcaption><p>Flow of a subscription</p></figcaption></figure>
+The following steps are made:
 
-The following steps are made before this is possible:
 
-* The frontend want to subscribe to device \`my-device\` on telemetry \`temperature\`.
+
+* The frontend want to subscribe to device `my-device` on telemetry `temperature` using the hook `useTelemetry`
 * The frontend opens a new session with ux4iot and receives a sessionId. This will also open a new websocket from ux4iot-server to the frontend. This sessionId will be included in all further requests to the security backend or ux4iot-server directly.
-* The frontend issues a telemetry grant request to a security backend (written by you), for \`my-device\` and telemetry key \`temperature\`
+* The frontend issues a telemetry grant request to a security backend (written by you), for `my-device` and telemetry key `temperature`
 * The security backend decides whether or not the user in the frontend is authorized to subscribe to this data
 * If the security backend denies the request, an error is returned to the frontend, to tell the user that there are missing authorities.
-* If the security backend approves the request, it forwards the GrantRequest to the ux4iot-server API to add the GrantRequest to the session with the \`sessionId\`.
+* If the security backend approves the request, it forwards the GrantRequest to the ux4iot-server API to add the GrantRequest to the session with the `sessionId`.
 * The security backend returns a successful state to the frontend.
 * The frontend sends a last value request to ux4iot-server. Since the Grant Request to ux4iot has been registered, the request can be now done directly to ux4iot-server, without asking the security backend first.
-* The frontend receives the last value or 404 if there is no last value for \`my-device\` and \`temperature\`
+* The frontend receives the last value or 404 if there is no last value for `my-device` and `temperature`
 * The frontend sends a subscription request to ux4iot-server. Since the Grant Request to ux4iot has been registered, the request can be now done again directly to ux4iot-server, without asking the security backend first.
-* After the subscription request has been registered in the session object for the sessionId in ux4iot, every time ux4iot receives a telemetry message for \`my-device\` with a value for \`temperature\` it will be published to the opened websocket.&#x20;
+* After the subscription request has been registered in the session object for the sessionId in ux4iot, every time ux4iot receives a telemetry message for `my-device` with a value for `temperature` it will be published to the opened websocket.&#x20;
 
-This is the flow for telemetry. The features of the frontend library "ux4iot-react" include hooks to subscribe to multiple telemetry keys and connection states on a single device. If you use an IoTHub there are hooks to patch desired properties on a device twin, send direct methods or subscribe to device twins.
+This is the flow for telemetry. The features of the frontend library ux4iot-react include hooks to subscribe to multiple telemetry keys and connection states on a single device. If you use an IoTHub there are hooks to patch desired properties on a device twin, send direct methods or subscribe to device twins.
 
 {% hint style="info" %}
 The security backend is highly recommended in a production environment. For development purposes, you can use the Admin Connection String in your frontend to test the data subscription.
