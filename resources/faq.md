@@ -43,7 +43,7 @@ az resource show \
 {% hint style="info" %}
 You can quite easily find the `RESOURCE_ID` of the ux4iot instance in the Azure portal if you navigate to the ux4iot instance and copy the highlighted section of the URL:
 
-<img src="../.gitbook/assets/image (2).png" alt="" data-size="original">
+<img src="../.gitbook/assets/image (19) (1).png" alt="" data-size="original">
 {% endhint %}
 
 ## Failed to publish event hub message ... "$cbs" endpoint timed out&#x20;

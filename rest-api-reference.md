@@ -22,10 +22,6 @@ There are api resources to perform actions against the IoTHub. They are only ava
 
 <mark style="color:blue;">`GET`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/version`
 
-## Get the server version of ux4iot
-
-<mark style="color:blue;">`GET`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/version`
-
 This resource can always be requested without any credentials.
 
 {% tabs %}
@@ -33,10 +29,6 @@ This resource can always be requested without any credentials.
 
 {% endtab %}
 {% endtabs %}
-
-## Get the current status of ux4iot
-
-<mark style="color:blue;">`GET`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/status`
 
 ## Get the current status of ux4iot
 
@@ -87,22 +79,6 @@ Helpful when you want to ensure the correct deployment of ux4iot.
 
 {% endtab %}
 {% endtabs %}
-
-## Set the log level of ux4iot
-
-<mark style="color:orange;">`PUT`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/logLevel/:level`
-
-#### Path Parameters
-
-| Name                                    | Type   | Description  |
-| --------------------------------------- | ------ | ------------ |
-| level<mark style="color:red;">\*</mark> | String | Xv4skDjSTpV6 |
-
-#### Headers
-
-| Name                                                | Type   | Description  |
-| --------------------------------------------------- | ------ | ------------ |
-| Shared-Access-Key<mark style="color:red;">\*</mark> | String | uV1hl7FtRG7X |
 
 ## Sessions
 
@@ -166,36 +142,6 @@ Helpful when you want to ensure the correct deployment of ux4iot.
 {% endtab %}
 {% endtabs %}
 
-## Open a new session in ux4iot
-
-<mark style="color:green;">`POST`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/session`
-
-## Delete a session by ID
-
-<mark style="color:red;">`DELETE`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/sessions/:sessionId`
-
-#### Path Parameters
-
-| Name                                        | Type   | Description  |
-| ------------------------------------------- | ------ | ------------ |
-| sessionId<mark style="color:red;">\*</mark> | String | oBN3RhadR21W |
-
-#### Headers
-
-| Name                                                | Type   | Description  |
-| --------------------------------------------------- | ------ | ------------ |
-| Shared-Access-Key<mark style="color:red;">\*</mark> | String | kfT6tml3k066 |
-
-## Delete all sessions
-
-<mark style="color:red;">`DELETE`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/sessions`
-
-#### Headers
-
-| Name                                                | Type   | Description  |
-| --------------------------------------------------- | ------ | ------------ |
-| Shared-Access-Key<mark style="color:red;">\*</mark> | String | elh2jHEBlme3 |
-
 ## Grants
 
 Grants authorize a session to subscribe to resources, patch desired properties and execute direct methods.
@@ -224,10 +170,6 @@ type DirectMethodGrantRequest = {
 }
 ```
 {% endcode %}
-
-## Forward a grant
-
-<mark style="color:orange;">`PUT`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/grants`
 
 ## Forward a grant
 
@@ -283,26 +225,6 @@ Unauthorized: {error description}
 
 <mark style="color:red;">`DELETE`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/grants`
 
-#### Headers
-
-| Name                                                | Type   | Description  |
-| --------------------------------------------------- | ------ | ------------ |
-| Shared-Access-Key<mark style="color:red;">\*</mark> | string | hHG4yN4myeT4 |
-
-#### Request Body
-
-| Name                                        | Type           | Description  |
-| ------------------------------------------- | -------------- | ------------ |
-| telemetryKey                                | string \| null | 1PHv72r5XOtf |
-| deviceId<mark style="color:red;">\*</mark>  | string         | fXrbrjDfdiWy |
-| sessionId<mark style="color:red;">\*</mark> | string         | SRKEoij7ozXI |
-| type<mark style="color:red;">\*</mark>      | string         | ZXePBcAnr02S |
-| directMethodName                            | string         | NDdlLc7IuJUL |
-
-## Revoke a grant
-
-<mark style="color:red;">`DELETE`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/grants`
-
 Revoke the grant given&#x20;
 
 #### Headers
@@ -343,22 +265,6 @@ Revoke the grant given&#x20;
 
 {% endtab %}
 {% endtabs %}
-
-#### Headers
-
-| Name                                                | Type   | Description  |
-| --------------------------------------------------- | ------ | ------------ |
-| Shared-Access-Key<mark style="color:red;">\*</mark> | string | M5XMSLtZaF77 |
-
-#### Request Body
-
-| Name                                        | Type           | Description  |
-| ------------------------------------------- | -------------- | ------------ |
-| deviceId<mark style="color:red;">\*</mark>  | string         | x1zv28WaAxce |
-| type<mark style="color:red;">\*</mark>      | string         | Wf9EalfEfzGh |
-| sessionId<mark style="color:red;">\*</mark> | string         | xixrH7zpRmv8 |
-| telemetryKey                                | string \| null | K2Jbwki0sqvW |
-| directMethodName                            | string \| null | OIXVOWbIsGHk |
 
 ## Subscriptions
 
@@ -444,36 +350,6 @@ export type D2CMessageSubscriptionRequest = { sessionId: string; deviceId: strin
 
 <mark style="color:orange;">`PUT`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/subscriptions`
 
-## Subscribe to live data
-
-<mark style="color:orange;">`PUT`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/subscription`
-
-#### Request Body
-
-| Name                                        | Type           | Description  |
-| ------------------------------------------- | -------------- | ------------ |
-| sessionId<mark style="color:red;">\*</mark> | string         | mtVaHesR8CVN |
-| deviceId<mark style="color:red;">\*</mark>  | string         | 0wNQn0LlDYpG |
-| type<mark style="color:red;">\*</mark>      | string         | Pyxk6B28duZq |
-| telemetryKey                                | string \| null | 3SnY2KquvyN9 |
-
-## Unsubscribe from live data
-
-<mark style="color:red;">`DELETE`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/subscription`
-
-#### Request Body
-
-| Name                                        | Type           | Description  |
-| ------------------------------------------- | -------------- | ------------ |
-| sessionId<mark style="color:red;">\*</mark> | string         | IGyqF866cXCv |
-| deviceId<mark style="color:red;">\*</mark>  | string         | dhCeXCANiD2L |
-| type<mark style="color:red;">\*</mark>      | string         | lIDS4OSxfPnR |
-| telemetryKey                                | string \| null | sG5BEtmPgdjH |
-
-## Bulk subscribe to multiple devices
-
-<mark style="color:orange;">`PUT`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/subscriptions`
-
 You have to send a list of subscription requests as body. If this list contains an invalid subscription request, the entire request will fail without applying any subscription requests. If you have a missing grant for some of the subscription requests, they will be skipped.
 
 The response will contain a body that gives you the list of applied subscription requests. If you have valid grants for all subscription requests, the response body will match your request body.&#x20;
@@ -487,10 +363,6 @@ The response will contain a body that gives you the list of applied subscription
 
 {% endtab %}
 {% endtabs %}
-
-## Bulk unsubscribe from multiple devices
-
-<mark style="color:red;">`DELETE`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/subscriptions`
 
 ## Bulk unsubscribe from multiple devices
 
@@ -511,10 +383,6 @@ The response will contain a body that gives you the list of applied subscription
 {% endtabs %}
 
 ## Last Values
-
-## Read last telemetry values for device
-
-<mark style="color:blue;">`GET`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/lastValue/:deviceId/:telemetryKey?`
 
 ## Read last telemetry values for device
 
@@ -585,17 +453,6 @@ If you use a Shared-Access-Key, then any last value will be returned, without gr
 
 <mark style="color:red;">`DELETE`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/lastValue/:deviceId`
 
-#### Path Parameters
-
-| Name                                       | Type   | Description  |
-| ------------------------------------------ | ------ | ------------ |
-| deviceId<mark style="color:red;">\*</mark> | String | isvHDujPD2sR |
-| telemetryKey                               | String | qx85SRDQIzGD |
-
-## Remove all last values for a device
-
-<mark style="color:red;">`DELETE`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/lastValue/:deviceId`
-
 This endpoint both supports requests with sessionId header or requests with Shared-Access-Key header.
 
 If you use a sessionId, then it will be check whether a grant for the device telemetry exists before the last values are returned.
@@ -657,17 +514,6 @@ If you use a Shared-Access-Key, then any last value will be returned, without gr
 
 <mark style="color:blue;">`GET`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/deviceTwin/:deviceId`
 
-#### Path Parameters
-
-| Name                                       | Type   | Description  |
-| ------------------------------------------ | ------ | ------------ |
-| deviceId<mark style="color:red;">\*</mark> | String | VglYZ8e50wd2 |
-| telemetryKey                               | String | hv2WGfl62pAG |
-
-## Read last device twin for device
-
-<mark style="color:blue;">`GET`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/deviceTwin/:deviceId`
-
 Returns the last device twin for a device, if you have provided a IoTHub service connection string in your ux4iot deployment parameters.
 
 #### Path Parameters
@@ -706,16 +552,6 @@ Returns the last device twin for a device, if you have provided a IoTHub service
 
 {% endtab %}
 {% endtabs %}
-
-## Read last connection state for device
-
-<mark style="color:blue;">`GET`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/connectionState/:deviceId`
-
-#### Path Parameters
-
-| Name                                       | Type   | Description  |
-| ------------------------------------------ | ------ | ------------ |
-| deviceId<mark style="color:red;">\*</mark> | string | nCs2v8CJdvAY |
 
 ## Read last connection state for device
 
@@ -764,12 +600,6 @@ If you have provided a IoTHub service connection string in your ux4iot deploymen
 {% endtab %}
 {% endtabs %}
 
-#### Path Parameters
-
-| Name                                       | Type   | Description  |
-| ------------------------------------------ | ------ | ------------ |
-| deviceId<mark style="color:red;">\*</mark> | string | o4jo6prm4Idp |
-
 ## IoTHub Methods
 
 These api resources are only available if you provided an IoTHub service connection string in your ux4iot deployment parameters.
@@ -797,10 +627,6 @@ type DirectMethodRequestBody = {
 {% endcode %}
 
 When authorized and grants are set, ux4iot will send a request to IoTHub to execute the requested direct method. We forward the [HTTP response codes from the IoTHub](https://learn.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-direct-methods#response).
-
-## Executes a direct method on an IoTHub device
-
-<mark style="color:green;">`POST`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/directMethod`
 
 ## Executes a direct method on an IoTHub device
 
@@ -844,13 +670,6 @@ Provide a body containing the following
 
 {% endtab %}
 {% endtabs %}
-
-#### Request Body
-
-| Name                                           | Type               | Description  |
-| ---------------------------------------------- | ------------------ | ------------ |
-| deviceId<mark style="color:red;">\*</mark>     | String             | Bxl6oIskA9dT |
-| methodParams<mark style="color:red;">\*</mark> | DeviceMethodParams | vXA3S5STcPvd |
 
 ### Patch Desired Properties
 
@@ -900,14 +719,3 @@ type PatchDesiredPropertiesRequestBody = {
 ```
 {% endtab %}
 {% endtabs %}
-
-## Executes a patch of desired properties on a device twin
-
-<mark style="color:purple;">`PATCH`</mark> `https://ux4iot-xyz.westeurope.azurecontainer.io/deviceTwinDesiredProperties`
-
-#### Request Body
-
-| Name                                                   | Type                 | Description  |
-| ------------------------------------------------------ | -------------------- | ------------ |
-| deviceId<mark style="color:red;">\*</mark>             | String               | OEP8XN0RfiV6 |
-| desiredPropertyPatch<mark style="color:red;">\*</mark> | Record\<string, any> | fzEcYn34YvQb |

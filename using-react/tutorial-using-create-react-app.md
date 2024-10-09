@@ -33,9 +33,9 @@ const UX4IOT_ADMIN_CONNECTION_STRING = 'YOUR_ADMIN_CONNECTION_STRING';
 
 You can retrieve the connection string from the Azure Portal:
 
-![](<../.gitbook/assets/image (1) (1).png>)
+![](<../.gitbook/assets/image (1).png>)
 
-![Copy either the "Primary" or "Secondary" connection string](<../.gitbook/assets/image (18).png>)
+![Copy either the "Primary" or "Secondary" connection string](<../.gitbook/assets/image (17).png>)
 
 {% hint style="info" %}
 Use `.env` and `.env.local` files to store your app's environment variables. Read more about that in [create-react-app's section on environment variables](https://create-react-app.dev/docs/adding-custom-environment-variables/)
@@ -108,13 +108,13 @@ If you use your admin connection string in the frontend, there will be a notific
 
 If you do not already have an IoT devices sending data, you can easily simulate one. First, create a device with device ID `simulated-device` in the IoT Hub:
 
-![](<../.gitbook/assets/image (3).png>)
+![](<../.gitbook/assets/image (13).png>)
 
-![](<../.gitbook/assets/image (6).png>)
+![](<../.gitbook/assets/image (11).png>)
 
 Now copy the connection string for the device.
 
-![](<../.gitbook/assets/image (15).png>)
+![](<../.gitbook/assets/image (12).png>)
 
 With the connection string you can start a simulator using Docker by invoking the following command. (The GitHub repo of the simulator can be found [here](https://github.com/stefan-hudelmaier/simulated-temperature-sensor).)
 

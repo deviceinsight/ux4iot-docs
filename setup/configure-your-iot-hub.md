@@ -1,5 +1,11 @@
 # Configure your existing IoT Hub
 
+{% hint style="danger" %}
+We recommend using a **separate** EventHub for the iotHubEventHubConnectionString to subscribe to messages. Your IoTHub should forward the messages to this EventHub or be consumed by an azure function that then sends the messages to this EventHub. This is because of a bug (appearantly in the built-in EventHub of the IoTHub) that causes messages to get lost.
+
+In order to use your IoTHub you can still provide the Shared Access Key of the IoTHub with Registry Read and Service Connect priviledges, to get access to the direct method, device twin and desired property features of ux4iot. &#x20;
+{% endhint %}
+
 In order to use the following hooks, you need to perform additional setup steps:
 
 * [useConnectionState](../using-react/hooks.md#useconnectionstate)

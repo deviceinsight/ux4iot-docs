@@ -1,4 +1,4 @@
-# Ux4iot Typescript Client
+# ux4iot-admin-node
 
 The Node Admin SDK can be found on [GitHub](https://github.com/deviceinsight/ux4iot-admin-node).
 
@@ -21,8 +21,8 @@ yarn add ux4iot-admin-node
 Initialize the SDK using the connection string. You can retrieve the connection string from the Azure portal.
 
 ```javascript
-const Ux4iotAdmin = require('ux4iot-admin');
-const sdk = new Ux4iotAdmin({
+const Ux4iotAdminSDK = require('ux4iot-admin');
+const sdk = new Ux4iotAdminSDK({
     connectionString: "HostName=...;Key=secret";
 });
 ```
@@ -54,5 +54,5 @@ sdk.revokeSession("ijfoewio22490320");
 You can even revoke all sessions:
 
 ```javascript
-sdk.revokeAll();
+sdk.revokeAllSessions();
 ```

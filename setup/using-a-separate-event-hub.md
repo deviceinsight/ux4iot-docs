@@ -26,6 +26,8 @@ In Scenario 1 all hooks can be used. You only need to configure ux4iot with the 
 
 * [useTelemetry](../using-react/hooks.md#usetelemetry)
 * [useMultiTelemetry](../using-react/hooks.md#usemultitelemetry)
+* [useConnectionState](../using-react/hooks.md#useconnectionstate)
+* useMultiConnectionString
 * [useD2CMessages](../using-react/hooks.md#used-2-cmessages)
 
 When you send messages to Event Hub, they must adhere to the following requirements:
@@ -69,26 +71,20 @@ Here is an example of sending a message to an Event Hub using Node.js:
 const { EventHubProducerClient } = require("@azure/event-hubs");
 
 const eventHubName = "ux4iot-input";
-
-const {
-    EVENT_HUB_CONNECTION_STRING
-} = process.env;
+const { EVENT_HUB_CONNECTION_STRING} = process.env;
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
 async function main() {
-
     // Create a producer client to send messages to the event hub.
     const producer = new EventHubProducerClient(EVENT_HUB_CONNECTION_STRING, eventHubName);
 
     const now = new Date();
-
     const body = {
         temperature: 42.1,
         pressure: 10.9,
-        
     };
 
     const properties = {

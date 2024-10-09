@@ -1,9 +1,5 @@
 # Changelog
 
-## Version 4.2.1
-
-* No changes, 4.2.0 was released incompletely.
-
 ## Version 4.2.0
 
 * Migrate custom resource backend from Azure Function to Container Apps

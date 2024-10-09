@@ -87,7 +87,7 @@ You can see a complete example in the [tutorial using create-react-app](tutorial
 
 The value of the `adminConnectionString` option can be retrieved via the Azure portal:
 
-![](<../.gitbook/assets/image (22).png>)
+![](<../.gitbook/assets/image (7).png>)
 
 You can select either the Primary or the Secondary connection string.
 
@@ -120,7 +120,7 @@ const prodOptions: InitializeProdOptions = {
 
 The value for the `ux4iotURL` parameter is available on your ux4iot instance in the Azure portal:
 
-![](<../.gitbook/assets/image (12).png>)
+![](<../.gitbook/assets/image (8).png>)
 
 For detailed information on how to implement the Grant Request Function, see [the dedicated chapter](implementing-the-grantrequestforwarder-function.md).
 

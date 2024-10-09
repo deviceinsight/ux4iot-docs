@@ -2,6 +2,11 @@
 
 ux4iot is installed in your Azure subscription as a Managed Application. Billing will be handled by Microsoft.
 
+## Prerequisits:
+
+* You need to have an azure subscription
+* You need to be owner of the resource group that you deploy your ux4iot into. This is because during the deployment, there is a role assigned between managed resources.
+
 ### Creating via Azure Marketplace
 
 Visit the [offer on Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/deviceinsightgmbh-4961725.ux4iot) and click "Get It Now".
@@ -16,7 +21,7 @@ If you prefer the command line, the following snippet shows how to do it. See fu
 
 {% tabs %}
 {% tab title="AZ CLI" %}
-```
+```bash
 RESOURCE_GROUP=ux4iot
 SUBSCRIPTION=yourazuresubscription
 
@@ -44,7 +49,7 @@ In effect, everything that not only consumes information but accesses the device
 
 You can retrieve the service connection string for the IoT Hub with:
 
-```
+```bash
 IOT_HUB_CONNECTION_STRING=$(az iot hub connection-string show \
   --resource-group RESOURCE_GROUP_OF_IOT_HUB \
   --subscription SUBSCRIPTION \
@@ -56,7 +61,7 @@ IOT_HUB_CONNECTION_STRING=$(az iot hub connection-string show \
 
 You can retrieve the Event Hub compatible endpoint connection string with:
 
-```
+```bash
 IOT_HUB_EVENT_HUB_CONNECTION_STRING=$(az iot hub connection-string show \
   --resource-group RESOURCE_GROUP_OF_IOT_HUB \
   --subscription SUBSCRIPTION \
@@ -73,8 +78,7 @@ Replace `RESOURCE_GROUP_OF_IOT_HUB` with the resource group that your IoT Hub re
 
 Here is an example Bicep template that you can use to deploy a ux4iot instance.
 
-```
-resource managedApp 'Microsoft.Solutions/applications@2019-07-01' = {
+<pre><code>resource managedApp 'Microsoft.Solutions/applications@2019-07-01' = {
   name: 'ux4iot'
   kind: 'marketplace'
   location: resourceGroup().location
@@ -94,10 +98,6 @@ resource managedApp 'Microsoft.Solutions/applications@2019-07-01' = {
       // Optional
       iotHubServiceConnectionString: {
         value: iotHubServiceConnectionString
-      }
-      // Optional
-      dnsLabelOverride: {
-        value: 'ux4iot-snapshot'
       }
       // Optional
       sku: {
@@ -121,8 +121,8 @@ resource managedApp 'Microsoft.Solutions/applications@2019-07-01' = {
       }
       // Optional
       secondaryAdminSecret: {
-        value: 'supersecretaswell'
-      }
+<strong>        value: 'supersecretaswell'
+</strong>      }
       // Optional
       connectionStateCacheTTL: {
         value: 60
@@ -130,7 +130,11 @@ resource managedApp 'Microsoft.Solutions/applications@2019-07-01' = {
     }
   }
 }
-```
+</code></pre>
+
+{% hint style="warning" %}
+Notice when you redeploy ux4iot with a different iotHubEventHubConnectionString, **you will need to restart your ux4iot**. You can do this by navigating in the azure portal to your ux4iot instance and clicking the restart button on the top icon bar.&#x20;
+{% endhint %}
 
 {% hint style="info" %}
 Any tags you specify for the managed app will be inherited by the created managed resource group.
