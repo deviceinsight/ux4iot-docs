@@ -67,7 +67,11 @@ The Frontend wants to subscribe to data. In the following graphic you will see t
 
 The following steps are made:
 
+<div data-full-width="true">
+
 <figure><img src=".gitbook/assets/ux4iot subscription flow.drawio.png" alt=""><figcaption><p>Subscription Flow</p></figcaption></figure>
+
+</div>
 
 * The frontend want to subscribe to device `my-device` on telemetry `temperature` using the hook `useTelemetry`
 * The frontend opens a new session with ux4iot and receives a sessionId. This will also open a new websocket from ux4iot-server to the frontend. This sessionId will be included in all further requests to the security backend or ux4iot-server directly.

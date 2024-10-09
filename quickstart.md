@@ -8,16 +8,15 @@ These quickstarts do not include a custom security backend, so you only have to 
 
 If you want to deploy a new IoT Hub for trying out ux4iot, you do this:
 
-* [Create a new IoT Hub and ux4iot instance](setup/create-iot-hub-and-linked-ux4iot.md) \(10 Minutes\)
-* [Bootstrap your React application, add your first ux4iot hook, send simulated data](using-react/tutorial-using-create-react-app.md) \(15 Minutes\)
+* [Create a new IoT Hub and ux4iot instance](eventhub-iothub/create-iot-hub-and-linked-ux4iot.md) (10 Minutes)
+* [Bootstrap your React application, add your first ux4iot hook, send simulated data](using-react/tutorial-using-create-react-app.md) (15 Minutes)
 
 ### Quickstart with existing IoT Hub and device
 
 If you have an existing IoT hub and devices, perform the following steps
 
-* [Create your ux4iot instance](setup/create-ux4iot-instance.md) \(10 Minutes\)
-* [Configure your IoT Hub](setup/configure-your-iot-hub.md) \(5 Minutes\)
-* [Bootstrap your React application, add your first ux4iot hook](using-react/tutorial-using-create-react-app.md) \(10 Minutes\)
+* [Create your ux4iot instance](create-ux4iot-instance.md) (10 Minutes)
+* [Configure your IoT Hub](eventhub-iothub/configure-your-iot-hub.md) (5 Minutes)
+* [Bootstrap your React application, add your first ux4iot hook](using-react/tutorial-using-create-react-app.md) (10 Minutes)
 
-### 
-
+###

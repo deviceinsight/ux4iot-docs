@@ -6,7 +6,7 @@ ux4iot is a tool for directly communicating with your IoT devices from your web 
 
 ### General architecture
 
-![](<.gitbook/assets/ux4iot-architecture (1).png>)
+![IoTHub + Ux4iot + Frontend Architecture setup](<.gitbook/assets/ux4iot-architecture (1).png>)
 
 With ux4iot your frontend gets access to Azure IoT Hub's communication primitives without having a custom-built backend middleware translating between IoT Hub and your user interface. No need to design a REST API so that your UI can offer IoT functionality.
 

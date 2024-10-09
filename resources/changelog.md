@@ -1,5 +1,73 @@
 # Changelog
 
+## Version 4.2.1
+
+* No changes, 4.2.0 was released incompletely.
+
+## Version 4.2.0
+
+* Migrate custom resource backend from Azure Function to Container Apps
+* Remove Azure Function (Plan and Function app)
+* Remove restart button
+* Remove now superfluous cold start prevention via regular pings
+* Publish mainTemplate.bicep to the `ux4iot-shared` storage account. This can be used as an alternative to Managed App deployments.
+
+## Version 4.1.5
+
+* Publish connection state when device does offline due to not sending data (UX4IOT-274).
+
+## Version 4.1.4
+
+Fix bug in config handling regarding `CUSTOM_CONNECTION_STATE_KEY.`
+
+## Version 4.1.0
+
+* If customConnectionStateKey is set, getting the last value for connection state will not request the iothub for the last connection state.
+
+## Version 4.0.0
+
+* In this release, we changed the infrastructure of ux4iot to use Azure Container Apps instead of Azure Container Instances. This change was necessary because of Azure Container Instances being very unreliable in the past. We experienced bugs that caused the ux4iot container to not be available, not deployable and containers randomly terminating and restarting. Therefore we want to switch to azure container apps. This also allows us to better scale containers, since the backbone of container apps is kubernetes.
+* The downside to this is switching to container apps hosts the container in a new environment, which results in a new connection string. We provide a migration guide that will help to switch to the new version as smooth as possible.
+* A new feature for restarting the ux4iot from the application screen in the portal made it necessary to add a permission during the ux4iot deployment. This means that you need to be Owner of the resource group that you deploy ux4iot in.
+
+### Important&#x20;
+
+In the past we had troubles aligning the versions of these ux4iot modules, especially when a change on one module was not backwards compatible and had effects on the other modules. This resulted in situations like: version 3.2.0 in ux4iot-react is not compatible with ux4iot-server 3.5.0 but compatible with ux4iot-server 3.4.0. ux4iot-react however had no changes. Therefore, starting with 4.0.0 we will always align versions of
+
+* ux4iot-server
+* ux4iot-react
+* ux4iot-admin-node
+
+### Features
+
+* _breaking_ Switch to Azure Container Apps (see migration guide)
+* Fix iothub DeviceNotFound errors and adjust connection state logic to be more robust. See new documentation page "Connection State"
+* Add new HTTP endpoint GET /status to return the status of the ux4iot service
+* Add log analytics workspace based application insights. This includes a new configuration parameter "logAnalyticsTracesTableTier" with values "Basic" and "Analytics"
+* Add restart button for ux4iot users
+* Add status button for ux4iot apps
+* Fix a bug in ux4iot-react resulting in false connection states for devices
+* Remove traefik container
+* Update all libraries used in ux4iot-server to the latest version
+* Add a potential bugfix for message loss of telemetry messages when consuming from IoTHub built-in eventhub (cbs endpoint timeout).
+* Thoroughly update the documentation and drop documentation for 3.x versions.
+
+### Migration Guide to switch to Container Apps
+
+We recommend doing creation and modification of services in your bicep files.
+
+1. Create a new consumer group in the eventhub that you are consuming messages from
+2. Deploy ux4iot-containerapps managed application with the same config parameters as the old ux4iot managed application except for the new consumer group, the service name and the managedGroupId.
+3. Copy the connection string of your new ux4iot service by navigating to the service in the portal and clicking on Admin Connection Strings in the sidebar.
+4. Execute the migration script [migrate-redis.py](changelog.md#migration-redis.py) to transfer your last value file from the old ux4iot to the new one. If you lack permissions and you want all last values from your old 3.x ux4iot transferred to your new ux4iot send us a message.
+5. Replace all occurrences of the old connection string with the new one in your application (function apps, frontends, docker containers, etc.)
+6. Verify that all functionality of your old ux4iot works in the new one (receive telemetry and connection states, device twins, direct methods, etc.)
+7. After everything works with the new ux4iot delete the old ux4iot service from the resource group. You are now running ux4iot 4.0
+
+#### migration-redis.py
+
+{% file src="../.gitbook/assets/migrate-redis.py" %}
+
 ## Version 3.6.1
 
 **Fixes**

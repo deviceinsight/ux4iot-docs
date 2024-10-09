@@ -7,7 +7,7 @@ Your security backend must provide a _single_ HTTP resource that receives grant 
 
 If the grant request should be accepted, the backend should do the following things:
 
-* Forward the grant request to ux4iot's Admin API, using an [SDK](broken-reference) or the [REST API](admin-rest-api.md)
+* Forward the grant request to ux4iot's Admin API, using an [SDK](broken-reference) or the [REST API](broken-reference)
 * Return the HTTP response codes 200 or 204 (this is our recommendation, but no requirement)
 
 If invalid authentication credentials were provided, the backend should return the HTTP response code 401 (Unauthorized).
@@ -24,7 +24,7 @@ The grant requests are JSON objects that are passed to your local`grantRequestFo
 
 ```javascript
 {
-  "grantType": "invokeDirectMethod",
+  "type": "directMethod",
   "sessionId": "ht9JvTLalcy3GQDttyqu",
   "deviceId": "d123",
   "directMethodName": "reset"
@@ -37,7 +37,7 @@ If you forward this grant request to ux4iot, it means that the client can call t
 
 ```javascript
 {
-  "grantType": "subscribeToTelemetry",
+  "type": "telemetry",
   "sessionId": "ht9JvTLalcy3GQDttyqu",
   "deviceId": "d123",
   "telemetryKey": "temperature"
@@ -54,7 +54,7 @@ In contrast to other request like `invokeDirectMethod,`this not only approves th
 
 ```javascript
 {
-  "grantType": "subscribeToDeviceTwin",
+  "type": "deviceTwin",
   "sessionId": "ht9JvTLalcy3GQDttyqu",
   "deviceId": "d123" 
 }
@@ -72,7 +72,7 @@ In contrast to other request like `invokeDirectMethod`, this not only approves t
 
 ```javascript
 {
-  "grantType": "subscribeToConnectionState",
+  "type": "connectionState",
   "sessionId": "ht9JvTLalcy3GQDttyqu",
   "deviceId": "d123" 
 }
@@ -88,7 +88,7 @@ In contrast to other request like `invokeDirectMethod`, this not only approves t
 
 ```javascript
 {
-  "grantType": "modifyDesiredProperties",
+  "type": "desiredProperties",
   "sessionId": "ht9JvTLalcy3GQDttyqu",
   "deviceId": "d123" 
 }
@@ -102,7 +102,7 @@ It is currently not possible to restrict this to a sub section of the desired pr
 
 ```javascript
 {
-  "grantType": "subscribeToD2CMessages",
+  "type": "d2cMessages",
   "sessionId": "ht9JvTLalcy3GQDttyqu",
   "deviceId": "d123" 
 }

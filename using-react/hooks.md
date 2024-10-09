@@ -10,11 +10,11 @@ const value = useTelemetry(deviceId, telemetryKey, { onData, onGrantError });
 
 #### Arguments
 
-<table><thead><tr><th width="169">Argument</th><th width="222">Description</th><th width="156.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device from which to receive telemetry data</td><td><code>string</code></td><td>true</td></tr><tr><td>telemetryKey</td><td>The key of the telemetry item</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="212.3453682734822">Argument</th><th width="386">Description</th><th width="156.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device from which to receive telemetry data</td><td><code>string</code></td><td>true</td></tr><tr><td>telemetryKey</td><td>The key of the telemetry item</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
 
 **HookOptions**
 
-<table><thead><tr><th width="161.10758620689654">key</th><th width="268">Description</th><th width="217.12530379049585">value type</th><th data-type="checkbox">required</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when new telemetry of <code>telemetryKey</code> is received on the device</td><td><code>(data: unknown) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the direct method request</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="214.52438251914">key</th><th width="378">Description</th><th width="301.1253037904959">value type</th><th data-type="checkbox">required</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when new telemetry of <code>telemetryKey</code> is received on the device</td><td><code>(data: unknown) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the direct method request</td><td><code>GrantErrorCallback</code></td><td>false</td></tr><tr><td>onSubscriptionError</td><td>Callback, executed when an error is returned from the subscription endpoints of ux4iot</td><td><code>SubscriptionErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
@@ -54,8 +54,8 @@ The `useMultiTelemetry` hook is a more sophisticated variant of `useTelemetry`. 
 
 #### Minimal Hook Example
 
-```
-const { telemetry, addTelemetry, removeTelemetry } = useMultiTelemetry();
+```tsx
+const { telemetry, addTelemetry, removeTelemetry } = useMultiTelemetry({});
 ```
 
 #### Full Hook Example
@@ -133,11 +133,11 @@ const App = () => {
 
 #### Arguments
 
-<table><thead><tr><th width="169">Argument</th><th width="222">Description</th><th width="156.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="169">Argument</th><th width="222">Description</th><th width="156.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
 
 #### HookOptions
 
-<table><thead><tr><th>Argument</th><th>Description</th><th>Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>initialSubscribers</td><td>Object of key-value pairs, with keys: the device IDs of your IoTHub devices, and value: a list of strings, defining the telemetryKeys to subscribe to</td><td><code>Record&#x3C;string, string[]></code></td><td>false</td></tr><tr><td>onData</td><td>Callback, executed when a new <code>value</code> for a <code>telemetryKey</code> is sent by a device with ID <code>deviceId</code></td><td><code>(deviceId: string, telemetryKey: string, value: unknown) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="200">Argument</th><th width="409">Description</th><th width="282">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>initialSubscribers</td><td>Object of key-value pairs, with keys: the device IDs of your IoTHub devices, and value: a list of strings, defining the telemetryKeys to subscribe to</td><td><code>Record&#x3C;string, string[]></code></td><td>false</td></tr><tr><td>onData</td><td>Callback, executed when a new <code>value</code> for a <code>telemetryKey</code> is sent by a device with ID <code>deviceId</code></td><td><code>(deviceId: string, telemetryKey: string, value: unknown) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr><tr><td>onSubscriptionError</td><td>Callback, executed when an error is returned from the subscription endpoints of ux4iot</td><td><code>SubscriptionErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 {% hint style="info" %}
 Do not try to perform subscription updates over the `initialSubscribers` object. This object is meant solely as an option for use cases where you always have an initial set of subscribers. Updates to `initialSubscribers` will not trigger updates in the hook.
@@ -147,14 +147,7 @@ Do not try to perform subscription updates over the `initialSubscribers` object.
 
 This hook returns an object containing other objects and functions to interact with telemetry subscriptions.
 
-| Key                | Value                                                                                                           | Type                                                  |
-| ------------------ | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| telemetry          | Object holding the current values of all your telemetry subscriptions                                           | `Record<string, Record<string, unknown>`              |
-| toggleTelemetry    | Toggles a telemetry subscription for a `deviceId` and `telemetryKey`                                            | `(deviceId: string, telemetryKey: string) => void`    |
-| addTelemetry       | Adds a telemetry subscription for a `deviceId` and multiple `telemetryKeys`                                     | `(deviceId: string, telemetryKeys: string[]) => void` |
-| removeTelemetry    | Removes a telemetry subscription for a `deviceId` and multiple `telemetryKeys`                                  | `(deviceId: string, telemetryKeys: string[]) => void` |
-| isSubscribed       | Checks whether a telemetry subscription for a `deviceId` and `telemetryKey` exists                              | `(deviceId: string, telemetryKey: string) => boolean` |
-| currentSubscribers | Object containing all current subscribers with key being the `deviceId` and value being the telemetryKey names. | `Record<string, string[]>`                            |
+<table data-full-width="true"><thead><tr><th width="228.33333333333337">Key</th><th width="414">Value</th><th>Type</th></tr></thead><tbody><tr><td>telemetry</td><td>Object holding the current values of all your telemetry subscriptions</td><td><code>Record&#x3C;string, Record&#x3C;string, unknown></code></td></tr><tr><td>toggleTelemetry</td><td>Toggles a telemetry subscription for a <code>deviceId</code> and <code>telemetryKey</code></td><td><code>(deviceId: string, telemetryKey: string) => void</code></td></tr><tr><td>addTelemetry</td><td>Adds a telemetry subscription for a <code>deviceId</code> and multiple <code>telemetryKeys</code></td><td><code>(deviceId: string, telemetryKeys: string[]) => void</code></td></tr><tr><td>removeTelemetry</td><td>Removes a telemetry subscription for a <code>deviceId</code> and multiple <code>telemetryKeys</code></td><td><code>(deviceId: string, telemetryKeys: string[]) => void</code></td></tr><tr><td>isSubscribed</td><td>Checks whether a telemetry subscription for a <code>deviceId</code> and <code>telemetryKey</code> exists</td><td><code>(deviceId: string, telemetryKey: string) => boolean</code></td></tr><tr><td>currentSubscribers</td><td>Object containing all current subscribers with key being the <code>deviceId</code> and value being the telemetryKey names.</td><td><code>Record&#x3C;string, string[]></code></td></tr></tbody></table>
 
 ## useDirectMethod
 
@@ -166,11 +159,11 @@ const reboot = useDirectMethod(deviceId, methodName, { onGrantError });
 
 #### Arguments
 
-<table><thead><tr><th width="169">Argument</th><th width="222">Description</th><th width="156.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device to execute the direct method on</td><td><code>string</code></td><td>true</td></tr><tr><td>methodName</td><td>The name of the method to execute on the device</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="175.3453682734822">Argument</th><th width="518">Description</th><th width="169.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device to execute the direct method on</td><td><code>string</code></td><td>true</td></tr><tr><td>methodName</td><td>The name of the method to execute on the device</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
 
 **Hook Options**
 
-<table><thead><tr><th width="161">Argument</th><th>Description</th><th width="224">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the direct method request</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="175.32611464968153">Argument</th><th width="498">Description</th><th width="224">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the direct method request</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
@@ -221,11 +214,11 @@ const deviceTwin = useDeviceTwin(deviceId, { onData, onGrantError });
 
 #### Arguments
 
-<table><thead><tr><th width="169">Argument</th><th width="222">Description</th><th width="156.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="134.3453682734822">Argument</th><th width="478">Description</th><th width="190.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
 
 **Hook Options**
 
-<table><thead><tr><th width="167">Argument</th><th width="206">Description</th><th width="217">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when a new twin updated is received.</td><td><code>(twin: Twin) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="167">Argument</th><th width="408.3240506329114">Description</th><th width="305">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when a new twin updated is received.</td><td><code>(twin: Twin) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr><tr><td>onSubscriptionError</td><td>Callback, executed when an error is returned from the subscription endpoints of ux4iot</td><td><code>SubscriptionErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
@@ -274,11 +267,11 @@ const connectionState = useConnectionState(deviceId, { onData, onGrantError });
 
 #### Arguments
 
-<table><thead><tr><th width="169">Argument</th><th width="222">Description</th><th width="156.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="161.3453682734822">Argument</th><th width="550">Description</th><th width="173.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
 
 **Hook Options**
 
-<table><thead><tr><th width="167">Argument</th><th width="206">Description</th><th width="217">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when a new connectionState update is received.</td><td><code>(connectionState: boolean) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="209.66075949367087">Argument</th><th width="366">Description</th><th width="295">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when a new connectionState update is received.</td><td><code>(connectionState: boolean) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr><tr><td>onSubscriptionError</td><td>Callback, executed when an error is returned from the subscription endpoints of ux4iot</td><td><code>SubscriptionErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
@@ -290,6 +283,52 @@ This value changed as soon as a device connects or disconnects.
 The connection state information can be quite delayed (up to 1 minute). This is not a ux4iot issue, but an issue with IoT Hub itself (see [here](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-event-grid#limitations-for-device-connected-and-device-disconnected-events) and [here](https://docs.microsoft.com/en-us/answers/questions/434493/device-connection-state-events-delayed.html)).
 {% endhint %}
 
+## useMultiConnectionState
+
+#### **Minimal Hook Example**
+
+{% code fullWidth="true" %}
+```tsx
+const { connectionStates, addConnectionState, removeConnectionState } = useMultiConnectionState({});
+```
+{% endcode %}
+
+#### Full Hook Example
+
+```tsx
+const {
+  connectionStates,
+  addConnectionState,
+  currentSubscribers,
+  isSubscribed,
+  removeConnectionState,
+  toggleConnectionState,
+} = useMultiConnectionState({
+  initialSubscribers: [],
+  onData: (deviceId, data, timestamp) => console.log(data),
+  onGrantError: (error: GRANT_RESPONSES) => console.log(error),
+  onSubscriptionError: (error) => console.log(error)
+});
+```
+
+#### Arguments
+
+<table><thead><tr><th width="169">Argument</th><th width="222">Description</th><th width="156.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+
+#### HookOptions
+
+<table data-full-width="true"><thead><tr><th width="206">Argument</th><th width="389">Description</th><th width="294">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>initialSubscribers</td><td>Object of key-value pairs, with keys: the device IDs of your IoTHub devices, and value: a list of strings, defining the telemetryKeys to subscribe to</td><td><code>Record&#x3C;string, string[]></code></td><td>false</td></tr><tr><td>onData</td><td>Callback, executed when a new <code>value</code> for a <code>telemetryKey</code> is sent by a device with ID <code>deviceId</code></td><td><code>(deviceId: string, telemetryKey: string, value: unknown) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr><tr><td>onSubscriptionError</td><td>Callback, executed when an error is returned from the subscription endpoints of ux4iot</td><td><code>SubscriptionErrorCallback</code></td><td>false</td></tr></tbody></table>
+
+{% hint style="info" %}
+Do not try to perform subscription updates over the `initialSubscribers` object. This object is meant solely as an option for use cases where you always have an initial set of subscribers. Updates to `initialSubscribers` will not trigger updates in the hook.
+{% endhint %}
+
+#### Return Value
+
+This hook returns an object containing other objects and functions to interact with telemetry subscriptions.
+
+<table data-full-width="true"><thead><tr><th width="233.33333333333337">Key</th><th width="478">Value</th><th>Type</th></tr></thead><tbody><tr><td>connectionStates</td><td>Object holding the current values of all your connectionState subscriptions</td><td><code>Record&#x3C;string, boolean></code></td></tr><tr><td>toggleConnectionState</td><td>Toggles a connectionState subscription for a <code>deviceId</code></td><td><code>(deviceId: string) => Promise&#x3C;void></code></td></tr><tr><td>addConnectionState</td><td>Adds a connectionState subscription for a <code>deviceId</code></td><td><code>(deviceId: string) => Promise&#x3C;void></code></td></tr><tr><td>removeConnectionState</td><td>Removes a connectionState subscription for a <code>deviceId</code></td><td><code>(deviceId: string) => Promise&#x3C;void></code></td></tr><tr><td>isSubscribed</td><td>Checks whether a telemetry subscription for a <code>deviceId</code>  exists</td><td><code>(deviceId: string) => boolean</code></td></tr><tr><td>currentSubscribers</td><td>List of all current deviceIds that are subscribed</td><td><code>string[]</code></td></tr></tbody></table>
+
 ## usePatchDesiredProperties
 
 The `usePatchDesiredProperties` hook is used to perform desired property updates on devices.
@@ -300,11 +339,11 @@ const patchDesiredProperties = usePatchDesiredProperties(deviceId, { onGrantErro
 
 #### Arguments
 
-<table><thead><tr><th width="169">Argument</th><th width="222">Description</th><th width="156.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device onto which to patch the desired properties</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="134.3453682734822">Argument</th><th width="578">Description</th><th width="167.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device id of the device onto which to patch the desired properties</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
 
 **Hook Options**
 
-<table><thead><tr><th width="167">Argument</th><th width="206">Description</th><th width="217">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the patch desired properties request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="156.66075949367087">Argument</th><th width="476">Description</th><th width="239">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the patch desired properties request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 
@@ -347,11 +386,11 @@ const lastMessage = useD2CMessages<T>(deviceId, { onData, onGrantError });
 
 #### Arguments
 
-<table><thead><tr><th width="169">Argument</th><th width="222">Description</th><th width="156.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="213.3453682734822">Argument</th><th width="444">Description</th><th width="156.82258064516128">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>deviceId</td><td>The device ID of the device you want to subscribe to.</td><td><code>string</code></td><td>true</td></tr><tr><td>options</td><td>Configuration Options</td><td><code>HookOptions</code></td><td>false</td></tr></tbody></table>
 
 **Hook Options**
 
-<table><thead><tr><th width="167">Argument</th><th width="206">Description</th><th width="217">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when the device sends a new message.</td><td><code>(data: Record&#x3C;string, unknown>) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="210">Argument</th><th width="421.3240506329114">Description</th><th width="217">Type</th><th data-type="checkbox">Required?</th></tr></thead><tbody><tr><td>onData</td><td>Callback, executed when the device sends a new message.</td><td><code>(data: Record&#x3C;string, unknown>) => void</code></td><td>false</td></tr><tr><td>onGrantError</td><td>Callback, executed when the <code>grantRequestFunction</code> fails to grant the subscription request.</td><td><code>GrantErrorCallback</code></td><td>false</td></tr><tr><td>onSubscriptionError</td><td>Callback, executed when an error is returned from the subscription endpoints of ux4iot</td><td><code>SubscriptionErrorCallback</code></td><td>false</td></tr></tbody></table>
 
 #### Return Value
 

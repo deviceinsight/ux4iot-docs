@@ -1,4 +1,26 @@
+---
+description: Developing web apps with React
+---
+
 # Initialization
+
+We provide React hooks and context providers out of the box. The library can be found on [GitHub](https://github.com/deviceinsight/ux4iot-react).
+
+First, install the ux4iot-react library:
+
+{% tabs %}
+{% tab title="NPM" %}
+```bash
+npm install ux4iot-react
+```
+{% endtab %}
+
+{% tab title="Yarn" %}
+```bash
+yarn add ux4iot-react
+```
+{% endtab %}
+{% endtabs %}
 
 You initialize the ux4iot React library by wrapping your components with a `Ux4iotContext`
 
@@ -20,6 +42,31 @@ function App() {
 
 There are two modes of operations for the library: Development mode and production mode. The initialization differs between the two modes.
 
+#### ConfigurationOptions
+
+```typescript
+type InitializationOptions = {
+	onSocketConnectionUpdate?: ConnectionUpdateFunction;
+	reconnectTimeout?: number;
+	maxReconnectTimeout?: number;
+} & (InitializeDevOptions | InitializeProdOptions);
+
+type InitializeDevOptions = {
+	adminConnectionString: string;
+};
+
+type InitializeProdOptions = {
+	ux4iotURL: string;
+	grantRequestFunction: GrantRequestFunctionType;
+};
+```
+
+
+
+<table data-full-width="true"><thead><tr><th>Option</th><th>description</th><th data-hidden>kind</th></tr></thead><tbody><tr><td>onSocketConnectionUpdate</td><td>event listener on socket connection updates</td><td>common</td></tr><tr><td>reconnectTimeout</td><td>initial timeout in milliseconds when to reconnect after a session couldn't be established</td><td>common</td></tr><tr><td>maxReconnectTimeout</td><td>maximum timeout in milliseconds of the reconnect interval after incrementation</td><td>common</td></tr><tr><td>adminConnectionString</td><td>The connection string of ux4iot-server</td><td>dev</td></tr><tr><td>ux4iotUrl</td><td>the websocket url of ux4iot-server</td><td>prod</td></tr><tr><td>grandRequestFunction</td><td>custom function to send grant requests to your custom security backend</td><td>prod</td></tr></tbody></table>
+
+###
+
 ### Development Mode
 
 ```jsx
@@ -40,11 +87,11 @@ You can see a complete example in the [tutorial using create-react-app](tutorial
 
 The value of the `adminConnectionString` option can be retrieved via the Azure portal:
 
-![](<../.gitbook/assets/image (7).png>)
+![](<../.gitbook/assets/image (22).png>)
 
 You can select either the Primary or the Secondary connection string.
 
-In production mode the admin connection string is used by the [Security Backend](../implementing-your-custom-security-backend/introduction.md), but as there is no Security Backend in development mode, the frontend accesses the [Admin API](../implementing-your-custom-security-backend/admin-rest-api.md) on its own. For this reason the frontend requires the admin connection string.
+In production mode the admin connection string is used by the [Security Backend](../implementing-your-custom-security-backend/introduction.md), but as there is no Security Backend in development mode, the frontend accesses the [Admin API](broken-reference) on its own. For this reason the frontend requires the admin connection string.
 
 #### Usage of Development Mode
 
@@ -73,9 +120,19 @@ const prodOptions: InitializeProdOptions = {
 
 The value for the `ux4iotURL` parameter is available on your ux4iot instance in the Azure portal:
 
-![](<../.gitbook/assets/image (8).png>)
+![](<../.gitbook/assets/image (12).png>)
 
 For detailed information on how to implement the Grant Request Function, see [the dedicated chapter](implementing-the-grantrequestforwarder-function.md).
+
+### reconnectTimeout & maxReconnectTimeout
+
+When you render a `Ux4iotContextProvider`, it tries to establish a session by calling the `/session` endpoint of ux4iot. If this request fails, it will retry again after the milliseconds defined in `reconnectTimeout`. If the retry fails it will double the timeout and retry again after the doubled timeout or `maxReconnectTimeout` if `maxReconnectTimeout` is larger.
+
+#### Example `reconnectTimeout = 5000`, `maxReconnectTimeout = 50000`
+
+Ux4iot fails to connect to ux4iot and fails. Retries afterwards at 5, 10, 20, 40, 50, 50, 50,... seconds
+
+Retries will not stop retrying until the session is established. The defaults are `reconnectTimeout = 5000`, `maxReconnectTimeout = 30000`
 
 ### onSocketConnectionUpdate
 
@@ -97,7 +154,7 @@ It takes two arguments:
 
 *   reason - can be one of four strings:
 
-    * &#x20;`socket_connect` - called when the socket is established with the server
+    * `socket_connect` - called when the socket is established with the server
     * `socket_connect_error` called when the client throws an error when establishing the socket
     * `socket_disconnect` - called when the socket is disconnected
     * `ux4iot_unreachable` - called when a sessionId cannot be fetched from the ux4iot instance
