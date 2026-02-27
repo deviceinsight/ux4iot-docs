@@ -1,0 +1,104 @@
+stages:
+  - infrastructure
+  - build
+  - deploy
+
+variables:
+  SUBSCRIPTION_ID: ab92703c-7fdb-4a1e-8ea8-b402f4e2ea25
+  RESOURCE_GROUP: "ux4iot-shared"
+  STATIC_WEB_APP_NAME: "ux4iot-docs"
+
+deploy-infrastructure:
+  stage: infrastructure
+  image: mcr.microsoft.com/azure-cli:latest
+  only:
+    - main
+    - master
+  script:
+    - echo "Logging in to Azure..."
+    - az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
+    - az account set --subscription $SUBSCRIPTION_ID
+
+    - echo "Deploying Bicep template to resource group..."
+    - |
+      az deployment group create \
+        --resource-group $RESOURCE_GROUP \
+        --subscription $SUBSCRIPTION_ID \
+        --parameters infra/main.bicepparam
+
+  tags:
+    - v2
+
+# Build documentation stage
+build-docs:
+  stage: build
+  image: ghcr.io/astral-sh/uv:python3.11-bookworm
+  only:
+    - main
+    - master
+  script:
+    - echo "Installing dependencies..."
+    - uv sync
+
+    - echo "Building MkDocs documentation..."
+    - uv run mkdocs build --clean --strict
+
+    - echo "Documentation built successfully"
+    - ls -la site/
+
+  artifacts:
+    paths:
+      - site/
+    expire_in: 1 hour
+
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - .venv/
+
+  tags:
+    - docker
+
+# Deploy to Azure Static Web Apps
+deploy-docs:
+  stage: deploy
+  image: mcr.microsoft.com/azure-cli:latest
+  only:
+    - main
+  dependencies:
+    - deploy-infrastructure
+    - build-docs
+  needs:
+    - deploy-infrastructure
+    - build-docs
+  script:
+    - echo "Installing Node.js and npm..."
+    - apk add --no-cache nodejs npm
+
+    - echo "Installing Azure Static Web Apps CLI..."
+    - npm install -g @azure/static-web-apps-cli
+
+    - echo "Logging in to Azure..."
+    - az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
+    - az account set --subscription $SUBSCRIPTION_ID
+
+    - echo "Getting deployment token if not set..."
+    - |
+      if [ -z "$DEPLOYMENT_TOKEN" ]; then
+        DEPLOYMENT_TOKEN=$(az staticwebapp secrets list \
+          --name $STATIC_WEB_APP_NAME \
+          --resource-group $RESOURCE_GROUP \
+          --subscription $SUBSCRIPTION_ID \
+          --query "properties.apiKey" -o tsv)
+      fi
+
+    - echo "Deploying to Azure Static Web Apps..."
+    - |
+      swa deploy ./site \
+        --deployment-token $DEPLOYMENT_TOKEN \
+        --env production
+
+    - echo "Deployment completed successfully!"
+
+  tags:
+    - v2

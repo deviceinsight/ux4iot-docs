@@ -1,0 +1,87 @@
+site_name: UX4IoT Documentation
+site_description: Documentation for ux4iot - IoT Hub communication tool for web frontends
+site_author: Device Insight
+site_url: https://deviceinsight.github.io/ux4iot-docs
+
+theme:
+  name: material
+  logo: logo.png
+  favicon: logo.png
+  palette:
+    scheme: default
+    primary: white
+    accent: blue
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.tracking
+    - navigation.indexes
+    - toc.follow
+    - search.highlight
+    - search.share
+    - search.suggest
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.mark
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+
+nav:
+  - Introduction: index.md
+  - Quickstart: quickstart.md
+  - Concepts: concepts.md
+  - How Ux4iot works: how-ux4iot-works.md
+  - REST API Reference: rest-api-reference.md
+  - Configuration Options: configuration-options.md
+  - EventHub / IoTHub:
+    - Configure your existing IoT Hub: setup/configure-your-iot-hub.md
+    - Create IoT Hub and linked ux4iot: setup/create-iot-hub-and-linked-ux4iot.md
+    - Create your ux4iot Instance: setup/create-ux4iot-instance.md
+    - Using a separate Event Hub: setup/using-a-separate-event-hub.md
+  - ux4iot-react:
+    - Initialization: using-react/initialization.md
+    - Hooks: using-react/hooks.md
+    - Grant Request Function: using-react/implementing-the-grantrequestforwarder-function.md
+    - Tutorial using create-react-app: using-react/tutorial-using-create-react-app.md
+  - Implementing your custom security backend:
+    - Introduction: implementing-your-custom-security-backend/introduction.md
+    - Security Backend: implementing-your-custom-security-backend/implementing-the-security-backend.md
+    - Security Backend Example - Azure Function: implementing-your-custom-security-backend/security-backend-examples/README.md
+    - ux4iot-admin-node: implementing-your-custom-security-backend/ux4iot-typescript-client.md
+  - Resources:
+    - Pricing: resources/cost.md
+    - Performance: resources/performance.md
+    - Limitations: resources/limitations.md
+    - Known Bugs & Nice to know's: resources/faq.md
+    - Changelog: resources/changelog.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/deviceinsight
+    - icon: fontawesome/solid/globe
+      link: https://www.device-insight.com/en/
+
+copyright: Made with ❤️ at Device Insight
+

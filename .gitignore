@@ -1,0 +1,32 @@
+# Ignore MkDocs build output
+site/
+
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# uv
+.uv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Azure deployment
+*.env
+deploy.env
+.azure/
+
+# Static Web Apps CLI
+.swa/
+
